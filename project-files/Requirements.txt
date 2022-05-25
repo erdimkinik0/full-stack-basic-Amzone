@@ -1,0 +1,16 @@
+Req. 1 - User can only have one type. After creating an account, they can not change type of account between seller and customer
+Req. 2 - Each account type can have particular variables
+Req. 3 - Accounts can provide limited processes which has been limited with middleware
+Req. 4 - Customer type of account can create adverts in order to announce what they want to buy. These can be seem by seller
+Req. 5 - Customer can see details of a product, product's owner and comments of products which are submitted by other customers
+Req. 6 - Customers can add products into cart. And they can add this cart into their order.
+Req. 7 - Order can be created by customer. In fact, this order will be related with seller. Sum of orders will give a title wthic called best seller 
+Req. 8 - Product can be published by sellers with its variables which means customer is not allowed to create a product
+Req. 9 - Product has a category which called status that it can be only one of the 3 options related with database
+Req. 10 - Product has also a comment, which can be only published by customers according to authorization middleware.
+Req. 11 - Depending on its variable which called sold_count will give most popular item title relatively its category
+Req. 12 - Sellers can have multiple products. Customer will be allowed to see sellers' other products
+Req. 13 - Customers have their order histroy which can be repeated and checked this action again
+Req. 14 - Each account has their finance section. For customers this is order history
+Req. 15 - For sellers, Finance section is nmore detailed. Because, sellers can also buy raw materials for their products which means they will have detailed income , outcome
+

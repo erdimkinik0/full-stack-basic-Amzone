@@ -1,0 +1,4 @@
+nav blackey = #131921
+main-dark-blue = #232f3e
+second-blue = #004B91
+button = #febd69
