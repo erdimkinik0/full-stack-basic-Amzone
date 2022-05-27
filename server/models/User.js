@@ -13,14 +13,21 @@ const userSchema = new mongoose.Schema({
         maxlength:100,
         required:true
     },
-    passowrd:{
+    password:{
         type:String,
         required:true,
 
     },
+    onType:{
+        type:String,
+        required:true,
+        enum:["Company","Customer"]
+    },
     acc_type:{
         type:mongoose.SchemaTypes.ObjectId,
         required:true,
+        refPath:"onType"
+        
     }
 })
 

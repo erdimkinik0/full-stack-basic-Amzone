@@ -11,7 +11,12 @@ const customerSchema = new mongoose.Schema({
         required:true,
         maxlength:64
     },
-    orders:[mongoose.SchemaTypes.ObjectId],
+    orders:[
+        {
+            type:mongoose.SchemaTypes.ObjectId,
+            ref:"Order"
+        }
+    ],
     address:{
         country:{
             type:String,
@@ -28,12 +33,23 @@ const customerSchema = new mongoose.Schema({
             required:true,
             maxlength:128,
         },
-        adverts:[mongoose.SchemaTypes.ObjectId],
-        cart:{
-            type:mongoose.SchemaTypes.ObjectId,
-            ref:"Cart"
+        zip:{
+            type:Number,
+            required:true,
+            maxlength:16
         }
+       
+    },
+    adverts:[
+        {
+            type:mongoose.SchemaTypes.ObjectId,
+            ref:"Advert"
+        }
+    ],
+    cart:{
+        type:mongoose.SchemaTypes.ObjectId,
+        ref:"Cart"
     }
 })
 
-module.exports = mongoose.model("Customers",customerSchema);
+module.exports = mongoose.model("Customer",customerSchema);

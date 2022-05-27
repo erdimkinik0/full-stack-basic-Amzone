@@ -21,7 +21,17 @@ db.once("open",() => {
 // tools inits
 
 
+
 // models
+
+
+//routes init
+const registerRouter = require("./routes/register");
+
+
+// routes
+app.use("/register",registerRouter)
+
 
 app.get("/",(req,res) => {
     res.json("Auth Server")

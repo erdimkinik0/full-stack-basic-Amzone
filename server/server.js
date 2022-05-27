@@ -17,11 +17,8 @@ db.once("open",() => {
     console.log("Server has connected to cloud successfully");
 })
 
-//models
 
 
-
-//routes
 
 
 
