@@ -2,8 +2,9 @@ import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { ThemeContext } from "../hooks/GlobalContext"
 
-const Navbar = () => {
+const Navbar = (props) => {
     const [{isDark},toggleTheme] = useContext(ThemeContext);
+    
 
     return (
         <div className="nav-container">
@@ -19,7 +20,10 @@ const Navbar = () => {
                         </div>
                         <div className="col-md-2 d-flex justify-content-end">
                             <button className="thmbut" type="sbumit" onClick={() => toggleTheme()}>{isDark ? "Light" : "Dark"}</button>
-                            <Link to="/">Login</Link>
+                            {
+                                props.isLogged ? <Link to="/logout">Logout</Link>
+                                : <Link to="/login">Login</Link>
+                            }
                             <Link to="/">Cart</Link>
                         </div>
                     </div>

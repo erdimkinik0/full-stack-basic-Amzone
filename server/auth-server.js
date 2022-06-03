@@ -5,8 +5,12 @@ if(process.env.NODE_ENV !== "production"){
 // server configs
 const express = require("express");
 const app = express();
+const cors = require("cors");
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(cors());
+
 
 
 // db configs
@@ -27,11 +31,11 @@ db.once("open",() => {
 
 //routes init
 const registerRouter = require("./routes/register");
-
+const loginRouter = require("./routes/login");
 
 // routes
 app.use("/register",registerRouter)
-
+app.use("/login",loginRouter);
 
 app.get("/",(req,res) => {
     res.json("Auth Server")

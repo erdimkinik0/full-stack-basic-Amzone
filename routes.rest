@@ -23,7 +23,7 @@ POST http://localhost:4000/register/customer
 Content-Type: application/json
 
 {
-    "email":"erdalkinik@hotmail.com",
+    "email":"erdalkinikk@hotmail.com",
     "username":"edek31",
     "password":"123",
     "firstname":"Erdim",
@@ -53,3 +53,13 @@ Content-Type: application/json
     "quantity":31
 }
 
+
+###
+
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "email":"erdalkinikk@gmail.com",
+    "password":"123"
+}
