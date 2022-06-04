@@ -24,13 +24,21 @@ const Login = (props) => {
                     "Content-Type": "application/json"
                 }
             })
-            let resJson;
+            
+            let accessToken;
+            let refreshToken;
             if (res.status === 200) {
-                resJson = await res.json();
-                console.log(resJson);
-                localStorage.setItem("user",resJson);
+                let resJson = await res.json();
+                accessToken = resJson.accessToken;
+                refreshToken = resJson.refreshToken;
+                localStorage.setItem("accessToken",accessToken);
+                localStorage.setItem("refreshToken",refreshToken);
+                props.setToken({
+                    token:refreshToken.token
+                })
                 props.setIsLogged(true);
                 navigate("/")
+                window.location.reload()
             }
             else {
                 let errMessage = await res.json();

@@ -63,3 +63,20 @@ Content-Type: application/json
     "email":"erdalkinikk@gmail.com",
     "password":"123"
 }
+
+
+###
+
+/// token test
+
+POSt http://localhost:4000/token
+Content-Type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyOTEyYWUwOTIwOWE5YjY2ZGRkMmEwYiIsInVzZXJuYW1lIjoiZWRlazk1IiwiZW1haWwiOiJlcmRhbGtpbmlra0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRTWG1EZW5jdFV6UGpWSUM1Y0IvdWZlMXdoUHdwRXcuS28vbWlSWTZXeHI3OWM0aHltOFBzSyIsIm9uVHlwZSI6IkNvbXBhbnkiLCJhY2NfdHlwZSI6IjYyOTEyYWUwOTIwOWE5YjY2ZGRkMmEwOSIsIl9fdiI6MH0sImlhdCI6MTY1NDM0NTUxNH0.yy0bl8IUqHBGej8_0fwv1Hu96HakNa1yhdFOi7q1Qt0"
+}
+
+###
+
+GET http://localhost:4000/dummy
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyOTEyYWUwOTIwOWE5YjY2ZGRkMmEwYiIsInVzZXJuYW1lIjoiZWRlazk1IiwiZW1haWwiOiJlcmRhbGtpbmlra0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRTWG1EZW5jdFV6UGpWSUM1Y0IvdWZlMXdoUHdwRXcuS28vbWlSWTZXeHI3OWM0aHltOFBzSyIsIm9uVHlwZSI6IkNvbXBhbnkiLCJhY2NfdHlwZSI6IjYyOTEyYWUwOTIwOWE5YjY2ZGRkMmEwOSIsIl9fdiI6MH0sImlhdCI6MTY1NDMzNTA5M30.pi0wcImCt3dwyEX0qZPFE-QEU4zOmbVeXROMw9qIaEY
