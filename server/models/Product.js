@@ -5,21 +5,32 @@ const productSchema = new mongoose.Schema({
     name:{
         type:String,
         maxlength:128,
-        
+        required:true
     },
 
     description:{
         type:String,
-        maxlength:1024,
+        maxlength:2048,
+        required:true
     },
     status:{
         type:String,
+        required:true,
         enum:["New","Slightly Used","well-worn"]
     },
     comments:[],
-    sold_count:Number,
-    price:Number,
-    quantity:Number
+    sold_count:{
+        type:Number,
+        default:0,
+    },
+    price:{
+        type:Number,
+        required:true
+    },
+    quantity:{
+        type:Number,
+        required:true
+    }
 })
 
 

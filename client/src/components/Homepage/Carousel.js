@@ -1,7 +1,8 @@
 import dummyImag1 from "../../assets/1.png";
 import dummyImage2 from "../../assets/2.png";
 import dummyImage3 from "../../assets/3.png";
-import { Link } from "react-router-dom";
+
+
 
 const HomeCarouselComponent = () => {
 

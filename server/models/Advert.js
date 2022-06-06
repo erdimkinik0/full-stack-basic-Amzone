@@ -13,6 +13,11 @@ const advertSchema = new mongoose.Schema({
     },
     category:{
         type:String,
+        required:true
+    },
+    created_date:{
+        type:Date,
+        default:new Date()
     }
 })
 

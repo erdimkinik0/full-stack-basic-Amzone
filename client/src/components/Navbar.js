@@ -2,12 +2,13 @@ import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { ThemeContext } from "../hooks/GlobalContext"
 
+
 const Navbar = (props) => {
     const [{ isDark }, toggleTheme] = useContext(ThemeContext);
     let navigate = useNavigate();
-    const submitted = async (e) => {
+    const tokenRefreshClickHandler = async (path) => {
         try {
-            e.preventDefault();
+            
             let res = await fetch("http://localhost:4000/token", {
                 method: "post",
                 body: JSON.stringify(props.refreshToken),
@@ -17,12 +18,14 @@ const Navbar = (props) => {
             })
             if (res.status === 200) {
                 let newTokenJson = await res.json();
-
-                localStorage.setItem("accessToken", newTokenJson.accessToken)
+                localStorage.setItem("accessToken", newTokenJson.accessToken);
+                localStorage.setItem("setupTime",new Date().getTime())
+                navigate(`${path}`)
             }
             else {
                 let errMessage = await res.json();
-                console.log(errMessage)
+                navigate(`/login`);
+                console.log(errMessage);
             }
         } catch (err) {
             console.log(err)
@@ -38,14 +41,17 @@ const Navbar = (props) => {
                     "Content-Type": "application/json",
                 }
             })
-            localStorage.setItem("accessToken","");
-            localStorage.setItem("refreshToken","");
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
             navigate("/");
             window.location.reload();
         } catch (err) {
             console.log(err);
         }
+    }
 
+    const regularRouteHandler = (path) => {
+        navigate(`${path}`)
     }
     return (
         <div className="nav-container">
@@ -53,11 +59,30 @@ const Navbar = (props) => {
                 <div className="top-nb">
                     <div className="row d-flex mt-1">
                         <div className="col-md-1">
-                            <Link onClick={submitted} to="/">Logo</Link>
+                            <button onClick={(e) => {
+                                e.preventDefault();
+                                regularRouteHandler("/")
+                                }}>Logo</button>
                         </div>
                         <div className="col-md-9">
-                            <Link to="/">Dropdown Menu</Link>
-                            <Link to="/">Search Input</Link>
+                            <button onClick={(e) => {
+                                e.preventDefault();
+                                tokenRefreshClickHandler("/")
+                                }}>Dropdown Menu</button>
+                                
+                                {
+                                    props.isLogged && 
+                                        <button onClick={(e) => {
+                                        e.preventDefault();
+                                        tokenRefreshClickHandler("/dashboard")
+                                        }}>Dashboard</button>
+                                }
+                               
+
+                            <button onClick={(e) => {
+                                e.preventDefault();
+                                regularRouteHandler("/")
+                                }}>Search Input</button>
                         </div>
                         <div className="col-md-2 d-flex justify-content-end">
                             <button className="thmbut" type="submit" onClick={() => toggleTheme()}>{isDark ? "Light" : "Dark"}</button>
@@ -65,7 +90,14 @@ const Navbar = (props) => {
                                 props.isLogged ? <Link to="/logout" onClick={logoutClickHandler}>Logout</Link>
                                     : <Link to="/login">Login</Link>
                             }
-                            <Link to="/">Cart</Link>
+                            {
+                                !props.isLogged && <Link to="/register">Register</Link>
+                            }
+                            <button onClick={(e) => {
+                                e.preventDefault();
+                                tokenRefreshClickHandler("/")
+                                }}>Cart</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -81,10 +113,10 @@ const LowerNavbar = () => {
         <div className="lowernav-container">
 
             <div className="lower-nb ">
-                <Link to="/">All</Link>
-                <Link to="/">Popular deals</Link>
-                <Link to="/">Customer Service</Link>
-                <Link to="/">Sell</Link>
+                <button to="/">All</button>
+                <button to="/">Popular deals</button>
+                <button to="/">Customer Service</button>
+                <button to="/">Sell</button>
             </div>
         </div>
     )

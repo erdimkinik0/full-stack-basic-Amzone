@@ -39,7 +39,7 @@ const registerCompanyControllerPost = async (req,res) => {
             email:req.body.email,
             password:password,
             onType:"Company",
-            acc_type:newCo._id
+            acc_type:newCo.id
         })
         res.status(201).json(newCoUser);
         

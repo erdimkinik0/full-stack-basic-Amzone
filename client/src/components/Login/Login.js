@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLoginFormHandler } from "../../hooks/UseFormOnChangeHandler";
 const Login = (props) => {
-    const [inputData, setInputData] = useState({
-        email: "",
-        password: ""
-    })
-    const [message, setMessage] = useState("");
+    const [inputData,onChangeHandler] = useLoginFormHandler();
+    const [message,setMessage] = useState("");
     let navigate = useNavigate();
-
-    const onChangeHandler = (e) => {
-        setInputData({
-            ...inputData, [e.target.name]: e.target.value
-        })
-    }
-
     const formOnSubmitHandler = async (e) => {
         try {
             e.preventDefault();
@@ -33,12 +24,15 @@ const Login = (props) => {
                 refreshToken = resJson.refreshToken;
                 localStorage.setItem("accessToken",accessToken);
                 localStorage.setItem("refreshToken",refreshToken);
+                let now = new Date().getTime();
+                localStorage.setItem("setupTime",now);
                 props.setToken({
                     token:refreshToken.token
                 })
                 props.setIsLogged(true);
                 navigate("/")
-                window.location.reload()
+                window.location.reload();
+                
             }
             else {
                 let errMessage = await res.json();
@@ -65,7 +59,6 @@ const Login = (props) => {
     }, [message])
 
     useEffect(() => {
-
         if(localStorage.getItem("user")){
             navigate("/")
         }

@@ -48,7 +48,6 @@ const loginController = async (req,res) => {
         res.status(400).json({message:err.message});
     }   
 } 
-
 function generateAccessToken(user){
     return jwt.sign({user:user},process.env.ACCESS_TOKEN_SECRET,{expiresIn:"30s"});
 }

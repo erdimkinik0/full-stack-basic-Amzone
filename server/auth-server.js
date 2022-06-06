@@ -34,6 +34,11 @@ const tokenRouter = require("./routes/token");
 
 
 // routes
+app.get("/authorizated-user",authorizatedToken,(req,res) => {
+    // general user authorization
+    res.status(200).json(req.user.user);
+})
+
 app.use("/register",registerRouter)
 app.use("/login",loginRouter);
 app.use("/token",tokenRouter);
@@ -47,7 +52,7 @@ app.delete("/logout",async (req,res) => {
     }
 })
 
-function authenticatedToken(req,res,next){
+function authorizatedToken(req,res,next){
     const bearerHeader = req.headers["authorization"];
     if(!bearerHeader){
         return res.status(400).json({message:"There is no authorization"})
@@ -65,9 +70,6 @@ function authenticatedToken(req,res,next){
     })
 }
 
-app.get("/",(req,res) => {
-    res.json("Auth Server")
-})
 
 
 

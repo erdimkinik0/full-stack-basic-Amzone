@@ -1,0 +1,66 @@
+import { useProductFormHandler } from "../../../hooks/UseFormOnChangeHandler";
+import { useNavigate } from "react-router-dom";
+
+const ProductCreate = (props) => {
+    const [inputData,onChangeHandler] = useProductFormHandler();
+    let navigate = useNavigate();
+
+    const onSubmitHandler = async (e) => {
+        try{
+            e.preventDefault();
+            let res = await fetch("http://localhost:5000/products/create",{
+                method:"post",
+                body:JSON.stringify(inputData),
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
+                }
+            })
+            if (res.status === 201){
+                navigate("/products")
+            }
+            else {
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("refreshToken");
+                localStorage.removeItem("setupTime");
+                props.setIsLogged(false);
+                window.location.reload();
+                navigate("/login")
+            }
+
+        }catch(err){
+            console.log(err);
+        }
+
+    } 
+
+    return (
+        <div>
+            <form onSubmit={onSubmitHandler}>
+                <div className="mb-3">
+                    <label htmlFor="name" className="form-label">Product Name</label>
+                    <input onChange={onChangeHandler} type="text" className="form-control" id="name" name="name"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="description" className="form-label">Description</label>
+                    <textarea onChange={onChangeHandler} className="form-control" id="description" name="description" rows="3"></textarea>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="status" className="form-label">Status</label>
+                    <input onChange={onChangeHandler} type="text" className="form-control" id="status" name="status"/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="price" className="form-label">Price</label>
+                    <input onChange={onChangeHandler} type="number" className="form-control" id="price" name="price"  />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="quantity" className="form-label">Quantity</label>
+                    <input onChange={onChangeHandler} type="number" className="form-control" id="quantity" name="quantity"  />
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    )
+}
+
+export default ProductCreate;
