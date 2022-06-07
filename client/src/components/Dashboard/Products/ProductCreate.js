@@ -1,10 +1,43 @@
 import { useProductFormHandler } from "../../../hooks/UseFormOnChangeHandler";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const ProductCreate = (props) => {
     const [inputData,onChangeHandler] = useProductFormHandler();
     let navigate = useNavigate();
-
+    const checkIfAuthorizatedUser = async () => {
+        try{
+            let res = await fetch("http://localhost:5000/products/create",{
+                method:"get",
+                headers:{
+                    "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
+                }
+            })
+            if(res.status === 200){
+                console.log("user is authorizated")
+            }
+            else {
+                await fetch("http://localhost:4000/logout",{
+                    method:"delete",
+                    body:JSON.stringify(props.refreshToken),
+                    headers:{
+                        "Content-Type":"application/json"
+                    }
+                })
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("refreshToken");
+                localStorage.removeItem("setupTime");
+                localStorage.removeItem("userType")
+                props.setIsLogged(false);
+                navigate("/login")
+            }
+        }catch(err){
+            console.log(err)
+        }
+    }
+    useEffect(() => {
+        checkIfAuthorizatedUser();
+    })
     const onSubmitHandler = async (e) => {
         try{
             e.preventDefault();
@@ -23,17 +56,15 @@ const ProductCreate = (props) => {
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem("refreshToken");
                 localStorage.removeItem("setupTime");
+                localStorage.removeItem("userType")
                 props.setIsLogged(false);
                 window.location.reload();
                 navigate("/login")
             }
-
         }catch(err){
             console.log(err);
         }
-
     } 
-
     return (
         <div>
             <form onSubmit={onSubmitHandler}>

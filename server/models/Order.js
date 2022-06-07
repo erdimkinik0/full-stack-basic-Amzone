@@ -21,10 +21,13 @@ const orderSchema = new mongoose.Schema({
         type:Date,
         default: Date.now()
     },
-    cart:{
-        type:mongoose.SchemaTypes.ObjectId,
-        ref:"Cart"
-    }
+    cart:[
+        {
+            type:mongoose.SchemaTypes.ObjectId,
+            ref:"CartItem"
+        }   
+    ]
+
     
 })
 

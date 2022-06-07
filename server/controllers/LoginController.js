@@ -49,6 +49,6 @@ const loginController = async (req,res) => {
     }   
 } 
 function generateAccessToken(user){
-    return jwt.sign({user:user},process.env.ACCESS_TOKEN_SECRET,{expiresIn:"30s"});
+    return jwt.sign({user:user},process.env.ACCESS_TOKEN_SECRET,{expiresIn:"30m"});
 }
 module.exports = {loginController,tokenController};

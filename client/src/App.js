@@ -17,6 +17,7 @@ import Products from "./components/Dashboard/Products/Products";
 import ProductCreate from "./components/Dashboard/Products/ProductCreate";
 import Adverts from "./components/Dashboard/Adverts/Adverts";
 import AdvertCreate from "./components/Dashboard/Adverts/AdvertCreate";
+import Orders from "./components/Orders/Orders";
 
 const App = () => {
   const [{theme}] = useContext(ThemeContext);
@@ -24,13 +25,18 @@ const App = () => {
   const [refreshToken,setToken] = useState({
     token:"",
   })
+  const [userType,setUserType] = useState("");
+    
   
   useEffect(() => {
-  if(localStorage.getItem("refreshToken")){
+    if(localStorage.getItem("refreshToken")){
       setToken({
           token:localStorage.getItem("refreshToken")
       })
-  }
+    }
+    if(localStorage.getItem("userType")){
+      setUserType(localStorage.getItem("userType"))
+    }
   },[])
   useEffect(() => {
     if(localStorage.getItem("accessToken")){
@@ -41,7 +47,7 @@ const App = () => {
       let now = parseInt(new Date().getTime())
       let setupTime = parseInt(localStorage.getItem("setupTime"));
       
-    if(now - setupTime > 60*1000){
+    if(now - setupTime > 30*60*1000){
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("setupTime")
@@ -50,24 +56,26 @@ const App = () => {
   }
   },[isLogged])
 
-
   return (
     <div style={{backgroundColor:theme.backgroundColor, color:theme.color}}>
       <BrowserRouter>
-        <Navbar isLogged={isLogged}  refreshToken={refreshToken} setToken={setToken}/>
+        <Navbar isLogged={isLogged}  refreshToken={refreshToken} setToken={setToken} userType={userType} />
+       
         <LowerNavbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="products/:id/detail" element={<Detail />}/>
-          <Route path="login" element={<Login setIsLogged={setIsLogged} setToken={setToken}/>} />
+          <Route path="login" element={<Login setIsLogged={setIsLogged} setToken={setToken} setUserType={setUserType}/>} />
           <Route path="register" element={<Register />} />
             <Route path="register/customer" element={<CustomerRegister />} />
             <Route path="register/company" element={<CompanyRegister />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="products" element={<Products />} />
-            <Route path="products/create" element={<ProductCreate />} />
-          <Route path="adverts" element={<Adverts />} />
-            <Route path="adverts/create" element={<AdvertCreate setIsLogged={setIsLogged} />} />
+          <Route path="products" element={<Products setIsLogged={setIsLogged} refreshToken={refreshToken} />} />
+            <Route path="products/create" element={<ProductCreate setIsLogged={setIsLogged} refreshToken={refreshToken}/>} />
+          <Route path="adverts" element={<Adverts setIsLogged={setIsLogged} refreshToken={refreshToken}/>} />
+            <Route path="adverts/create" element={<AdvertCreate setIsLogged={setIsLogged} refreshToken={refreshToken} />} />
+          <Route path="orders" element={<Orders setIsLogged={setIsLogged} refreshToken={refreshToken}/>} />
+            {/* <Route path="orders/create" element={<AdvertCreate setIsLogged={setIsLogged} refreshToken={refreshToken} />} /> */}
         </Routes>
         <Footer />
       </BrowserRouter>

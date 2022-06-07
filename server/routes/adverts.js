@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const AdvertControllers = require("../controllers/AdvertsController");
+const AdvertsControllers = require("../controllers/AdvertsController");
 
-router.post("/create",AdvertControllers.advertsControllerPost);
-router.get("/",AdvertControllers.advertsControllerGet);
+router.post("/create",AdvertsControllers.advertsCreateControllerPost);
+router.get("/create",AdvertsControllers.advertsCreateControllerGet);
+router.get("/",AdvertsControllers.advertsControllerGet);
 
 module.exports = router;
 

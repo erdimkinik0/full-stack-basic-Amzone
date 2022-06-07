@@ -6,6 +6,7 @@ import { ThemeContext } from "../hooks/GlobalContext"
 const Navbar = (props) => {
     const [{ isDark }, toggleTheme] = useContext(ThemeContext);
     let navigate = useNavigate();
+
     const tokenRefreshClickHandler = async (path) => {
         try {
             
@@ -43,8 +44,11 @@ const Navbar = (props) => {
             })
             localStorage.removeItem("accessToken");
             localStorage.removeItem("refreshToken");
+            localStorage.removeItem("setupTime")
+            localStorage.removeItem("userType")
             navigate("/");
             window.location.reload();
+           
         } catch (err) {
             console.log(err);
         }
@@ -53,6 +57,10 @@ const Navbar = (props) => {
     const regularRouteHandler = (path) => {
         navigate(`${path}`)
     }
+
+    
+
+
     return (
         <div className="nav-container">
             <div className="container-fluid">
@@ -93,11 +101,21 @@ const Navbar = (props) => {
                             {
                                 !props.isLogged && <Link to="/register">Register</Link>
                             }
-                            <button onClick={(e) => {
-                                e.preventDefault();
-                                tokenRefreshClickHandler("/")
-                                }}>Cart</button>
-                            
+                            {
+                                props.userType &&
+                                    props.userType !== "Company"
+                                    && <button onClick={(e) => {
+                                        e.preventDefault();
+                                        tokenRefreshClickHandler("/cart")
+                                        }}>Cart</button>
+                            } 
+                            {
+                                !props.userType &&
+                                    <button onClick={(e) => {
+                                        e.preventDefault();
+                                        tokenRefreshClickHandler("/cart")
+                                        }}>Cart</button>
+                            }
                         </div>
                     </div>
                 </div>

@@ -1,45 +1,16 @@
-import { useEffect, useState } from "react";
-import { useNavigate , Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
+import { useFetchData } from "../../../hooks/UseFetchData";
 
-
-const Adverts = () => {
-    const [userData, setUserData] = useState(null);
-    let navigate = useNavigate()
-    async function fetchUserData() {
-        try{
-            let res = await fetch("http://localhost:5000/adverts",{
-                headers:{
-                    "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
-                }
-            })
-            if(res.status === 200){
-                let resJson = await res.json();
-                setUserData(resJson);
-            }
-            else {
-                navigate("/login")
-            }
-        }catch(err){    
-            console.log(err)
-        }
-        
-    }
-    useEffect(() => {
-        fetchUserData()
-    })
-
-
+const Adverts = (props) => {
+    const [data] = useFetchData("http://localhost:5000/adverts",props);
     return (
         <div>
             Adverts
            {
-               userData && 
-                    <div> {userData.username} </div>
+              console.log(data)
            }
            <Link to="/adverts/create">Create Advert</Link>
         </div>
     )
 }
-
-
 export default Adverts;

@@ -46,10 +46,14 @@ const customerSchema = new mongoose.Schema({
             ref:"Advert"
         }
     ],
-    cart:{
-        type:mongoose.SchemaTypes.ObjectId,
-        ref:"Cart"
-    }
+    cart:[
+        {
+            type:mongoose.SchemaTypes.ObjectId,
+            ref:"CartItem"
+        },
+        
+    ]
+   
 })
 
 module.exports = mongoose.model("Customer",customerSchema);

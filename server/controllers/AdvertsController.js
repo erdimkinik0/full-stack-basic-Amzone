@@ -2,7 +2,7 @@ const Advert = require("../models/Advert");
 const User = require("../models/User");
 const Customer = require("../models/Customer");
 
-const advertsControllerPost = async (req,res) => {
+const advertsCreateControllerPost = async (req,res) => {
     try{
         if (req.user.user.onType === "Customer"){
             const newAdvert = await Advert.create({
@@ -25,11 +25,26 @@ const advertsControllerPost = async (req,res) => {
         res.status(400).json({message:err.message});
     }
 }
-const advertsControllerGet = (req,res) => {
+
+const advertsCreateControllerGet = (req,res) => {
+
+    if (req.user.user.onType === "Customer"){
+        res.status(200).json(req.user.user);
+    }
+    else {
+        res.status(400).json({message:"You are not a customer! You are not allowed to reach this process"})
+    }
+}
+
+const advertsControllerGet = async (req,res) => {
     try{
         if(req.user.user.onType === "Customer"){
             // will be responsed user's adverts
-            res.status(200).json(req.user.user);
+            const user = await User.findById(req.user.user._id).populate("acc_type");
+            const custId = user.acc_type._id;
+            const customer = await Customer.findById(custId).populate({path:"adverts",model:"Advert"});
+            let adverts = customer.adverts;
+            res.status(200).json(adverts)
             
         }
         else {
@@ -41,4 +56,4 @@ const advertsControllerGet = (req,res) => {
     }
 }
 
-module.exports = {advertsControllerPost,advertsControllerGet}
+module.exports = {advertsCreateControllerPost,advertsCreateControllerGet,advertsControllerGet}

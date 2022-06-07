@@ -27,7 +27,6 @@ const userSchema = new mongoose.Schema({
         type:mongoose.SchemaTypes.ObjectId,
         required:true,
         refPath:"onType"
-        
     }
 })
 

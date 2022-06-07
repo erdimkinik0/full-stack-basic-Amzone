@@ -5,8 +5,8 @@ const ProductsController = require("../controllers/ProductsController");
 
 
 
-router.post("/create",ProductsController.productControllerPost)
-
+router.post("/create",ProductsController.productCreateControllerPost)
+router.get("/create",ProductsController.productCreateControllerGet)
 router.get("/",ProductsController.productControllerGet);
 
 

@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
+import { useFetchData } from "../../../hooks/UseFetchData";
 
-const Products = () => {
-
-    // fetch the products from server
-    
-
+const Products = (props) => {
+    const [data] = useFetchData("http://localhost:5000/products",props);
 
     return (
         <div>
+            {console.log(data)};
             Products of logged user
 
             <br /> 

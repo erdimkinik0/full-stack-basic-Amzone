@@ -26,11 +26,8 @@ const Dashboard = () => {
     useEffect(() => {
         getAuthorizatedCurrentUser()
     },[])
-
-
     return (
         <div>
-            {console.log(resp)}
             {
                 resp && 
                     resp.onType === "Company" &&
@@ -62,9 +59,6 @@ const Dashboard = () => {
                             
                         </div>
             }
-            
-            
-
         </div>
     )
 }

@@ -27,13 +27,22 @@ const jwt = require("jsonwebtoken");
 // routes init
 const productsRouter = require("./routes/products");
 const advertsRouter = require("./routes/adverts");
+const cartRouter = require("./routes/cart");
+const itemsRouter = require("./routes/items");
+const allAdvertsRouter = require("./routes/all-adverts");
+const orderRouter = require("./routes/orders");
+
 
 // routes
-
-
-
 app.use("/products",authorizatedToken,productsRouter)
 app.use("/adverts",authorizatedToken,advertsRouter);
+app.use("/cart",authorizatedToken,cartRouter);
+app.use("/orders",authorizatedToken,orderRouter); 
+app.use("/items",itemsRouter);
+app.use("/all-adverts",allAdvertsRouter);
+
+
+
 
 
 function authorizatedToken (req,res,next) {
@@ -53,10 +62,6 @@ function authorizatedToken (req,res,next) {
         next();
     })
 }
-
-
-
-
 
 app.get("/",(req,res) => {
     res.json("RESTful server");

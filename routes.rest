@@ -1,13 +1,4 @@
 
-POST http://localhost:4000/login
-Content-Type:application/json
-
-{
-    "email":"erdalkinik@hotmail.com",
-    "password":"123"
-}
-
-###
 
 POST http://localhost:4000/token
 Content-Type: application/json
@@ -19,49 +10,34 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:5000/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyOTEyYWUwOTIwOWE5YjY2ZGRkMmEwYiIsInVzZXJuYW1lIjoiZWRlazk1IiwiZW1haWwiOiJlcmRhbGtpbmlra0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRTWG1EZW5jdFV6UGpWSUM1Y0IvdWZlMXdoUHdwRXcuS28vbWlSWTZXeHI3OWM0aHltOFBzSyIsIm9uVHlwZSI6IkNvbXBhbnkiLCJhY2NfdHlwZSI6IjYyOTEyYWUwOTIwOWE5YjY2ZGRkMmEwOSIsIl9fdiI6MH0sImlhdCI6MTY1NDUyMjUyOSwiZXhwIjoxNjU0NTIyNTU5fQ.lrwqUg44bV7ssfFV9UI91Vfqclqifza99h6FF0EcWpc
-
-###
-
-POST http://localhost:5000/products/create
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyOTE1YTU0YzRiYmE3ZWM1YjZiMThmMyIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkMTBMeTJiZGVnZlE1Q3B1aXZHQy4uT0s5VVQ4cG9wTjczQXYvajZXdHMvTGczbHZqQ0o0bUsiLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjI5MTVhNTRjNGJiYTdlYzViNmIxOGYxIiwiX192IjowfSwiaWF0IjoxNjU0NTIzNDAwLCJleHAiOjE2NTQ1MjM0MzB9.ARYB4VAIJDquAts9kYnuScQLdjNKfPJWPxw5lg389kY
-
-{
-    "name":"ASUS ROG",
-    "description":"lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-    "status":"New",
-    "price":2000,
-    "quantity":1
-}
-
-###
-
-GET http://localhost:5000/dashboard
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyOTE1YTU0YzRiYmE3ZWM1YjZiMThmMyIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkMTBMeTJiZGVnZlE1Q3B1aXZHQy4uT0s5VVQ4cG9wTjczQXYvajZXdHMvTGczbHZqQ0o0bUsiLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjI5MTVhNTRjNGJiYTdlYzViNmIxOGYxIiwiX192IjowfSwiaWF0IjoxNjU0NTIzOTgwLCJleHAiOjE2NTQ1MjQwMTB9.UooO6wRXYFyIr4izMn4EZZt27hCu0Zw44PkjGT_22OE
-
-###
 
 
 POST http://localhost:4000/login
 Content-Type:application/json
 
 {
-    "email":"erdalkinikk@gmail.com",
+    "email":"erdalkinik@hotmail.com",
     "password":"123"
 }
 
+
+
 ###
 
-POST http://localhost:5000/products/create
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyOTEyYWUwOTIwOWE5YjY2ZGRkMmEwYiIsInVzZXJuYW1lIjoiZWRlazk1IiwiZW1haWwiOiJlcmRhbGtpbmlra0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRTWG1EZW5jdFV6UGpWSUM1Y0IvdWZlMXdoUHdwRXcuS28vbWlSWTZXeHI3OWM0aHltOFBzSyIsIm9uVHlwZSI6IkNvbXBhbnkiLCJhY2NfdHlwZSI6IjYyOTEyYWUwOTIwOWE5YjY2ZGRkMmEwOSIsIl9fdiI6MH0sImlhdCI6MTY1NDU0ODAwMiwiZXhwIjoxNjU0NTQ4MDMyfQ.ydlGCP0cznXRbzxhZRPCcDy0qxDIbkmkdqDnXJhuDLM
 
-{
-    "name":"Chodzi ci chodzci",
-    "description":"lorem 31 lorem 31 lorem 31 lorem 31 lorem 31lorem 31 lorem 31 lorem 31 lorem 31 lorem 31 lorem 31lorem 31",
-    "status":"New",
-    "price":3100,
-    "quantity":31
-}
+GET http://localhost:5000/adverts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyOWY2OGViMzVmMzViMjY4MWM1Mzc1MiIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkWFpxb0E2dG82OXJpblIubFJENWNTLml4MmYyVm1lMWNndU9pcW1NYUFoeldHZ0U3OWtGUzIiLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjI5ZjY4ZWIzNWYzNWIyNjgxYzUzNzUwIiwiX192IjowfSwiaWF0IjoxNjU0NjI5MTIwLCJleHAiOjE2NTQ2MzA5MjB9.Rkhx6jwOSPLI8tB_kTVW32JmZt6aV7_C00CxsTcl598
+
+
+###
+
+
+
+
+
+
+
+
+
+
+

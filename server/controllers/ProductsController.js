@@ -2,7 +2,7 @@ const Product = require("../models/Product");
 const Company = require("../models/Company");
 const User = require("../models/User");
 
-const productControllerPost = async (req,res) => {
+const productCreateControllerPost = async (req,res) => {
     try{
         if (req.user.user.onType === "Company") {
             const newProduct = await Product.create({
@@ -26,10 +26,22 @@ const productControllerPost = async (req,res) => {
         res.status(400).json({message:err.message});
     }
 }
+
+const productCreateControllerGet = (req,res) => {
+    if (req.user.user.onType === "Company"){
+        res.status(200).json(req.user.user)
+    }
+    else {
+        res.status(400).json({message:"You are not a company! You are not allowed to reach this process"});
+    }
+}
 const productControllerGet = async (req,res) => {
     try{
         if(req.user.user.onType === "Company"){
-            return res.status(200).json(req.user.user);
+            const user = await User.findById(req.user.user._id).populate("acc_type");
+            const companyId = user.acc_type._id;
+            const company = await Company.findById(companyId).populate({path:"products",model:"Product"});
+            res.json(company.products);
         }
         else {
             return res.status(403).json({message:"You are not a company! You are not allowed to reach this process"})
@@ -38,4 +50,4 @@ const productControllerGet = async (req,res) => {
         res.status(400).json({message:err.message});
     }
 }
-module.exports = {productControllerPost,productControllerGet}
+module.exports = {productCreateControllerPost,productControllerGet,productCreateControllerGet}

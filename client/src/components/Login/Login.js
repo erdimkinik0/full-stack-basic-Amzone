@@ -29,7 +29,19 @@ const Login = (props) => {
                 props.setToken({
                     token:refreshToken.token
                 })
-                props.setIsLogged(true);
+                
+                let resUserData = await fetch("http://localhost:4000/authorizated-user",{
+                    method:"get",
+                    headers:{
+                        "Authorization":`Bearer ${resJson.accessToken}`
+                    }
+                })
+                
+                if(resUserData){
+                    let userData = await resUserData.json();
+                    localStorage.setItem("userType",userData.onType)
+                }
+               
                 navigate("/")
                 window.location.reload();
                 
@@ -42,7 +54,6 @@ const Login = (props) => {
             console.log(err);
         }
     }
-
     // showing error
     useEffect(() => {
         const showMessage = document.querySelector(".err-message");
