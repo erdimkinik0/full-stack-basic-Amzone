@@ -20,6 +20,9 @@ const Navbar = (props) => {
             if (res.status === 200) {
                 let newTokenJson = await res.json();
                 localStorage.setItem("accessToken", newTokenJson.accessToken);
+                props.setAccessToken({
+                    token:newTokenJson.accessToken
+                })
                 localStorage.setItem("setupTime",new Date().getTime())
                 navigate(`${path}`)
             }
@@ -42,12 +45,12 @@ const Navbar = (props) => {
                     "Content-Type": "application/json",
                 }
             })
+            props.setIsLogged(false);
             localStorage.removeItem("accessToken");
             localStorage.removeItem("refreshToken");
             localStorage.removeItem("setupTime")
             localStorage.removeItem("userType")
             navigate("/");
-            window.location.reload();
            
         } catch (err) {
             console.log(err);

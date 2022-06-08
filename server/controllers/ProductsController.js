@@ -10,7 +10,7 @@ const productCreateControllerPost = async (req,res) => {
                 description:req.body.description,
                 status:req.body.status,
                 price:req.body.price,
-                quantity:req.body.quantity
+                storage:req.body.storage
             })
             const user = await User.findById(req.user.user._id).populate("acc_type");
             const compId = user.acc_type._id;

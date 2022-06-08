@@ -11,7 +11,7 @@ const AdvertCreate = (props) => {
             let res = await fetch("http://localhost:5000/adverts/create",{
                 method:"get",
                 headers:{
-                    "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
+                    "Authorization":`Bearer ${props.accessToken.token}`
                 }
             })
             if(res.status === 200){
@@ -25,11 +25,11 @@ const AdvertCreate = (props) => {
                         "Content-Type":"application/json"
                     }
                 })
+                props.setIsLogged(false);
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem("refreshToken");
                 localStorage.removeItem("setupTime");
                 localStorage.removeItem("userType")
-                props.setIsLogged(false);
                 navigate("/login")
             }
 
@@ -51,7 +51,7 @@ const AdvertCreate = (props) => {
                 body:JSON.stringify(inputData),
                 headers:{
                     "Content-Type":"application/json",
-                    "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
+                    "Authorization":`Bearer ${props.accessToken.token}`
                 }
             })
             if(res.status === 201){

@@ -70,7 +70,7 @@ const useProductFormHandler = () => {
         description:"",
         status:"",
         price:null,
-        quantity:null,
+        storage:null,
     })
 
     const onChangeHandler = (e) => {

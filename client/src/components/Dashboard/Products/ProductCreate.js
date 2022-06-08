@@ -10,7 +10,7 @@ const ProductCreate = (props) => {
             let res = await fetch("http://localhost:5000/products/create",{
                 method:"get",
                 headers:{
-                    "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
+                    "Authorization":`Bearer ${props.accessToken.token}`
                 }
             })
             if(res.status === 200){
@@ -46,19 +46,25 @@ const ProductCreate = (props) => {
                 body:JSON.stringify(inputData),
                 headers:{
                     "Content-Type":"application/json",
-                    "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
+                    "Authorization":`Bearer ${props.accessToken.token}`
                 }
             })
             if (res.status === 201){
                 navigate("/products")
             }
             else {
+                await fetch("http://localhost:4000/logout",{
+                    method:"delete",
+                    body:JSON.stringify(props.refreshToken),
+                    headers:{
+                        "Content-Type":"application/json"
+                    }
+                })
+                props.setIsLogged(false);
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem("refreshToken");
                 localStorage.removeItem("setupTime");
                 localStorage.removeItem("userType")
-                props.setIsLogged(false);
-                window.location.reload();
                 navigate("/login")
             }
         }catch(err){

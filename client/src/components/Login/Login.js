@@ -26,25 +26,27 @@ const Login = (props) => {
                 localStorage.setItem("refreshToken",refreshToken);
                 let now = new Date().getTime();
                 localStorage.setItem("setupTime",now);
-                props.setToken({
-                    token:refreshToken.token
+
+                props.setRefreshToken({
+                    token:refreshToken
                 })
-                
+                props.setAccessToken({
+                    token:accessToken
+                })
+                props.setIsLogged(true)
+        
                 let resUserData = await fetch("http://localhost:4000/authorizated-user",{
                     method:"get",
                     headers:{
                         "Authorization":`Bearer ${resJson.accessToken}`
                     }
                 })
-                
                 if(resUserData){
                     let userData = await resUserData.json();
+                    props.setUserType(userData.onType)
                     localStorage.setItem("userType",userData.onType)
                 }
-               
-                navigate("/")
-                window.location.reload();
-                
+                // navigate("/")
             }
             else {
                 let errMessage = await res.json();
@@ -58,7 +60,6 @@ const Login = (props) => {
     useEffect(() => {
         const showMessage = document.querySelector(".err-message");
         showMessage.textContent = message;
-
         const messageInterval = setTimeout(() => {
             setMessage("");
         }, 3000)
@@ -66,11 +67,10 @@ const Login = (props) => {
         return () => {
             clearTimeout(messageInterval);
         }
-
     }, [message])
 
     useEffect(() => {
-        if(localStorage.getItem("user")){
+        if(props.isLogged){
             navigate("/")
         }
     })

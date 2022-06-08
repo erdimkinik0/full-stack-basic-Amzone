@@ -11,7 +11,7 @@ const useFetchData = (url,props) => {
             let res = await fetch(url,{
                 method:"get",
                 headers:{
-                    "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
+                    "Authorization":`Bearer ${props.accessToken.token}`
                 }
             })
             if(res.status === 200){
@@ -26,6 +26,7 @@ const useFetchData = (url,props) => {
                         "Content-Type":"application/json"
                     }
                 })
+                props.setIsLogged(false);
                 localStorage.removeItem("accessToken");
                 localStorage.removeItem("refreshToken");
                 localStorage.removeItem("setupTime");

@@ -4,13 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 // dashboard components
 
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     const [resp,setResp] = useState(null);
     let navigate = useNavigate()
     async function getAuthorizatedCurrentUser() {
         let res = await fetch("http://localhost:4000/authorizated-user",{
             headers:{
-                "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
+                "Authorization":`Bearer ${props.accessToken.token}`
             }
         })
         
@@ -28,6 +28,7 @@ const Dashboard = () => {
     },[])
     return (
         <div>
+            {props.accessToken && console.log(props.accessToken)}
             {
                 resp && 
                     resp.onType === "Company" &&

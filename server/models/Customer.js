@@ -12,10 +12,7 @@ const customerSchema = new mongoose.Schema({
         maxlength:64
     },
     orders:[
-        {
-            type:mongoose.SchemaTypes.ObjectId,
-            ref:"Order"
-        }
+      
     ],
     address:{
         country:{
