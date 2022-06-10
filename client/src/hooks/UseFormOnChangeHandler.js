@@ -46,6 +46,7 @@ const useLoginFormHandler = () => {
             ...inputData,[e.target.name]:e.target.value
         })
     }
+   
     return [inputData,onChangeHandler];
 }
 
@@ -72,13 +73,13 @@ const useProductFormHandler = () => {
         price:null,
         storage:null,
     })
-
+    
     const onChangeHandler = (e) => {
         setInputData({
             ...inputData,[e.target.name]:e.target.value
         })
     }
-
+   
     return [inputData,onChangeHandler];
 }
 

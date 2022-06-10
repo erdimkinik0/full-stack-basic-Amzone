@@ -9,7 +9,7 @@ const cors = require("cors");
 app.use(cors({origin:"http://localhost:3000",methods:['GET','POST','DELETE','UPDATE','PUT','PATCH']}))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
+app.use("/uploads" , express.static("uploads"))
 
 // db configs
 const mongoose = require("mongoose");
@@ -28,18 +28,14 @@ const jwt = require("jsonwebtoken");
 const productsRouter = require("./routes/products");
 const advertsRouter = require("./routes/adverts");
 const cartRouter = require("./routes/cart");
-const itemsRouter = require("./routes/items");
-const allAdvertsRouter = require("./routes/all-adverts");
 const orderRouter = require("./routes/orders");
 
 
 // routes
-app.use("/products",authorizatedToken,productsRouter)
-app.use("/adverts",authorizatedToken,advertsRouter);
+app.use("/products",productsRouter) // 
+app.use("/adverts",advertsRouter);
 app.use("/cart",authorizatedToken,cartRouter);
 app.use("/orders",authorizatedToken,orderRouter); 
-app.use("/items",itemsRouter);
-app.use("/all-adverts",allAdvertsRouter);
 
 
 

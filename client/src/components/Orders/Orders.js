@@ -5,8 +5,9 @@ const Orders = (props) => {
 
 
     return (
-        <div>
-            {console.log(data)}
+        <div className="container">
+            
+            
         </div>
     )
 }

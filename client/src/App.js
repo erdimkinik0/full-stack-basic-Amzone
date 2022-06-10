@@ -18,6 +18,8 @@ import ProductCreate from "./components/Dashboard/Products/ProductCreate";
 import Adverts from "./components/Dashboard/Adverts/Adverts";
 import AdvertCreate from "./components/Dashboard/Adverts/AdvertCreate";
 import Orders from "./components/Orders/Orders";
+import OrderCreate from "./components/Orders/OrderCreate";
+
 
 const App = () => {
   const [{ theme }] = useContext(ThemeContext);
@@ -76,12 +78,13 @@ const App = () => {
           <Route path="register/customer" element={<CustomerRegister />} />
           <Route path="register/company" element={<CompanyRegister />} />
           <Route path="dashboard" element={<Dashboard accessToken={accessToken} />} />
-          <Route path="products" element={<Products setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
-          <Route path="products/create" element={<ProductCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
-          <Route path="adverts" element={<Adverts setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
-          <Route path="adverts/create" element={<AdvertCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
-          <Route path="orders" element={<Orders setIsLogged={setIsLogged} refreshToken={refreshToken} />} />
-          {/* <Route path="orders/create" element={<AdvertCreate setIsLogged={setIsLogged} refreshToken={refreshToken} />} /> */}
+          <Route path="products/list" element={<Products setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
+          <Route path="products/list/create" element={<ProductCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
+          <Route path="adverts/list" element={<Adverts setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
+          <Route path="adverts/list/create" element={<AdvertCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
+          <Route path="orders" element={<Orders setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
+          <Route path="orders/create" element={<OrderCreate setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
+ 
         </Routes>
         <Footer />
       </BrowserRouter>

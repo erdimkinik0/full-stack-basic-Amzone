@@ -2,16 +2,20 @@ const Product = require("../models/Product");
 const Company = require("../models/Company");
 const User = require("../models/User");
 
+
 const productCreateControllerPost = async (req,res) => {
     try{
         if (req.user.user.onType === "Company") {
+            console.log(req.file)
             const newProduct = await Product.create({
                 name:req.body.name,
                 description:req.body.description,
                 status:req.body.status,
                 price:req.body.price,
-                storage:req.body.storage
+                storage:req.body.storage,
+                img:req.file.path
             })
+            
             const user = await User.findById(req.user.user._id).populate("acc_type");
             const compId = user.acc_type._id;
             const company = await Company.findById(compId);
@@ -50,4 +54,14 @@ const productControllerGet = async (req,res) => {
         res.status(400).json({message:err.message});
     }
 }
-module.exports = {productCreateControllerPost,productControllerGet,productCreateControllerGet}
+
+const productsPublicController = async (req,res) => {
+    try{
+        const all_products = await Product.find();
+        res.status(200).json(all_products)
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+module.exports = {productCreateControllerPost,productControllerGet,productCreateControllerGet,productsPublicController}

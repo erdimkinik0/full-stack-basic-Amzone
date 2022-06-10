@@ -1,15 +1,22 @@
 import { useProductFormHandler } from "../../../hooks/UseFormOnChangeHandler";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
 
 const ProductCreate = (props) => {
-    const [inputData,onChangeHandler] = useProductFormHandler();
+    const [inputData, onChangeHandler] = useProductFormHandler();
+    const [fileData,setFileData] = useState(null);
     let navigate = useNavigate();
+
+    const onChangeFileHandler = (e) => {
+        setFileData(e.target.files);
+    }
+
     const checkIfAuthorizatedUser = async () => {
         try{
-            let res = await fetch("http://localhost:5000/products/create",{
+            let res = await fetch("http://localhost:5000/products/list/create",{
                 method:"get",
                 headers:{
+                    "Content-Type":"application/json",
                     "Authorization":`Bearer ${props.accessToken.token}`
                 }
             })
@@ -41,16 +48,23 @@ const ProductCreate = (props) => {
     const onSubmitHandler = async (e) => {
         try{
             e.preventDefault();
-            let res = await fetch("http://localhost:5000/products/create",{
+            const data = new FormData();
+            data.append("name",inputData.name);
+            data.append("description",inputData.description);
+            data.append("status",inputData.status);
+            data.append("price",inputData.price);
+            data.append("storage",inputData.storage);
+            
+            data.append("productImage",fileData[0]);
+            let res = await fetch("http://localhost:5000/products/list/create",{
                 method:"post",
-                body:JSON.stringify(inputData),
+                body:data,
                 headers:{
-                    "Content-Type":"application/json",
                     "Authorization":`Bearer ${props.accessToken.token}`
                 }
             })
             if (res.status === 201){
-                navigate("/products")
+                navigate("/products/list")
             }
             else {
                 await fetch("http://localhost:4000/logout",{
@@ -73,6 +87,8 @@ const ProductCreate = (props) => {
     } 
     return (
         <div>
+            {console.log(inputData)}
+            {console.log(fileData)}
             <form onSubmit={onSubmitHandler}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Product Name</label>
@@ -91,9 +107,14 @@ const ProductCreate = (props) => {
                     <input onChange={onChangeHandler} type="number" className="form-control" id="price" name="price"  />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="quantity" className="form-label">Quantity</label>
-                    <input onChange={onChangeHandler} type="number" className="form-control" id="quantity" name="quantity"  />
+                    <label htmlFor="storage" className="form-label">Storage</label>
+                    <input onChange={onChangeHandler} type="number" className="form-control" id="storage" name="storage"  />
                 </div>
+                <div className="mb-3">
+                    <input onChange={onChangeFileHandler} type="file" className="form-control" id="productImage" name="productImage"  />
+                </div>
+                
+               
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>

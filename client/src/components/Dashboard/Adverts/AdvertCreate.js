@@ -8,7 +8,7 @@ const AdvertCreate = (props) => {
 
     async function checkIfAuthorization(){
         try{
-            let res = await fetch("http://localhost:5000/adverts/create",{
+            let res = await fetch("http://localhost:5000/adverts/list/create",{
                 method:"get",
                 headers:{
                     "Authorization":`Bearer ${props.accessToken.token}`
@@ -46,7 +46,7 @@ const AdvertCreate = (props) => {
         try{
             e.preventDefault();
 
-            let res = await fetch("http://localhost:5000/adverts/create",{
+            let res = await fetch("http://localhost:5000/adverts/list/create",{
                 method:"post",
                 body:JSON.stringify(inputData),
                 headers:{
@@ -55,7 +55,7 @@ const AdvertCreate = (props) => {
                 }
             })
             if(res.status === 201){
-                navigate("/adverts")
+                navigate("/adverts/list")
             }
             else {
                 await fetch("http://localhost:4000/logout",{

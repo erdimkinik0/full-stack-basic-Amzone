@@ -56,4 +56,14 @@ const advertsControllerGet = async (req,res) => {
     }
 }
 
-module.exports = {advertsCreateControllerPost,advertsCreateControllerGet,advertsControllerGet}
+const advertsPublicController = async(req,res) => {
+    try{
+        const all_adverts = await Advert.find();
+        res.status(200).json(all_adverts);
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
+module.exports = {advertsCreateControllerPost,advertsCreateControllerGet,advertsControllerGet,advertsPublicController}

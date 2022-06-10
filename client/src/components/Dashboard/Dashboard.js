@@ -37,7 +37,7 @@ const Dashboard = (props) => {
                             Welcome ! 
                             {resp.username}
                             <br></br>
-                            <Link to="/products">Products</Link>
+                            <Link to="/products/list">Products</Link>
                         </div>
             }
             {
@@ -48,8 +48,8 @@ const Dashboard = (props) => {
                             Welcome ! 
                             {resp.username}
                             <br></br>
-                            <Link to="/adverts">Adverts</Link>
-                            <Link to="/orders">Orders</Link>
+                            <Link to="/adverts/list">Adverts</Link>
+                            <Link to="/orders/list">Orders</Link>
                         </div>
             }
             {

@@ -20,6 +20,7 @@ const Login = (props) => {
             let refreshToken;
             if (res.status === 200) {
                 let resJson = await res.json();
+                console.log(resJson);
                 accessToken = resJson.accessToken;
                 refreshToken = resJson.refreshToken;
                 localStorage.setItem("accessToken",accessToken);
@@ -46,7 +47,7 @@ const Login = (props) => {
                     props.setUserType(userData.onType)
                     localStorage.setItem("userType",userData.onType)
                 }
-                // navigate("/")
+                navigate("/")
             }
             else {
                 let errMessage = await res.json();
