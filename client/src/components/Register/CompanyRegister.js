@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../../hooks/GlobalContext";
 import { useRegisterCompanyFormHandler } from "../../hooks/UseFormOnChangeHandler";
 
 
@@ -7,6 +8,7 @@ const CompanyRegister = () => {
     const [inputData, onChangeHandler] = useRegisterCompanyFormHandler();
     const [message, setMessage] = useState("");
     let navigate = useNavigate();
+    const [{theme}] = useContext(ThemeContext);
 
     const registerSubmitHandler = async (e) => {
         try {
@@ -28,7 +30,7 @@ const CompanyRegister = () => {
         } catch (err) {
             console.log(err);
         }
-        
+
     }
 
     useEffect(() => {
@@ -36,53 +38,65 @@ const CompanyRegister = () => {
         errorDOM.textContent = message;
         let messageTImer = setTimeout(() => {
             setMessage("");
-        },3000)
+        }, 3000)
 
         return () => {
             clearTimeout(messageTImer)
         }
-    },[message])
+    }, [message])
     return (
-        <div>
-            <form onSubmit={registerSubmitHandler}>
-                <div className="error">
-                    
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input onChange={onChangeHandler} type="email" className="form-control" id="email" name="email" aria-describedby="emailHelp" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="username" className="form-label">Username</label>
-                    <input onChange={onChangeHandler} type="text" className="form-control" id="username" name="username" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input onChange={onChangeHandler} type="password" className="form-control" id="password" name="password" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="company_name" className="form-label">Company Name</label>
-                    <input onChange={onChangeHandler} type="text" className="form-control" id="company_name" name="company_name" />
-                </div>
+        <div className="container-fluid">
+            <div className="row justify-content-between ">
+                <div className="col-md-4">
+                    <div className="form-container" style={{ boxShadow: theme.boxShadow }}>
+                        <form onSubmit={registerSubmitHandler}>
+                            <div className="error">
+                            </div>
+                            <div className="form-title">
+                                <h4>Sign up</h4>
+                            </div>
+                            <div className="mb-3">
+                                <input onChange={onChangeHandler} type="email" placeholder="Email address" className="form-control" id="email" name="email" aria-describedby="emailHelp" />
+                            </div>
+                            <div className="mb-3">
+                                <input onChange={onChangeHandler} type="text" placeholder="Username" className="form-control" id="username" name="username" />
+                            </div>
+                            <div className="mb-3">
+                                <input onChange={onChangeHandler} type="password" placeholder="Password" className="form-control" id="password" name="password" />
+                            </div>
+                            <div className="mb-3">
+                                <input onChange={onChangeHandler} type="text" placeholder="Company Name" className="form-control" id="company_name" name="company_name" />
+                            </div>
 
-                <div className="mb-3">
-                    <label htmlFor="country" className="form-label">Country</label>
-                    <input onChange={onChangeHandler} type="text" className="form-control" id="country" name="country" />
+                            <div className="mb-3">
+                                <input onChange={onChangeHandler} type="text" placeholder="Country" className="form-control" id="country" name="country" />
+                            </div>
+                            <div className="mb-3">
+                                <input onChange={onChangeHandler} type="text" placeholder="City" className="form-control" id="city" name="city" />
+                            </div>
+                            <div className="mb-3">
+                                <input onChange={onChangeHandler} type="text" placeholder="Street" className="form-control" id="street" name="street" />
+                            </div>
+                            <div className="mb-3">
+                                <input onChange={onChangeHandler} type="number" placeholder="Zip" className="form-control" id="zip" name="zip" />
+                            </div>
+                            <button type="submit" className="btn btn-primary form-but">Submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="city" className="form-label">City</label>
-                    <input onChange={onChangeHandler} type="text" className="form-control" id="city" name="city" />
+                <div className="col-md-7 cust-reg-right-side">
+                    <div className="cust-reg-right-side-box">
+                        <div>
+                            <h4>Company Signing up</h4>
+                            <p>- Set up your items on market </p>
+                            <p>- Follow trends of market and manage your items </p>
+                            <p>- keep in touch with customers, ensure good customer service and earn your place among the best sellers</p>
+                            <p>- Sell your item within secure</p>
+                            <p>- Achieve your goals</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="street" className="form-label">Street</label>
-                    <input onChange={onChangeHandler} type="text" className="form-control" id="street" name="street" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="zip" className="form-label">Zip</label>
-                    <input onChange={onChangeHandler} type="number" className="form-control" id="zip" name="zip" />
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+            </div>
         </div>
     )
 }

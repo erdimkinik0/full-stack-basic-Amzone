@@ -10,6 +10,7 @@ const themes = {
         backgroundColor:"whitesmoke",
         color:"black",
         boxShadow:"inset 0px 0px 0px 1px black"
+        
     }
 }
 

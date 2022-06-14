@@ -35,6 +35,7 @@ const App = () => {
   useEffect(() => {
     let now = parseInt(new Date().getTime())
     let setupTime = parseInt(localStorage.getItem("setupTime"));
+    setUserType(localStorage.getItem("userType"))
 
     if (now - setupTime < 30 * 60 * 1000) {
       setIsLogged(true);
@@ -47,7 +48,7 @@ const App = () => {
       setUserType(localStorage.getItem("userType"))
     }
 
-  }, [isLogged])
+  },[isLogged])
 
   return (
     <div style={{ backgroundColor: theme.backgroundColor, color: theme.color }}>
@@ -62,7 +63,7 @@ const App = () => {
           setIsLogged={setIsLogged}
         />
         {console.log(userType)}
-        <LowerNavbar />
+        <LowerNavbar isLogged={isLogged} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="products/:id/detail" element={<Detail />} />

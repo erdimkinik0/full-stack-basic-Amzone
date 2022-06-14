@@ -11,12 +11,20 @@ body {
     padding: 0%;
     margin: 0%;
 }
+
+.nav-logo {
+    cursor: pointer;
+    height: 35px;
+
+}
+
 .nav-container {
     display: block;
     position: static;
     background-color: var(--root-nb-drk);
     width: 100%;
     padding: 0.5rem;
+    height: 70px;
 }
 .lowernav-container {
     position:static;
@@ -26,15 +34,25 @@ body {
 .body {
     width: 100%;
 }
-.nav-container a {
+.electronics {
+    height: 270px;
+    
+}
+.nav-container button {
     box-sizing: border-box;
     text-align: center;
     width: auto;
     padding: 0.4rem;
 }
 
-.top-nb a:hover {
-    box-shadow: inset 0px 0px 0px 1px white;
+.nav-container a {
+    box-sizing: border-box;
+    text-align: center;
+    width: auto;
+    padding: 0.4rem;
+}
+.top-nb {
+    margin-top: 0.6rem;
 }
 .top-nb a {
     display: inline-block;
@@ -43,23 +61,35 @@ body {
     text-decoration: none;
     margin-right: 1rem;
 }
+.top-nb a:hover {
+    box-shadow:inset 0px 0px 0px 1px white;
+}
 
+
+.nav-acc {
+   font-size: 16px;
+}
+.dropdown-menu {
+    background-color: #131921;
+}
 
 .lower-nb {
     background-color: var(--root-main-dark-blue);
     width: 100%;
-    padding: 0.6rem;
+    padding: 0.1rem;
 }
-.lower-nb a {
+.lower-nb button {
     box-sizing: border-box;
     color: white;
     text-decoration: none;
+    background-color: transparent;
+    border: none;
     font-size: 14px;
     margin-right: 1rem;
     font-weight: 500;
     padding: 0.3rem;
 }
-.lower-nb a:hover {
+.lower-nb button:hover {
     box-shadow:inset 0px 0px 0px 1px white;
 }
 .thmbut {
@@ -67,18 +97,127 @@ body {
     border: none;
     background-color: transparent;
     color:white;
+    margin-right: 1rem;
 }
 .thmbut:hover {
     box-shadow: inset 0px 0px 0px 1px white;
 }
-/*  carousel  */
-.carousel-item {
-    max-height: 200px;
-    height: 200px;
+.thmbut-mode {
+    box-sizing: none;
+    border: none;
+    background-color: transparent;
+    color:white;
+    margin-right: 1rem;
 }
+.thmbut-mode:hover {
+    box-shadow: none;
+    
+}
+
+/*  carousel  */
+.carousel {
+    height: 250px;
+    width: 100%;
+
+}
+.carousel-item {
+    max-height: 250px;
+    height: 250px;
+    width: 100%;
+
+}
+.container-fluid {
+    margin-left: 0%;
+    margin-right: 0%;
+}
+.caro-1 {
+    background-image: url("../assets/caro-1.jpg");
+    background-position:center;
+    background-size:cover;
+}
+.caro-1-content {
+    margin-left: 20rem;
+    margin-top: 3.5rem;
+}
+.caro-1-content h5{
+   font-size: 32px;
+   font-weight: 600;
+   color:#545455;
+}
+.caro-1-content button{
+   background-color: transparent;
+   border: none;
+   font-size: 16px;
+   font-weight: 600;
+   color:#545455;
+   
+}
+.caro-1-content button:hover {
+    color:var(--root-main-dark-blue);
+    text-decoration: underline;
+
+}
+/* caro-2 */
+
+.caro-2{
+    background-image: url("../assets/caro-2.jpg");
+    background-position:center;
+    background-size:cover;
+}
+.caro-2-content {
+    margin-left: 5rem;
+    margin-top: 3.5rem;
+}
+.caro-2-content h5{
+   font-size: 32px;
+   font-weight: 600;
+   color:#545455;
+}
+.caro-2-content button{
+   background-color: transparent;
+   border: none;
+   font-size: 16px;
+   font-weight: 600;
+   color:#545455;
+   
+}
+.caro-2-content button:hover {
+    color:var(--root-main-dark-blue);
+    text-decoration: underline;
+}
+
+/* caro-3 */
+
+.caro-3{
+    background-image: url("../assets/caro-3.jpg");
+    background-position:center;
+    background-size:cover;
+}
+.caro-3-content {
+    margin-left: 15rem;
+    margin-top: 3.5rem;
+}
+.caro-3-content h5{
+   font-size: 32px;
+   font-weight: 600;
+   color:white;
+}
+.caro-3-content button{
+   background-color: transparent;
+   border: none;
+   font-size: 16px;
+   font-weight: 600;
+   color:white;
+   
+}
+.caro-3-content button:hover {
+    color:white;
+    text-decoration: underline;
+}
+
 .carousel-item img {
     max-height: 200px;
-    height: 200px;
+    height: 300px;
 }
 /* home page cards */
 .home-cards-container {
@@ -91,12 +230,14 @@ body {
 .card-content-container {
     margin-top: 0.2rem;
     padding: 0.5rem;
-    border: 1px solid black;
 }
 .home-sign-section {
     margin-top: 0.2rem;
     border: 1px solid black;
     text-align: center;
+}
+.home-sign-section p {
+    font-size: 12px;
 }
 .home-sign-but{
     background-color: var(--root-button-color);
@@ -113,23 +254,42 @@ body {
 a {
     text-decoration: none;
 }
+h3 {
+    margin-top: 1rem;
+    font-size: 21px;
+    font-weight: 600;
+}
+
 
 /* home image handle */
 .card-content-container {
     position: relative;
     height: 400px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
+
+
 .card-content-container > .row > .col-md-6 {
-    margin-top: 1.5rem;
+    position: relative;
+    height: 150px;
+    
 }
-.card-content-container > .row > .col-md-12 {
-    margin-top: 1.5rem;
+.card-content-container > .row > .col-md-6 > p {
+    position:absolute;
+    bottom: -15px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 12px;
+
 }
-.card-content-container > .row > .col-md-6 > img {
-    width: 100%;
-    height: 100%;
+
+.card-content-container > .row > .col-md-6 > a  img {
+    display:block;
+    max-width: 130px;
+    max-height: 130px;
 }
-.card-content-container > .row > .col-md-12 > img {
+.card-content-container > .row > .col-md-12 > a  img {
     width: 100%;
     height: 100%;
 }
@@ -138,11 +298,48 @@ a {
     height: 200px;
 }
 
+.seacrh-input {
+    width: 100%;
+    height: 20px;
+}
+
+
+.sign-right {
+    text-align: center;
+    justify-content: center;
+    margin-top: 50%; 
+    padding: 0.3rem;
+    padding-top: 0.5rem;
+    background-color: var(--root-button-color);
+    border: 2px solid var(--root-button-color);
+    color:black;
+    font-weight: 600;
+    border-radius: 6px;
+}
+.sign-right:hover {
+    background-color: var(--root-button-hover);
+    border: 2px solid var(--root-button-hover);
+}
+.sign-right  h2 {
+    margin-left: 0%;
+    font-size: 18px;
+    font-weight: 600;
+}
+.sign-side {
+    box-shadow: none;
+}
+.last-tp-home{
+    padding:2.5rem;
+}
+
+
+
 .c-a {
     position:absolute;
     bottom: 16px;
     margin-right: auto;
     margin-left: auto;
+    font-size: 12px;
 }
 .home-sign-section {
     margin-top: 1.5rem;
@@ -159,6 +356,136 @@ a {
     text-align: center;
     width: 100%;
     padding: 1rem;
+
+
+}
+
+/* register page */
+.reg-container {
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+}
+.reg-title {
+    margin-top: 3rem;
+    text-align: center;
+    
+
+}
+.reg-title h4 {
+    font-size: 36px;
+}
+
+.reg-card-l {
+    background-image: url("../assets/customer.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 450px;
+    opacity: 0.2;
+    margin-right: 3rem;
+    transition: .5s;
+    text-align: center;
+    
+}
+.reg-card-l h2 {
+    margin-top: 50%;
+    font-size: 48px;
+    color: black;
+    font-weight: 600;
+}
+.reg-card-r h2 {
+    margin-top: 50%;
+    font-size: 48px;
+    color: black;
+    font-weight: 600;
+}
+
+.reg-card-l:hover {
+    opacity: 0.8;
+}
+.reg-card-r {
+    background-image: url("../assets//company.jpg");
+    background-position: center;
+    background-size: cover;
+    opacity: 0.2;
+    transition: .5s;
+    height: 450px;
+    text-align: center;
+    
+}
+.reg-card-r:hover {
+    opacity: 0.8;
+}
+
+.form-container {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    margin-left: 3rem;
+    width: 500px;
+    box-sizing: border-box;
+    box-shadow:inset 0px 0px 0px 1px white;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: var(--root-main-dark-blue);
+}
+
+.form-title {
+    color: white;
+}
+.form-but {
+    background-color: white;
+    color: black;
+    border: none;
+}
+.form-but:hover {
+    background-color: white;
+    color:var(--root-main-dark-blue);
+}
+.cust-reg-right-side {
+    background-image: url("../assets//customer-reg.jpg");
+    
+    background-size: cover;
+    background-position: center;
+}
+.cust-reg-right-side-box {
+    margin: 10rem;
+}
+
+.cust-reg-right-side-box > div > h4 + p {
+    margin-top: 1rem;
+}
+.cust-reg-right-side-box > div h4 {
+    font-size: 36px;
+    color:white;
+}
+.cust-reg-right-side-box > div p {
+    font-size: 22px;
+    color:white;
+}
+
+
+.form-container-login {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    width: 500px;
+    box-sizing: border-box;
+    box-shadow:inset 0px 0px 0px 3px white;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: transparent;
+}
+.form-container-login button{
+    background-color:#405a7a;
+    border: none;
+}
+.form-container-login button:hover {
+    background-color: #131921;
+}
+.form-container-login-left-side {
+    background-image: url("../assets/login.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    border-radius: 20%;
 }
 
 

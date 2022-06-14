@@ -77,22 +77,31 @@ const Login = (props) => {
     })
 
     return (
-        <div className="login-container">
-            <form onSubmit={formOnSubmitHandler}>
-                <div className="err-message">
-                    {message}
+        <div className="container-fluid">
+                <div className="row justify-content-evenly">
+                    <div className="col-md-4 form-container-login-left-side">
+                        
+                    </div>
+                    <div className="col-md-4">
+                        <form onSubmit={formOnSubmitHandler} className="form-container-login" >
+                            <div className="err-message">
+                                {message}
+                            </div>
+                            <div className="form-title-log">
+                                <h4>Sign In</h4>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="email" className="form-label">Email address</label>
+                                <input onChange={onChangeHandler} type="email" className="form-control" id="email" name="email" aria-describedby="emailHelp" />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="password" className="form-label">Password</label>
+                                <input onChange={onChangeHandler} type="password" className="form-control" id="password" name="password" />
+                            </div>
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email address</label>
-                    <input onChange={onChangeHandler} type="email" className="form-control" id="email" name="email" aria-describedby="emailHelp" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input onChange={onChangeHandler} type="password" className="form-control" id="password" name="password" />
-                </div>
-
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
         </div>
     )
 }

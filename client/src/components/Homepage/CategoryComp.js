@@ -1,92 +1,117 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../../hooks/GlobalContext";
-import dummyImage from "../../assets/1.png";
+
+import dummyImage from "../../assets/1.png"
+import headset from "../../assets/headset.png";
+import keyboard from "../../assets/keyboard.png"
+import mouse from "../../assets/mouse.png"
+import fotel from "../../assets/fotel.png"
+import laptop from "../../assets/laptop.png"
+import toy from "../../assets/toy.png"
+import tshirt from "../../assets/tshirt.png"
+import mop from "../../assets/mop.png"
+import hardware from "../../assets/hardware.png"
+import compsAccs from "../../assets/comps-accs.jpg"
+import personalCare from "../../assets/personal-care.jpg"
+import dresses from "../../assets/dresses.jpg"
+
 
 const CategroyComp = () => {
-    const [{theme}] = useContext(ThemeContext);
+    const [{ theme }] = useContext(ThemeContext);
+    let navigate = useNavigate()
+    const onClickedHandler = (url) => {
+        navigate(url);
+    }
 
     return (
         <div className="container-fluid home-cards-container">
             {/* row 1 */}
             <div className="row">
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{boxShadow:theme.boxShadow}}>
-                        Gaming accessories
+                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                        <h3>Gaming accessories</h3>
                         <div className="row">
-                            <div className="col-md-6">
-                                <img src={dummyImage} alt="" />
+                            <div className="col-md-6 card-image">
+                                <Link to="/" ><img src={headset} alt="" /></Link>
                                 <p>Headset</p>
                             </div>
-                            <div className="col-md-6">
-                                <img src={dummyImage} alt="" />
+                            <div className="col-md-6 card-image">
+                                <Link to="/" ><img src={keyboard} alt="" /></Link>
                                 <p>Keyboards</p>
                             </div>
-                            <div className="col-md-6">
-                                <img src={dummyImage} alt="" />
+                            <div className="col-md-6 card-image">
+                                <Link to="/" ><img src={mouse} alt="" /></Link>
                                 <p>Computer mice</p>
                             </div>
-                            <div className="col-md-6">
-                                <img src={dummyImage} alt="" />
+                            <div className="col-md-6 card-image">
+                                <Link to="/" ><img src={fotel} alt="" /></Link>
                                 <p>Chairs</p>
                             </div>
-                            
-                           
+
+
                         </div>
                         <div className="c-a">
-                            <Link to="/">Sign in securely</Link>
+                            <Link to="/">See more</Link>
                         </div>
+                    </div>
+                </div>
+                <div className="col-md-3 home-card " >
+                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                        <h3>Shop by Category</h3>
+                        <div className="row">
+                            <div className="col-md-6 card-image">
+                                <Link to="/" ><img src={laptop} alt="" /></Link>
+                                <p>Laptops</p>
+                            </div>
+                            <div className="col-md-6 card-image">
+                                <Link to="/" ><img src={toy} alt="" /></Link>
+                                <p>Toys</p>
+                            </div>
+                            <div className="col-md-6 card-image">
+                                <Link to="/" ><img src={tshirt} alt="" /></Link>
+                                <p>Clothes</p>
+                            </div>
+                            <div className="col-md-6 card-image">
+                                <Link to="/" ><img src={mop} alt="" /></Link>
+                                <p>Household goods</p>
+                            </div>
+                        </div>
+                        <div className="c-a">
+                            <Link to="/">Shop now</Link>
+                        </div>
+
                     </div>
                 </div>
                 <div className="col-md-3 home-card" >
-                    <div className="card-content-container" style={{boxShadow:theme.boxShadow}}>
-                        Shop by Category
+                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                        <h3>Electronics</h3>
                         <div className="row">
-                            <div className="col-md-6">
-                                <img src={dummyImage} alt="" />
-                                <p>Headset</p>
+                            <div className="col-md-12 card-image electronics">
+                                <Link to="/" ><img src={hardware} alt="" /></Link>
                             </div>
-                            <div className="col-md-6">
-                                <img src={dummyImage} alt="" />
-                                <p>Keyboards</p>
-                            </div>
-                            <div className="col-md-6">
-                                <img src={dummyImage} alt="" />
-                                <p>Computer mice</p>
-                            </div>
-                            <div className="col-md-6 ">
-                                <img src={dummyImage} alt="" />
-                                <p>Chairs</p>
-                            </div>
+
                         </div>
                         <div className="c-a">
-                            <Link to="/">Sign in securely</Link>
+                            <Link to="/">Shop now</Link>
                         </div>
-                       
                     </div>
                 </div>
-                <div className="col-md-3 home-card" >
-                    <div className="card-content-container" style={{boxShadow:theme.boxShadow}}>
-                        Electronics
-                        <div className="row">
-                            <div className="col-md-12">
-                                <img src={dummyImage} alt="" />
-                                <p>Headset</p>
-                            </div>
+                <div className="col-md-3 home-card last-tp-home">
+                    <div className="card-content-container sign-side" >
+                        <div>
                             
+                            <div onClick={(e) => onClickedHandler("/login")} className="row sign-right ">
+                                <div className="col-md-12 card-image">
+                                    <h2>Sign in for the best experience</h2>
+                                </div>
+                            </div>
+
                         </div>
-                        <div className="c-a">
-                            <Link to="/">Sign in securely</Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{boxShadow:theme.boxShadow}}>
-                        <p>Sign in for the best experience</p>
-                        <div className="c-a">
-                            <Link to="/">Sign in securely</Link>
-                        </div>
-                        
+
+
+
+
                     </div>
 
                 </div>
@@ -94,50 +119,60 @@ const CategroyComp = () => {
             {/* row 2 */}
             <div className="row">
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{boxShadow:theme.boxShadow}}>
-                        <p>Shop Father's Day Gifts</p>
+                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                        <h3>Health & Personal Care</h3>
                         <div className="row">
-                            <div className="col-md-6">1</div>
-                            <div className="col-md-6">2</div>
-                            <div className="col-md-6">3</div>
-                            <div className="col-md-6">4</div>
-                            
+                            <div className="col-md-12 card-image electronics second-cont">
+                                <Link to="/" ><img src={personalCare} alt="" /></Link>
+                            </div>
+
                         </div>
                         <div className="c-a">
-                            <Link to="/">Sign in securely</Link>
+                            <Link to="/">Shop now</Link>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{boxShadow:theme.boxShadow}}> 
-                        <p>Health & Personal Care</p>
+                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                        <h3>Computers & Accessories</h3>
                         <div className="row">
-                            <div className="col-md-6">1</div>
-                            <div className="col-md-6">2</div>
-                            <div className="col-md-6">3</div>
-                            <div className="col-md-6">4</div>
-                            
+                            <div className="col-md-12 card-image electronics second-cont">
+                                <Link to="/" ><img src={compsAccs} alt="" /></Link>
+                            </div>
+
                         </div>
                         <div className="c-a">
-                            <Link to="/">Sign in securely</Link>
+                            <Link to="/">Shop now</Link>
                         </div>
                     </div>
 
                 </div>
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{boxShadow:theme.boxShadow}}>
-                        <p>Deal of the Day</p>
+                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                        <h3>Deal of the Day</h3>
+                        <div className="row">
+                            <div className="col-md-12 card-image electronics second-cont">
+                                <Link to="/" ><img src={dummyImage} alt="dummy" /></Link>
+                            </div>
+
+                        </div>
                         <div className="c-a">
-                            <Link to="/">Sign in securely</Link>
+                            <Link to="/">See all deals</Link>
                         </div>
                     </div>
 
                 </div>
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{boxShadow:theme.boxShadow}}>
-                        <p>Electronics</p>
+                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                        <h3>Dresses</h3>
+                        <div className="row">
+                            <div className="col-md-12 card-image electronics second-cont">
+                                <Link to="/" ><img src={dresses} alt="" /></Link>
+                            </div>
+
+                        </div>
                         <div className="c-a">
-                            <Link to="/">Sign in securely</Link>
+                            <Link to="/">Shop now</Link>
                         </div>
                     </div>
 
@@ -146,8 +181,8 @@ const CategroyComp = () => {
             {/* row 3 */}
             <div className="row">
                 <div className="col-md-12">
-                    <div className="card-content-container-sub" style={{boxShadow:theme.boxShadow}}>
-                        <p>Popular products in PC internationally</p>
+                    <div className="card-content-container-sub" style={{ boxShadow: theme.boxShadow }}>
+                        <h3>Popular products in PC internationally</h3>
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia, nulla?
                     </div>
                 </div>
@@ -155,8 +190,8 @@ const CategroyComp = () => {
             {/* row 4 */}
             <div className="row">
                 <div className="col-md-12">
-                    <div className="card-content-container-sub" style={{boxShadow:theme.boxShadow}}>
-                        <p>Top Sellers in Books for you</p>
+                    <div className="card-content-container-sub" style={{ boxShadow: theme.boxShadow }}>
+                        <h3>Top Sellers in Books for you</h3>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error, perspiciatis!
                     </div>
                 </div>
@@ -164,15 +199,14 @@ const CategroyComp = () => {
             {/* last row */}
             <div className="row">
                 <div className="col-md-12">
-                    <div className="home-sign-section" style={{boxShadow:theme.boxShadow}}>
+                    <div className="home-sign-section" style={{ boxShadow: theme.boxShadow }}>
                         <div>
                             See personalized recommendations
                         </div>
                         <div>
                             <button className="home-sign-but">Sign In</button>
                         </div>
-                        
-                        <p>New customer?<Link to="/"> Start here</Link></p>
+                        <p className="d-sign">New customer? <Link to="/"> Start here.</Link></p>
                     </div>
                 </div>
             </div>
