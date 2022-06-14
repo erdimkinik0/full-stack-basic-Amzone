@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdvertFormHandler } from "../../../hooks/UseFormOnChangeHandler";
+import "../../../css/create-form.css"
 
 const AdvertCreate = (props) => {
     const [inputData,onChangeHandler] = useAdvertFormHandler();
@@ -78,22 +79,31 @@ const AdvertCreate = (props) => {
         }
     }
     return (
-        <div>
-            <form onSubmit={onSubmitHandler}>
-                <div className="mb-3">
-                    <label htmlFor="title" className="form-label">Title</label>
-                    <input onChange={onChangeHandler} type="text" className="form-control" id="title" name="title" aria-describedby="emailHelp" />
+        <div className="container create-table-container">
+            <div className="row justify-content-center">
+                <div className="col-md-6 create-table-content-container">
+                    <h3 className="form-tit">
+                        Create a new Advert
+                    </h3>
+                    <form onSubmit={onSubmitHandler}>
+                        <div className="mb-3">
+                            <label htmlFor="title" className="form-label">Title</label>
+                            <input onChange={onChangeHandler} type="text" className="form-control" id="title" name="title" aria-describedby="emailHelp" />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="category" className="form-label">Category</label>
+                            <input onChange={onChangeHandler} type="text" className="form-control" id="category" name="category" aria-describedby="emailHelp" />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="content" className="form-label">What are you looking for?</label>
+                            <textarea onChange={onChangeHandler} className="form-control" id="content" name="content" rows="3"></textarea>
+                        </div>
+                        <div className="submit-div">
+                            <button type="submit" className="btn create-link">Submit</button>
+                        </div>
+                    </form>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="category" className="form-label">Category</label>
-                    <input onChange={onChangeHandler} type="text" className="form-control" id="category" name="category" aria-describedby="emailHelp" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="content" className="form-label">What are you looking for?</label>
-                    <textarea onChange={onChangeHandler} className="form-control" id="content" name="content" rows="3"></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+            </div>
         </div>
     )
 }

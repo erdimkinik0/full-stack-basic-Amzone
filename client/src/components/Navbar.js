@@ -109,7 +109,7 @@ const Navbar = (props) => {
                                     {
                                         !props.isLogged
                                             ? "Account"
-                                            : `Hello, foo`
+                                            : `${props.username}`
                                     }
 
                                 </button>
@@ -130,14 +130,8 @@ const Navbar = (props) => {
                                         }}>Register</button></li>
 
                                     }
-
-
                                 </ul>
                             </div>
-
-
-
-
                             {
                                 props.userType &&
                                 props.userType !== "Company"

@@ -1,10 +1,11 @@
 import { useProductFormHandler } from "../../../hooks/UseFormOnChangeHandler";
 import { useNavigate } from "react-router-dom";
-import { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
+import "../../../css/create-form.css"
 
 const ProductCreate = (props) => {
     const [inputData, onChangeHandler] = useProductFormHandler();
-    const [fileData,setFileData] = useState(null);
+    const [fileData, setFileData] = useState(null);
     let navigate = useNavigate();
 
     const onChangeFileHandler = (e) => {
@@ -12,23 +13,23 @@ const ProductCreate = (props) => {
     }
 
     const checkIfAuthorizatedUser = async () => {
-        try{
-            let res = await fetch("http://localhost:5000/products/list/create",{
-                method:"get",
-                headers:{
-                    "Content-Type":"application/json",
-                    "Authorization":`Bearer ${props.accessToken.token}`
+        try {
+            let res = await fetch("http://localhost:5000/products/list/create", {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${props.accessToken.token}`
                 }
             })
-            if(res.status === 200){
+            if (res.status === 200) {
                 console.log("user is authorizated")
             }
             else {
-                await fetch("http://localhost:4000/logout",{
-                    method:"delete",
-                    body:JSON.stringify(props.refreshToken),
-                    headers:{
-                        "Content-Type":"application/json"
+                await fetch("http://localhost:4000/logout", {
+                    method: "delete",
+                    body: JSON.stringify(props.refreshToken),
+                    headers: {
+                        "Content-Type": "application/json"
                     }
                 })
                 localStorage.removeItem("accessToken");
@@ -38,7 +39,7 @@ const ProductCreate = (props) => {
                 props.setIsLogged(false);
                 navigate("/login")
             }
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -46,32 +47,32 @@ const ProductCreate = (props) => {
         checkIfAuthorizatedUser();
     })
     const onSubmitHandler = async (e) => {
-        try{
+        try {
             e.preventDefault();
             const data = new FormData();
-            data.append("name",inputData.name);
-            data.append("description",inputData.description);
-            data.append("status",inputData.status);
-            data.append("price",inputData.price);
-            data.append("storage",inputData.storage);
-            
-            data.append("productImage",fileData[0]);
-            let res = await fetch("http://localhost:5000/products/list/create",{
-                method:"post",
-                body:data,
-                headers:{
-                    "Authorization":`Bearer ${props.accessToken.token}`
+            data.append("name", inputData.name);
+            data.append("description", inputData.description);
+            data.append("status", inputData.status);
+            data.append("price", inputData.price);
+            data.append("storage", inputData.storage);
+
+            data.append("productImage", fileData[0]);
+            let res = await fetch("http://localhost:5000/products/list/create", {
+                method: "post",
+                body: data,
+                headers: {
+                    "Authorization": `Bearer ${props.accessToken.token}`
                 }
             })
-            if (res.status === 201){
+            if (res.status === 201) {
                 navigate("/products/list")
             }
             else {
-                await fetch("http://localhost:4000/logout",{
-                    method:"delete",
-                    body:JSON.stringify(props.refreshToken),
-                    headers:{
-                        "Content-Type":"application/json"
+                await fetch("http://localhost:4000/logout", {
+                    method: "delete",
+                    body: JSON.stringify(props.refreshToken),
+                    headers: {
+                        "Content-Type": "application/json"
                     }
                 })
                 props.setIsLogged(false);
@@ -81,42 +82,61 @@ const ProductCreate = (props) => {
                 localStorage.removeItem("userType")
                 navigate("/login")
             }
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
-    } 
+    }
     return (
-        <div>
+        <div className="container create-table-container">
             {console.log(inputData)}
             {console.log(fileData)}
-            <form onSubmit={onSubmitHandler}>
-                <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Product Name</label>
-                    <input onChange={onChangeHandler} type="text" className="form-control" id="name" name="name"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="description" className="form-label">Description</label>
-                    <textarea onChange={onChangeHandler} className="form-control" id="description" name="description" rows="3"></textarea>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="status" className="form-label">Status</label>
-                    <input onChange={onChangeHandler} type="text" className="form-control" id="status" name="status"/>
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="price" className="form-label">Price</label>
-                    <input onChange={onChangeHandler} type="number" className="form-control" id="price" name="price"  />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="storage" className="form-label">Storage</label>
-                    <input onChange={onChangeHandler} type="number" className="form-control" id="storage" name="storage"  />
-                </div>
-                <div className="mb-3">
-                    <input onChange={onChangeFileHandler} type="file" className="form-control" id="productImage" name="productImage"  />
+            <div className="row justify-content-center">
+                <div className="col-md-6 create-table-content-container">
+                    <h3 className="form-tit">
+                        Create a new Product
+                    </h3>
+                    <form onSubmit={onSubmitHandler}>
+                        <div className="mb-3">
+                            <label htmlFor="name" className="form-label">Product Name</label>
+                            <input onChange={onChangeHandler} type="text" className="form-control" id="name" name="name" />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="description" className="form-label">Description</label>
+                            <textarea onChange={onChangeHandler} className="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="status" className="form-label">Status</label>
+                            <input onChange={onChangeHandler} type="text" className="form-control" id="status" name="status" />
+                        </div>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="mb-3">
+                                    <label htmlFor="price" className="form-label">Price</label>
+                                    <input onChange={onChangeHandler} type="number" className="form-control" id="price" name="price" />
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="mb-3">
+                                    <label htmlFor="storage" className="form-label">Storage</label>
+                                    <input onChange={onChangeHandler} type="number" className="form-control" id="storage" name="storage" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div className="mb-3">
+                            <input onChange={onChangeFileHandler} type="file" className="form-control" id="productImage" name="productImage" />
+                        </div>
+
+                        <div className="submit-div">
+                            <button type="submit" className="btn create-link">Submit</button>
+                        </div>
+
+                    </form>
                 </div>
                 
-               
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+            </div>
+
         </div>
     )
 }

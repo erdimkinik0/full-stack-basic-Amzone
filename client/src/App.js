@@ -17,8 +17,9 @@ import Products from "./components/Dashboard/Products/Products";
 import ProductCreate from "./components/Dashboard/Products/ProductCreate";
 import Adverts from "./components/Dashboard/Adverts/Adverts";
 import AdvertCreate from "./components/Dashboard/Adverts/AdvertCreate";
-import Orders from "./components/Orders/Orders";
+import OrdersList from "./components/Orders/OrdersList";
 import OrderCreate from "./components/Orders/OrderCreate";
+import Orders from "./components/Orders/Orders"
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
     token: "",
   })
   const [userType, setUserType] = useState(null);
+  const [username,setUsername] = useState(null);
 
   useEffect(() => {
     let now = parseInt(new Date().getTime())
@@ -61,6 +63,7 @@ const App = () => {
           accessToken={accessToken} 
           userType={userType} 
           setIsLogged={setIsLogged}
+          username={username}
         />
         {console.log(userType)}
         <LowerNavbar isLogged={isLogged} />
@@ -74,17 +77,19 @@ const App = () => {
               setAccessToken={setAccessToken} 
               setUserType={setUserType} 
               isLogged={isLogged} 
+              setUsername={setUsername}
             />} />
           <Route path="register" element={<Register />} />
-          <Route path="register/customer" element={<CustomerRegister />} />
-          <Route path="register/company" element={<CompanyRegister />} />
+            <Route path="register/customer" element={<CustomerRegister />} />
+            <Route path="register/company" element={<CompanyRegister />} />
           <Route path="dashboard" element={<Dashboard accessToken={accessToken} />} />
           <Route path="products/list" element={<Products setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="products/list/create" element={<ProductCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="adverts/list" element={<Adverts setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="adverts/list/create" element={<AdvertCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
-          <Route path="orders" element={<Orders setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
-          <Route path="orders/create" element={<OrderCreate setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
+          <Route path="orders/list" element={<OrdersList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
+          <Route path="orders" element={<Orders setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
+          <Route path="orders/list/create" element={<OrderCreate setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
  
         </Routes>
         <Footer />

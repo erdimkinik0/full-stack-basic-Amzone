@@ -45,7 +45,8 @@ const Login = (props) => {
                 if(resUserData){
                     let userData = await resUserData.json();
                     props.setUserType(userData.onType)
-                    localStorage.setItem("userType",userData.onType)
+                    localStorage.setItem("userType",userData.onType);
+                    props.setUsername(userData.username)
                 }
                 navigate("/")
             }

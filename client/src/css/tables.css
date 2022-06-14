@@ -1,0 +1,18 @@
+.table-content-container {
+    margin-top: 3rem;
+    background-color: white;
+    
+}
+.table-container {
+    min-height: 600px;
+}
+.create-link-l {
+    margin-top: 2rem;
+    background-color: #febd69;
+    font-size: 16px;
+    color: #232f3e;
+    border: none;
+}
+.create-link-l:hover {
+    background-color: #edad59;
+}

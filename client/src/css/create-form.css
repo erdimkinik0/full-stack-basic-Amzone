@@ -1,0 +1,29 @@
+.create-table-container {
+    min-height: 600px;
+}
+.create-table-content-container {
+    padding-top: 2rem;
+    padding-right: 7rem;
+    padding-left: 2rem;
+    padding-bottom: 2rem;
+}
+
+.create-link {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 16px;
+    color: #232f3e;
+    border: none;
+    width: 100%;
+    background-color: #edad59;
+}
+.create-link:hover {
+    background-color: #f6ba6b;
+}
+.submit-div {
+    text-align: center;
+}
+.form-tit {
+    text-align: center;
+    margin-bottom: 2rem;
+}
