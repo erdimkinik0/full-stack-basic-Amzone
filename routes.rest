@@ -104,7 +104,38 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6I
 
 ###
 
-GET http://localhost:5000/adverts
+
+POST http://localhost:4000/login
+Content-Type:application/json
+
+{
+    "email":"erdalkinik@hotmail.com",
+    "password":"123"
+}
+
+
+###
+
+POST http://localhost:5000/cart/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1MjM5MTY1LCJleHAiOjE2NTUyNDA5NjV9.iBjxcak5jo_sUGQrolKWDmrNDyqXhN0Pw5qFMhBpx9M
+
+{
+    "product_id":"62a3956193382016f18ba934",
+    "quantity":2
+}
+
+
+###
+
+GET http://localhost:5000/cart/get-cart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1MjI4NzMyLCJleHAiOjE2NTUyMzA1MzJ9.J7pomTFZ8bY38tkjQPZCMYW8Tmi3h_8R2DLTpuSo4hQ
+
+
+###
+
+GET http://localhost:5000/cart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1MjM5MTY1LCJleHAiOjE2NTUyNDA5NjV9.iBjxcak5jo_sUGQrolKWDmrNDyqXhN0Pw5qFMhBpx9M
 
 
 

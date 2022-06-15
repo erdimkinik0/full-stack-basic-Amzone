@@ -20,6 +20,7 @@ import AdvertCreate from "./components/Dashboard/Adverts/AdvertCreate";
 import OrdersList from "./components/Orders/OrdersList";
 import OrderCreate from "./components/Orders/OrderCreate";
 import Orders from "./components/Orders/Orders"
+import Cart from "./components/Cart";
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
   })
   const [userType, setUserType] = useState(null);
   const [username,setUsername] = useState(null);
+  const [cart,setCart] = useState(null);
 
   useEffect(() => {
     let now = parseInt(new Date().getTime())
@@ -52,6 +54,9 @@ const App = () => {
 
   },[isLogged])
 
+ 
+
+
   return (
     <div style={{ backgroundColor: theme.backgroundColor, color: theme.color }}>
       <BrowserRouter>
@@ -64,8 +69,10 @@ const App = () => {
           userType={userType} 
           setIsLogged={setIsLogged}
           username={username}
+          cart={cart}
         />
         {console.log(userType)}
+        {console.log(cart)}
         <LowerNavbar isLogged={isLogged} />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -78,6 +85,7 @@ const App = () => {
               setUserType={setUserType} 
               isLogged={isLogged} 
               setUsername={setUsername}
+              setCart={setCart}
             />} />
           <Route path="register" element={<Register />} />
             <Route path="register/customer" element={<CustomerRegister />} />
@@ -90,7 +98,7 @@ const App = () => {
           <Route path="orders/list" element={<OrdersList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="orders" element={<Orders setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
           <Route path="orders/list/create" element={<OrderCreate setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
- 
+          <Route path="cart" element={<Cart cart={cart}  accessToken={accessToken} refreshToken={refreshToken} />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // dashboard components
 
@@ -37,7 +37,7 @@ const Dashboard = (props) => {
                 resp &&
                 resp.onType === "Company" &&
                 <div className="prod-main-content-container">
-                    <h2 className="main-title">Welcome !  {resp.username}</h2>
+                    <h2 className="main-title">Welcome! {resp.username}</h2>
                     <p>Manage your account</p>
                     <div className="row justify-content-around">
 
@@ -66,7 +66,7 @@ const Dashboard = (props) => {
                 resp &&
                 resp.onType === "Customer" &&
                 <div className="prod-main-content-container">
-                    <h2 className="main-title">Welcome !  {resp.username}</h2>
+                    <h2 className="main-title">Welcome! {resp.username}</h2>
                     <p>Manage your account</p>
                     <div className="row justify-content-around">
 

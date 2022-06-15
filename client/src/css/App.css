@@ -335,9 +335,6 @@ h3 {
 .last-tp-home{
     padding:2.5rem;
 }
-
-
-
 .c-a {
     position:absolute;
     bottom: 16px;
@@ -360,10 +357,7 @@ h3 {
     text-align: center;
     width: 100%;
     padding: 1rem;
-
-
 }
-
 /* register page */
 .reg-container {
     margin-top: 3rem;
@@ -372,8 +366,6 @@ h3 {
 .reg-title {
     margin-top: 3rem;
     text-align: center;
-    
-
 }
 .reg-title h4 {
     font-size: 36px;
@@ -554,5 +546,38 @@ h3 {
 }
 
 
+.items {
+    
+    margin-right: 0px;
+    z-index:2;
+    
+}
+.items p {
+    font-size: small;
+    color: white;
+    font-weight: 500;
+}
+.bi-cart-span {
+    border: none;
+    color: black;
+    font-weight: bold;
+    margin: 0%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    
+}
 
+.thmbut-b {
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    color:white;
+    margin-right: 1rem;
 
+}
+.thmbut-b:hover{
+    background-color: white;
+    color: #131921;
+    border-radius: 50%;
+}

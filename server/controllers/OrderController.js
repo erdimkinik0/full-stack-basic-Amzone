@@ -161,10 +161,7 @@ const orderControllerGet = async (req,res) => {
         res.status(400).json({message:err.message})
     }
 }
-
-
 // order list for company
-
 const orderListControllerGet = async (req,res) => {
     try{
         if(req.user.user.onType === "Company"){

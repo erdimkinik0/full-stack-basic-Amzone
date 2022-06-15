@@ -83,4 +83,26 @@ const useProductFormHandler = () => {
     return [inputData,onChangeHandler];
 }
 
-export {useRegisterCustomerFormHandler,useRegisterCompanyFormHandler,useLoginFormHandler,useAdvertFormHandler,useProductFormHandler}
+const useOrderFormHandler = () => {
+    const [inputData,setInputData] = useState({
+        to_coutnry:"",
+        to_city:"",
+        to_street:""
+    })
+    const onChangeHandler = (e) => {
+        setInputData({
+            ...inputData,[e.target.name]:e.target.value
+        })
+    }
+
+    return [inputData,onChangeHandler]
+}
+
+export {
+    useRegisterCustomerFormHandler,
+    useRegisterCompanyFormHandler,
+    useLoginFormHandler,
+    useAdvertFormHandler,
+    useProductFormHandler,
+    useOrderFormHandler
+}

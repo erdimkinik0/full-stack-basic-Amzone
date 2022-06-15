@@ -46,8 +46,23 @@ const Login = (props) => {
                     let userData = await resUserData.json();
                     props.setUserType(userData.onType)
                     localStorage.setItem("userType",userData.onType);
-                    props.setUsername(userData.username)
+                    props.setUsername(userData.username);
+                    console.log(userData);
+                    if(userData.onType === "Customer"){
+                        let customerData = await fetch("http://localhost:5000/cart/get-cart",{
+                            headers:{
+                                "Authorization":`Bearer ${accessToken}`
+                            }
+                        })
+                        if(customerData.status === 200){
+                            let cartJson = await customerData.json();
+                            props.setCart(cartJson);
+                        
+                        }
+                    }
+                    
                 }
+
                 navigate("/")
             }
             else {
@@ -76,6 +91,11 @@ const Login = (props) => {
             navigate("/")
         }
     })
+
+
+    // 
+
+
 
     return (
         <div className="container-fluid">

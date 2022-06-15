@@ -38,6 +38,7 @@ const cartControllerGet = async (req,res) => {
                 const cartProductsIds = customer.cart[i]._id;
                 const quan = customer.cart[i].quantity;
                 const cartItem = await CartItem.findById(cartProductsIds).populate({path:"product",model:"Product"})
+                console.log(cartItem)
                 let objQuan = {
                     product:cartItem.product,
                     quantity:quan
@@ -54,4 +55,29 @@ const cartControllerGet = async (req,res) => {
     }
 }
 
-module.exports = {cartControllerPost,cartControllerGet}
+
+
+const getCartController = async (req,res) => {
+    try{
+        if(req.user.user.onType === "Customer"){
+            console.log(req.user.user);
+            const custId = req.user.user.acc_type;
+            const customer = await Customer.findById(custId);
+
+            res.status(200).json(customer.cart)
+
+        }
+        else {
+            res.status(403).json({message:"This is not authorizated"})
+        }
+
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+
+}
+
+
+
+module.exports = {cartControllerPost,cartControllerGet,getCartController}
