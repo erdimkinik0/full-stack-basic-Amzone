@@ -190,7 +190,10 @@ const LowerNavbar = (props) => {
         <div className="lowernav-container">
 
             <div className="lower-nb ">
-                <button to="/">All</button>
+                <button onClick={(e) => {
+                    e.preventDefault();
+                    regularRouteHandler("/products");
+                }}>All</button>
                 <button to="/">Popular deals</button>
                 <button to="/">Customer Service</button>
                 {
@@ -208,3 +211,6 @@ const LowerNavbar = (props) => {
 }
 
 export { Navbar, LowerNavbar };
+
+
+

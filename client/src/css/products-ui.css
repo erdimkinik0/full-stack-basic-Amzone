@@ -1,0 +1,54 @@
+.products-comp-container {
+    min-height: 600px;
+}
+.product-general-container {
+    margin-right: 0%;
+}
+
+.left-side {
+    
+}
+
+.right-side {
+    
+}
+
+.card-container {
+    position: relative;
+    height: 500px;
+    border: 1px solid lightgray;
+    
+}
+.card-body-container {
+    display: block;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    
+
+}
+.product-name{
+    font-size: 16px;
+    color: black;
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+}
+.product-name:hover {
+    color: rgb(173, 8, 8);
+}
+.product-price {
+    font-size: 28px;
+    font-weight: 400;
+    padding-bottom: 0%;
+    margin: 0%;
+}
+.product-comment {
+    font-size: 12px;
+    float: right;
+}
+.body-text {
+    font-size: 14px;
+    margin-top: 0%;
+}
+.product-image {
+    height: 300px;
+}
