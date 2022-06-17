@@ -1,0 +1,91 @@
+.detail-gen-container {
+    margin-top: 6rem;
+    padding: 3rem;
+    min-height: 600px;
+}
+
+.detail-gen-container .left-side {
+    margin-top: 6%;
+}
+.det-image-container {
+    width: 100%;
+}
+.det-image-container img {
+    width: 100%;
+    padding-right: 2rem;
+}
+
+.detail-gen-container .right-side {
+    
+}
+.prod-name {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.old-price {
+    font-size: 1.1rem;
+    color: red;
+
+}
+.new-price {
+    font-size: 1.1rem;
+    color: #004B91;
+
+
+}
+.status {
+    font-size: 1.1rem;
+
+}
+.description h3 {
+    font-weight: 500;
+}
+
+.add-cart-container {
+    padding: 0.6rem;
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 0px 1px lightgray;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.det-but {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #FCD200;
+    background-color: #FFD814;
+    border-color: #FCD200;
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    border-radius: 25px;
+    text-align: center;
+    padding: 4px 20px;
+    
+}
+.det-but:hover {
+    background-color: #fcdc3c;
+    border-color: #ddc02e;
+}
+.add-cart-container * {
+    margin-top: 1rem;
+}
+
+.comp-idnt {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 1rem;
+}
+.add-cart-container input {
+    width: 25%;
+}
+
+.quan {
+    display: flex;
+    justify-content: center;
+}
+
+.quan button {
+    border: none;
+    background-color: transparent;
+}

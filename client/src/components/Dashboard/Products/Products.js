@@ -31,6 +31,7 @@ const ProductsComp = () => {
                                     </div>
                                 })
                         }
+                        
                     </div> 
                 </div>
             </div>

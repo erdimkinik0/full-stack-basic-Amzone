@@ -1,147 +1,112 @@
-import "../../css/Product.css";
-import dummy1 from "../../assets/1.png"
-import dummy2 from "../../assets/2.png"
-import dummy3 from "../../assets/3.png"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom"
+import "../../css/detail.css";
+import Slider from "react-slick";
 
 const Detail = () => {
+
+    let navigate = useNavigate();
+    const params = useParams();
+    const [data, setData] = useState(null);
+    let itemId = params.id;
+    console.log(itemId);
+    const [quantity, setQuantity] = useState(0);
+
+    const improveQuantity = (e) => {
+        e.preventDefault();
+        setQuantity(quantity + 1);
+    }
+    const decreaseQuantity = (e) => {
+        e.preventDefault();
+        setQuantity(quantity - 1);
+    }
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
+
+
+    const fetchProduct = async () => {
+        try {
+            let res = await fetch(`http://localhost:5000/products/${itemId}`);
+            if (res.status === 200) {
+                let resJson = await res.json();
+                setData(resJson);
+                console.log(resJson)
+            } else {
+                navigate("/");
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
     useEffect(() => {
-        const imgs = document.querySelectorAll('.img-select a');
-        const imgBtns = [...imgs];
-        let imgId = 1;
-        imgBtns.forEach((imgItem) => {
-            imgItem.addEventListener('click', (event) => {
-                event.preventDefault();
-                imgId = imgItem.dataset.id;
-                slideImage();
-            });
-        });
-        function slideImage() {
-            const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
-            document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-        }
-        window.addEventListener('resize', slideImage);
-        return () => {
-            window.removeEventListener('resize', slideImage);
-            imgBtns.forEach((imgItem) => {
-                imgItem.removeEventListener('click',(event) => {
-                    event.preventDefault();
-                    imgId = imgItem.dataset.id;
-                    slideImage();
-                })
-            })
-        }
-    },[]);
+        fetchProduct();
+
+        return () => { fetchProduct() };
+    }, [])
+
+
     return (
-        <div>
-            <div className="card-wrapper-m">
-                <div className="card">
-                    {/* card left  */}
-                    <div className="product-imgs">
-                        <div className="img-display">
-                            <div className="img-showcase">
-                                <img src={dummy1} alt="" />
-                                <img src={dummy2} alt="" />
-                                <img src={dummy3} alt="" />
-                                <img src={dummy1} alt="" />
+        <div className="container-fluid detail-gen-container">
+            {
+                data &&
+                <div className="row d-flex justify-content-between">
+                    <div className="col-md-6 left-side">
+                        <Slider {...settings}>
+                            <div className="det-image-container">
+                                <img src={`http://localhost:5000/${data.img}`} alt="" />
                             </div>
+                            <div className="det-image-container">
+                                <img src={`http://localhost:5000/${data.img}`} alt="" />
+                            </div>
+
+                        </Slider>
+                    </div>
+                    <div className="col-md-4 right-side">
+                        <div className="prod-name">
+                            {data.name} ashdba shdasg agsdva ihdas gajks dadb adshb ahsdhbas jsgvasd gas gha sdhgasd asghasd hg
                         </div>
-                        <div className="img-select">
-                            <div className="img-item">
-                                <a href="/" data-id="1">
-                                    <img src={dummy1} alt="" />
-                                </a>
-                            </div>
-                            <div className="img-item">
-                                <a href="/" data-id="2">
-                                    <img src={dummy2} alt="" />
-                                </a>
-                            </div>
-                            <div className="img-item">
-                                <a href="/" data-id="3">
-                                    <img src={dummy3} alt="" />
-                                </a>
-                            </div>
-                            <div className="img-item">
-                                <a href="/" data-id="4">
-                                    <img src={dummy1} alt="" />
-                                </a>
-                            </div>
+                        <div className="old-price">
+                            Old Price: $xxx
+                        </div>
+                        <div className="new-price">
+                            New Price: ${data.price}
+                        </div>
+                        <div className="status">
+                            Condition: {data.status}
+                        </div>
+                        <div className="description">
+                            <h3>About this item</h3>
+                            <p>{data.description}</p>
+                        </div>
+                        <div className="add-section">
+
                         </div>
                     </div>
-                    {/*  card right  */}
-                    <div className="product-content">
-                        <h2 className="product-title">nike shoes</h2>
-                        <a href="/" className="product-link">visit nike store</a>
-                        <div className="product-rating">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                            <span>4.7(21)</span>
-                        </div>
+                    <div className="col-md-2">
+                        <div className="add-cart-container">
+                            <div><strong>Buy: </strong>{data.price}</div>
+                            <div><strong>Status: </strong>{data.status}</div>
+                            <div className="comp-idnt">Sold by: (Company name)</div>
+                            <form>
+                                <span className="quan">
+                                    <button onClick={decreaseQuantity}>-</button>
+                                        <input type="number" defaultValue={0} value={quantity} min={0} />
+                                    <button onClick={improveQuantity}>+</button>
+                                </span>
+                                <button type="submit" className="det-but">Add to Cart</button>
+                            </form>
 
-                        <div className="product-price">
-                            <p className="last-price">Old Price: <span>$257.00</span></p>
-                            <p className="new-price">New Price: <span>$249.00 (5%)</span></p>
-                        </div>
-
-                        <div className="product-detail">
-                            <h2>about this item: </h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
-                            <ul>
-                                <li>Color: <span>Black</span></li>
-                                <li>Available: <span>in stock</span></li>
-                                <li>Category: <span>Shoes</span></li>
-                                <li>Shipping Area: <span>All over the world</span></li>
-                                <li>Shipping Fee: <span>Free</span></li>
-                            </ul>
-                        </div>
-
-                        <div className="purchase-info">
-                            <h5>In Stock (status)</h5> 
-                            <input type="number" min="0"  />
-                            <button type="button" className="btn">
-                                Add to Cart <i className="fas fa-shopping-cart"></i>
-                            </button>
-                            <button type="button" className="btn">Buy Now</button>
-                        </div>
-
-                        <div className="social-links">
-                            <p>Share At: </p>
-                            <a href="/">
-                                <i className="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="/">
-                                <i className="fab fa-twitter"></i>
-                            </a>
-                            <a href="/">
-                                <i className="fab fa-instagram"></i>
-                            </a>
-                            <a href="/">
-                                <i className="fab fa-whatsapp"></i>
-                            </a>
-                            <a href="/">
-                                <i className="fab fa-pinterest"></i>
-                            </a>
                         </div>
                     </div>
                 </div>
-
-                <div className="comment-wrapper">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-12">
-                                lala
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
+            }
         </div>
     )
 }

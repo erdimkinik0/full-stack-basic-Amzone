@@ -16,6 +16,10 @@ import compsAccs from "../../assets/comps-accs.jpg"
 import personalCare from "../../assets/personal-care.jpg"
 import dresses from "../../assets/dresses.jpg"
 
+import MySlider from "./SlickSlider";
+
+
+
 
 const CategroyComp = () => {
     const [{ theme }] = useContext(ThemeContext);
@@ -24,12 +28,13 @@ const CategroyComp = () => {
         navigate(url);
     }
 
+
     return (
         <div className="container-fluid home-cards-container">
             {/* row 1 */}
             <div className="row">
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                    <div className="card-content-container">
                         <h3>Gaming accessories</h3>
                         <div className="row">
                             <div className="col-md-6 card-image">
@@ -57,7 +62,7 @@ const CategroyComp = () => {
                     </div>
                 </div>
                 <div className="col-md-3 home-card " >
-                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                    <div className="card-content-container">
                         <h3>Shop by Category</h3>
                         <div className="row">
                             <div className="col-md-6 card-image">
@@ -84,7 +89,7 @@ const CategroyComp = () => {
                     </div>
                 </div>
                 <div className="col-md-3 home-card" >
-                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                    <div className="card-content-container">
                         <h3>Electronics</h3>
                         <div className="row">
                             <div className="col-md-12 card-image electronics">
@@ -108,10 +113,6 @@ const CategroyComp = () => {
                             </div>
 
                         </div>
-
-
-
-
                     </div>
 
                 </div>
@@ -119,7 +120,7 @@ const CategroyComp = () => {
             {/* row 2 */}
             <div className="row">
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                    <div className="card-content-container">
                         <h3>Health & Personal Care</h3>
                         <div className="row">
                             <div className="col-md-12 card-image electronics second-cont">
@@ -133,7 +134,7 @@ const CategroyComp = () => {
                     </div>
                 </div>
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                    <div className="card-content-container">
                         <h3>Computers & Accessories</h3>
                         <div className="row">
                             <div className="col-md-12 card-image electronics second-cont">
@@ -148,7 +149,7 @@ const CategroyComp = () => {
 
                 </div>
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                    <div className="card-content-container">
                         <h3>Deal of the Day</h3>
                         <div className="row">
                             <div className="col-md-12 card-image electronics second-cont">
@@ -163,7 +164,7 @@ const CategroyComp = () => {
 
                 </div>
                 <div className="col-md-3 home-card">
-                    <div className="card-content-container" style={{ boxShadow: theme.boxShadow }}>
+                    <div className="card-content-container">
                         <h3>Dresses</h3>
                         <div className="row">
                             <div className="col-md-12 card-image electronics second-cont">
@@ -179,27 +180,29 @@ const CategroyComp = () => {
                 </div>
             </div>
             {/* row 3 */}
+            <h3 className="slider-title">Best Seller Products</h3>
             <div className="row">
                 <div className="col-md-12">
-                    <div className="card-content-container-sub" style={{ boxShadow: theme.boxShadow }}>
-                        <h3>Popular products in PC internationally</h3>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia, nulla?
+                    <div className="card-content-container-sub" >
+                    <MySlider />
                     </div>
                 </div>
             </div>
+            <h3 className="slider-title">Best Seller Computer & Accessories</h3>
             {/* row 4 */}
             <div className="row">
                 <div className="col-md-12">
-                    <div className="card-content-container-sub" style={{ boxShadow: theme.boxShadow }}>
-                        <h3>Top Sellers in Books for you</h3>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error, perspiciatis!
+                    <div className="card-content-container-sub" >
+                    <MySlider />
                     </div>
                 </div>
             </div>
+            
+           
             {/* last row */}
             <div className="row">
                 <div className="col-md-12">
-                    <div className="home-sign-section" style={{ boxShadow: theme.boxShadow }}>
+                    <div className="home-sign-section" >
                         <div>
                             See personalized recommendations
                         </div>

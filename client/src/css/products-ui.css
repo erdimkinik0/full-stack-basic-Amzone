@@ -52,3 +52,6 @@
 .product-image {
     height: 300px;
 }
+.product-image {
+    width: 100%;
+}

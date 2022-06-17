@@ -1,6 +1,5 @@
 import HomeCarouselComponent from "./Carousel";
 import CategroyComp from "./CategoryComp";
-
 const Home = () => {
 
 

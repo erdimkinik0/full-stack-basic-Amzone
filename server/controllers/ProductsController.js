@@ -64,4 +64,27 @@ const productsPublicController = async (req,res) => {
         res.status(500).json({message:err.message})
     }
 }
-module.exports = {productCreateControllerPost,productControllerGet,productCreateControllerGet,productsPublicController}
+
+
+const productsIdGetController = async (req,res) => {  
+    try {
+
+        let id = req.params.id;
+        const spesProd = await Product.findById(id);
+        res.status(200).json(spesProd);
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
+
+
+
+module.exports = {
+    productCreateControllerPost,
+    productControllerGet,
+    productCreateControllerGet,
+    productsPublicController,
+    productsIdGetController
+}
