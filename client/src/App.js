@@ -15,13 +15,15 @@ import CompanyRegister from "./components/Register/CompanyRegister";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ProductsList from "./components/Dashboard/Products/ProductsList";
 import ProductCreate from "./components/Dashboard/Products/ProductCreate";
-import Adverts from "./components/Dashboard/Adverts/Adverts";
+import AdvertsList from "./components/Dashboard/Adverts/AdvertsList";
 import AdvertCreate from "./components/Dashboard/Adverts/AdvertCreate";
 import OrdersList from "./components/Orders/OrdersList";
 import OrderCreate from "./components/Orders/OrderCreate";
 import Orders from "./components/Orders/Orders"
 import Cart from "./components/Cart";
 import Products from "./components/Dashboard/Products/Products";
+import Adverts from "./components/Dashboard/Adverts/Adverts";
+
 
 
 const App = () => {
@@ -92,8 +94,9 @@ const App = () => {
           <Route path="products" element={<Products />} />
           <Route path="products/list" element={<ProductsList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="products/list/create" element={<ProductCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
-          <Route path="adverts/list" element={<Adverts setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
+          <Route path="adverts/list" element={<AdvertsList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="adverts/list/create" element={<AdvertCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
+          <Route path="/adverts" element={<Adverts />}/>
           <Route path="orders/list" element={<OrdersList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="orders" element={<Orders setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
           <Route path="orders/list/create" element={<OrderCreate setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />

@@ -78,6 +78,16 @@ const productsIdGetController = async (req,res) => {
     }
 }
 
+const bestProductSellerGet = async (req,res) => {
+    try{
+        const best_products = await Product.find().sort({sold_count:-1}).limit(10);
+        res.status(200).json(best_products)
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
 
 
 
@@ -86,5 +96,6 @@ module.exports = {
     productControllerGet,
     productCreateControllerGet,
     productsPublicController,
-    productsIdGetController
+    productsIdGetController,
+    bestProductSellerGet
 }

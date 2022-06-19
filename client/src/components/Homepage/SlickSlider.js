@@ -13,11 +13,8 @@ const MySlider = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     variableWidth: true,
-
-
   };
-
-  const [data] = useNormalFetchData("http://localhost:5000/products");
+  const [data] = useNormalFetchData("http://localhost:5000/products/bests");
 
 
 
@@ -46,9 +43,7 @@ const MySlider = () => {
             </div>
           })
         }
-        <div>
-          asd
-        </div>
+       
 
       </Slider>
     </div>

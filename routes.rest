@@ -1,1 +1,30 @@
 GET http://localhost:5000/products/62a3af011c4bdd875cf97010
+
+
+###
+
+GET http://localhost:5000/adverts
+
+###
+
+GET http://localhost:5000/products/bests
+
+###
+
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "email":"erdalkinik@hotmail.com",
+    "password":"123"
+}
+###
+
+POST http://localhost:5000/cart/add
+Content-Type:application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1NjQ0MDQxLCJleHAiOjE2NTU2NDU4NDF9.87h2KO-kdeVojM7zPeKqF5bYfaF2ItUvB0Cc-fvfOt0
+
+{
+    "product_id":"62af1e9c00211232b96b0f96",
+    "quantity":10
+}

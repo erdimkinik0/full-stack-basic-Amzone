@@ -34,7 +34,10 @@ router.post("/list/create",authorizatedToken,upload.single("productImage"),Produ
 router.get("/list/create",authorizatedToken,ProductsController.productCreateControllerGet)
 router.get("/list",authorizatedToken,ProductsController.productControllerGet);
 router.get("/",ProductsController.productsPublicController);
+router.get("/bests",ProductsController.bestProductSellerGet);
 router.get("/:id",ProductsController.productsIdGetController);
+
+
 
 
 

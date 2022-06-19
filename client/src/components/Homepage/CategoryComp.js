@@ -1,6 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { ThemeContext } from "../../hooks/GlobalContext";
 
 import dummyImage from "../../assets/1.png"
 import headset from "../../assets/headset.png";
@@ -22,7 +20,6 @@ import MySlider from "./SlickSlider";
 
 
 const CategroyComp = () => {
-    const [{ theme }] = useContext(ThemeContext);
     let navigate = useNavigate()
     const onClickedHandler = (url) => {
         navigate(url);

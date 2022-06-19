@@ -58,8 +58,32 @@ const advertsControllerGet = async (req,res) => {
 
 const advertsPublicController = async(req,res) => {
     try{
-        const all_adverts = await Advert.find();
-        res.status(200).json(all_adverts);
+        let username,advert_id,title,content,category,created_date
+
+        let advertsArr = [];
+        const users = await User.find({onType:"Customer"}).populate("acc_type");
+        for(let i = 0 ; i < users.length; i++) {
+            username = users[i].username;
+            let customerID = users[i].acc_type._id;
+            const customer = await Customer.findById(customerID).populate({path:"adverts",module:"Advert"});
+            for(let k = 0 ; k < customer.adverts.length ; k++){
+                advert_id = customer.adverts[k]._id.toString();
+                title = customer.adverts[k].title;
+                content = customer.adverts[k].content;
+                category = customer.adverts[k].category;
+                created_date = customer.adverts[k].created_date
+                advertsArr.push({
+                    username:username,
+                    advert_id:advert_id,
+                    title:title,
+                    content:content,
+                    category:category,
+                    created_date:created_date,
+                })
+            }
+        }
+        //console.log(advertsArr)
+        res.status(200).json(advertsArr)
 
     }catch(err){
         res.status(500).json({message:err.message})

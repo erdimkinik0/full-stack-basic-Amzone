@@ -1,0 +1,15 @@
+.adverts-gen-container {   
+    min-height: 600px;
+}
+.sub-title {
+    font-size:18px;
+}
+
+.advert-container {
+    background-color: transparent;
+    padding: 1rem;
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 0px 1px lightgrey;
+    border-radius: 15px;
+    margin-bottom:1rem;
+}
