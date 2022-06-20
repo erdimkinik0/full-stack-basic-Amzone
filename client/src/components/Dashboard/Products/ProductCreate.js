@@ -7,6 +7,15 @@ const ProductCreate = (props) => {
     const [inputData, onChangeHandler] = useProductFormHandler();
     const [fileData, setFileData] = useState(null);
     let navigate = useNavigate();
+    const [onCgData,setOnCgData] = useState({
+        category1:"",
+        category2:"",
+    })
+    const onChangeCategoryHandler =(e) => {
+        setOnCgData({
+            ...onCgData,[e.target.name]:e.target.value
+        })
+    }
 
     const onChangeFileHandler = (e) => {
         setFileData(e.target.files);
@@ -48,6 +57,7 @@ const ProductCreate = (props) => {
     })
     const onSubmitHandler = async (e) => {
         try {
+          
             e.preventDefault();
             const data = new FormData();
             data.append("name", inputData.name);
@@ -55,6 +65,8 @@ const ProductCreate = (props) => {
             data.append("status", inputData.status);
             data.append("price", inputData.price);
             data.append("storage", inputData.storage);
+            data.append("category", onCgData.category1);
+            data.append("category", onCgData.category2);
 
             data.append("productImage", fileData[0]);
             let res = await fetch("http://localhost:5000/products/list/create", {
@@ -103,6 +115,14 @@ const ProductCreate = (props) => {
                         <div className="mb-3">
                             <label htmlFor="description" className="form-label">Description</label>
                             <textarea onChange={onChangeHandler} className="form-control" id="description" name="description" rows="3"></textarea>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="status" className="form-label">Category</label>
+                            <input onChange={onChangeCategoryHandler} type="text" className="form-control" id="category1" name="category1" />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="status" className="form-label">Category</label>
+                            <input onChange={onChangeCategoryHandler} type="text" className="form-control" id="category2" name="category2" />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="status" className="form-label">Status</label>

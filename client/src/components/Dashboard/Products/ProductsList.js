@@ -5,12 +5,12 @@ import "../../../css/tables.css"
 import ProductsTable from "./ProductsTable";
 
 const Products = (props) => {
-    const [data] = useFetchData("http://localhost:5000/products/list", props);
+    const [data,setData] = useFetchData("http://localhost:5000/products/list", props);
 
     return (
         <div>
             <div className="container product-body">
-                <ProductsTable data={data}/>
+                <ProductsTable data={data} setData={setData} accessToken={props.accessToken}/>
             </div>
         </div>
     )

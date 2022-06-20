@@ -3,6 +3,34 @@ import { Link } from "react-router-dom";
 const ProductsTable = (props) => {
 
 
+    const onRemoveHandler = async (productId) => {
+        try{
+            let prodId = {
+                product_id:productId
+            }
+            let res = await fetch("http://localhost:5000/products/delete",{
+                method:"delete",
+                body:JSON.stringify(prodId),
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":`Bearer ${props.accessToken.token}`
+                }
+            })
+            if(res.status === 200){
+                console.log("product has been deleted succesfully");
+                let newProdArr = props.data.filter((product) => {
+                    return product._id !== productId
+                })
+                props.setData(newProdArr);
+            }
+
+        }catch(err){
+            console.log(err)
+        }
+
+    }
+
+
     return (
         <div className="container table-container">
             {console.log(props.data)}
@@ -20,6 +48,7 @@ const ProductsTable = (props) => {
                     <th scope="col">Sold Count</th>
                     <th scope="col">Storage</th>
                     <th scope="col">Status</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +61,13 @@ const ProductsTable = (props) => {
                                             <td>{product.sold_count}</td>
                                             <td>{product.storage}</td>
                                             <td>{product.status}</td>
+                                            <td><button className="btn btn-danger"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                onRemoveHandler(product._id);
+                                            }}>
+                                                Delete
+                                                </button></td>
                                         </tr>
                             })
                 }

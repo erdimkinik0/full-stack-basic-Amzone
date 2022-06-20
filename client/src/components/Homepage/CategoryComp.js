@@ -25,6 +25,8 @@ const CategroyComp = (props) => {
         navigate(url);
     }
 
+    
+
 
     return (
         <div className="container-fluid home-cards-container">
@@ -63,11 +65,11 @@ const CategroyComp = (props) => {
                         <h3>Shop by Category</h3>
                         <div className="row">
                             <div className="col-md-6 card-image">
-                                <Link to="/" ><img src={laptop} alt="" /></Link>
+                                <Link to="/products/filter?category=Laptop" ><img src={laptop} alt="" /></Link>
                                 <p>Laptops</p>
                             </div>
                             <div className="col-md-6 card-image">
-                                <Link to="/" ><img src={toy} alt="" /></Link>
+                                <Link to="/products/filter?category=Toys" ><img src={toy} alt="" /></Link>
                                 <p>Toys</p>
                             </div>
                             <div className="col-md-6 card-image">
@@ -210,6 +212,8 @@ const CategroyComp = (props) => {
                     </div>
                 </div>
             </div>
+
+            
 
         </div>
     )

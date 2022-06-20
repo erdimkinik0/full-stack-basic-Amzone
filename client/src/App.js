@@ -26,6 +26,8 @@ import Adverts from "./components/Dashboard/Adverts/Adverts";
 
 
 
+
+
 const App = () => {
   const [{ theme }] = useContext(ThemeContext);
   const [isLogged, setIsLogged] = useState(false);
@@ -97,7 +99,6 @@ const App = () => {
 
   return (
     <div style={{ backgroundColor: theme.backgroundColor, color: theme.color }}>
-      {console.log(cart)}
       {console.log(quantityProd)}
       <BrowserRouter>
         <Navbar 
@@ -112,6 +113,7 @@ const App = () => {
           cart={cart}
         />
         {console.log(userType)}
+        {console.log("cart")}
         {console.log(cart)}
         <LowerNavbar isLogged={isLogged} />
         <Routes>
@@ -132,6 +134,7 @@ const App = () => {
             <Route path="register/company" element={<CompanyRegister />} />
           <Route path="dashboard" element={<Dashboard accessToken={accessToken} />} />
           <Route path="products" element={<Products />} />
+            <Route path="products/filter" element={<Products />} />
           <Route path="products/list" element={<ProductsList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="products/list/create" element={<ProductCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="adverts/list" element={<AdvertsList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
@@ -140,7 +143,7 @@ const App = () => {
           <Route path="orders/list" element={<OrdersList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="orders" element={<Orders setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
           <Route path="orders/list/create" element={<OrderCreate setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
-          <Route path="cart" element={<Cart cart={cart} setCart={setCart} accessToken={accessToken} refreshToken={refreshToken} />} />
+          <Route path="cart" element={<Cart cart={cart} setCart={setCart} accessToken={accessToken} refreshToken={refreshToken} />} />   
         </Routes>
         <Footer />
       </BrowserRouter>

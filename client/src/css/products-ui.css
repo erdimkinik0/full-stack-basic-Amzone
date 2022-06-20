@@ -49,3 +49,9 @@
 .product-image {
     width: 100%;
 }
+
+.btn-danger {
+    font-size: 12px;
+    padding: 0.4rem;
+    border-radius: 5px;
+}

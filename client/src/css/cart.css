@@ -35,9 +35,10 @@
 }
 .cart-table-content > .row > div > img{
     width: 120px;
+    height: 80px;
 }
 .content {
-    margin-top: 2.4rem;
+   margin-top: 1.5rem;
 }
 
 .order-form-container {

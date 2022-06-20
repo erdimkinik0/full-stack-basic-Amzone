@@ -34,7 +34,9 @@ router.post("/list/create",authorizatedToken,upload.single("productImage"),Produ
 router.get("/list/create",authorizatedToken,ProductsController.productCreateControllerGet)
 router.get("/list",authorizatedToken,ProductsController.productControllerGet);
 router.get("/",ProductsController.productsPublicController);
+router.get("/filter",ProductsController.productCategoryController);
 router.get("/bests",ProductsController.bestProductSellerGet);
+router.delete("/delete",authorizatedToken,ProductsController.deleteProductController);
 router.get("/:id",ProductsController.productsIdGetController);
 
 
@@ -42,7 +44,7 @@ router.get("/:id",ProductsController.productsIdGetController);
 
 
 function authorizatedToken (req,res,next) {
-    const bearerHeader = req.headers["authorization"];
+    const bearerHeader = req.headers["authorization"]; 
     if(bearerHeader === null || bearerHeader === "undefined"){
         return res.status(404).json({message:"There is no Authorization Header on request"});
     }

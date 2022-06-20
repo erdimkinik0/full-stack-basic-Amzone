@@ -6,9 +6,11 @@ import { useOrderFormHandler } from "../hooks/UseFormOnChangeHandler";
 
 
 const Cart = (props) => {
-    const [data] = useFetchData("http://localhost:5000/cart", props);
-    const [inputData,onChangeHandler] = useOrderFormHandler()
-    let navigate = useNavigate()
+    const [data,setData] = useFetchData("http://localhost:5000/cart", props);
+    const [inputData,onChangeHandler] = useOrderFormHandler(); 
+    let navigate = useNavigate();
+
+
 
     const orderSubmitHandler = async (e) => {
         try{
@@ -35,11 +37,34 @@ const Cart = (props) => {
     }
     const onRemoveHandler = async (productId) => {
         try{
+            let productid = {
+                product_id:productId
+            }
+            let res = await fetch("http://localhost:5000/cart/delete",{
+                method:"delete",
+                body:JSON.stringify(productid),
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":`Bearer ${props.accessToken.token}`
+                }
+            })
+            if(res.status === 200){
+                let resJson = await res.json();
+                console.log(resJson);
+                let newCartArr = data.filter((item) => {
+                    return item.product._id !== productId
+                })
+                setData(newCartArr);
+                props.setCart(newCartArr);
+            }
+           
             
         }catch(err){
             console.log(err)
         }
     }
+
+
     
 
     return (
@@ -77,34 +102,34 @@ const Cart = (props) => {
                             {/* cart data from server */}
                             {
                                 data &&
-                                data.map((item, index) => {
-                                    return <div key={index} className="row">
-                                        <div className="col-md-2 content-img">
-                                            <img src={`http://localhost:5000/${item.product.img}`} alt="item-img" />
-                                        </div>
-                                        <div className="col-md-4 content">
-                                            {item.product.name.slice(0, 20)}
-                                        </div>
+                                    data.map((item, index) => {
+                                        return <div key={index} className="row">
+                                            <div className="col-md-2 content-img">
+                                                <img src={`http://localhost:5000/${item.product.img}`} alt="item-img" />
+                                            </div>
+                                            <div className="col-md-4 content">
+                                                {item.product.name.slice(0, 20)}
+                                            </div>
 
-                                        <div className="col-md-2 content">
-                                            {item.product.price}
-                                        </div>
+                                            <div className="col-md-2 content">
+                                                {item.product.price}
+                                            </div>
 
-                                        <div className="col-md-1 content">
-                                            {item.quantity}
-                                        </div>
+                                            <div className="col-md-1 content">
+                                                {item.quantity}
+                                            </div>
 
-                                        <div className="col-md-2 content">
-                                            {item.product.price * item.quantity}
+                                            <div className="col-md-2 content">
+                                                {item.product.price * item.quantity}
+                                            </div>
+                                            <div className="col-md-1 content">
+                                                <button onClick={(e) => {
+                                                    onRemoveHandler(item.product._id)
+                                                }} className="btn btn-danger">  
+                                                    Remove
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div className="col-md-1 content">
-                                            <button onClick={(e) => {
-                                                onRemoveHandler(item.product._id)
-                                            }} className="btn btn-danger">  
-                                                Remove
-                                             </button>
-                                        </div>
-                                    </div>
                                 })
                             }
                         </div>

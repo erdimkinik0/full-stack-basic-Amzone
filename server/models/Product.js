@@ -34,7 +34,8 @@ const productSchema = new mongoose.Schema({
     img:{
         type:String,
         required:true
-    }
+    },
+    category:[String]
 })
 
 

@@ -13,3 +13,10 @@
     border-radius: 15px;
     margin-bottom:1rem;
 }
+
+.btn-danger {
+
+    font-size: 12px;
+    padding: 0.4rem;
+    border-radius: 5px;
+}

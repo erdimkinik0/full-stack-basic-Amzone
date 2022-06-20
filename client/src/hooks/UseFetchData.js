@@ -43,7 +43,7 @@ const useFetchData = (url,props) => {
         fetchUserData()
     },[])
 
-    return [data];
+    return [data,setData];
 }
 
 

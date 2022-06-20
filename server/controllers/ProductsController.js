@@ -6,14 +6,14 @@ const User = require("../models/User");
 const productCreateControllerPost = async (req,res) => {
     try{
         if (req.user.user.onType === "Company") {
-            console.log(req.file)
             const newProduct = await Product.create({
                 name:req.body.name,
                 description:req.body.description,
                 status:req.body.status,
                 price:req.body.price,
                 storage:req.body.storage,
-                img:req.file.path
+                img:req.file.path,
+                category:req.body.category
             })
             
             const user = await User.findById(req.user.user._id).populate("acc_type");
@@ -57,9 +57,10 @@ const productControllerGet = async (req,res) => {
 
 const productsPublicController = async (req,res) => {
     try{
+    
         const all_products = await Product.find();
         res.status(200).json(all_products)
-
+     
     }catch(err){
         res.status(500).json({message:err.message})
     }
@@ -87,6 +88,44 @@ const bestProductSellerGet = async (req,res) => {
         res.status(500).json({message:err.message})
     }
 }
+const deleteProductController = async (req,res) => {
+    try{
+        if (req.user.user.onType === "Company"){
+            const user = await User.findById(req.user.user._id).populate("acc_type");
+            const companyId = user.acc_type._id;
+            const company = await Company.findById(companyId).populate({path:"products",model:"Product"})
+            
+            for (let i = 0 ; i < company.products.length; i++){
+                let productId = company.products[i]._id;
+                if(productId == req.body.product_id){
+                    await Product.deleteOne({_id:productId});
+                    const newProdArr = company.products.filter((product) => {
+                        return product._id !== productId;
+                    })
+                    company.products = newProdArr;
+                    await company.save();
+                }
+            }
+            
+            res.status(200).json("product has been deleted succesfully");
+        }
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
+const productCategoryController = async (req,res) => {
+    try{
+        let queries = JSON.stringify(req.query);
+        let query = queries.slice(13,queries.length-2);
+        const products = await Product.find({category:query});
+        res.status(200).json(products);
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
 
 
 
@@ -97,5 +136,7 @@ module.exports = {
     productCreateControllerGet,
     productsPublicController,
     productsIdGetController,
-    bestProductSellerGet
+    bestProductSellerGet,
+    deleteProductController,
+    productCategoryController
 }

@@ -8,8 +8,6 @@ router.get("/list/create",authorizatedToken,AdvertsControllers.advertsCreateCont
 router.get("/list",authorizatedToken,AdvertsControllers.advertsControllerGet);
 router.get("/",AdvertsControllers.advertsPublicController);
 router.delete("/delete",authorizatedToken,AdvertsControllers.deleteAdvertController);
-
-
 async function  authorizatedToken(req,res,next){
     const bearerHeader = req.headers["authorization"];
     if(bearerHeader === "undefined" || bearerHeader === null){

@@ -20,7 +20,6 @@ const Login = (props) => {
             let refreshToken;
             if (res.status === 200) {
                 let resJson = await res.json();
-                console.log(resJson);
                 accessToken = resJson.accessToken;
                 refreshToken = resJson.refreshToken;
                 localStorage.setItem("accessToken",accessToken);
@@ -47,7 +46,6 @@ const Login = (props) => {
                     props.setUserType(userData.onType)
                     localStorage.setItem("userType",userData.onType);
                     props.setUsername(userData.username);
-                    console.log(userData);
                     if(userData.onType === "Customer"){
                         let customerData = await fetch("http://localhost:5000/cart/get-cart",{
                             headers:{
@@ -57,7 +55,8 @@ const Login = (props) => {
                         if(customerData.status === 200){
                             let cartJson = await customerData.json();
                             props.setCart(cartJson);
-                        
+                            console.log("Cart Json")
+                            console.log(cartJson)
                         }
                     }
                     
