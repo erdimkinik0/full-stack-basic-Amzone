@@ -78,6 +78,31 @@ const getCartController = async (req,res) => {
 
 }
 
+const cartDeleteController = async (req,res) => {
+    try{
+        const userID = req.user.user._id;
+        const user = await User.findById(userID).populate("acc_type");
+        const custId = user.acc_type._id;
+        const customer = await Customer.findById(custId).populate("cart");
+        for(let i = 0 ; i < customer.cart.length ; i++){
+            let productId = customer.cart[i].product;
+            let cartId = customer.cart[i]._id
+            if(productId == req.body.product_id){
+                await CartItem.deleteOne({_id:cartId});
+                const newArr = customer.cart.filter((item) => {
+                    return item._id !== cartId
+                })
+                console.log(newArr)
+                customer.cart = newArr;
+                await customer.save();
+            }
+        }
+        res.status(200).json({message:"cart has been deleted"})
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
 
 
-module.exports = {cartControllerPost,cartControllerGet,getCartController}
+module.exports = {cartControllerPost,cartControllerGet,getCartController,cartDeleteController}

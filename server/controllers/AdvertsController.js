@@ -90,4 +90,30 @@ const advertsPublicController = async(req,res) => {
     }
 } 
 
-module.exports = {advertsCreateControllerPost,advertsCreateControllerGet,advertsControllerGet,advertsPublicController}
+const deleteAdvertController = async(req,res) => {
+    try{
+        const userId = req.user.user._id;
+        const user = await User.findById(userId).populate("acc_type");
+        const customerId = user.acc_type._id;
+        const customer = await Customer.findById(customerId).populate({path:"adverts",model:"Advert"})
+        for(let i = 0; i < customer.adverts.length; i++){
+            let advertID = customer.adverts[i]._id;
+            if(advertID == req.body.advert_id){
+                await Advert.deleteOne({_id:advertID});
+                const n_arr = customer.adverts.filter((advert) => {
+                    return advert._id !== advertID;
+                })
+                customer.adverts = n_arr;
+                console.log(n_arr)
+                await customer.save();
+            }
+        }
+        
+        res.status(200).json({message:"Advert has been deleted"})
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+
+}
+
+module.exports = {advertsCreateControllerPost,advertsCreateControllerGet,advertsControllerGet,advertsPublicController,deleteAdvertController}

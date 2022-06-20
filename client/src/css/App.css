@@ -622,6 +622,8 @@ home-sign-section
 
 .products-cont {
     margin-top: 0.2rem;
+    position: relative;
+    bottom: 0px;
 }
 .products-cont p {
     font-size: 18px;

@@ -37,10 +37,8 @@
     width: 120px;
 }
 .content {
-    margin-top: 25px;
+    margin-top: 2.4rem;
 }
-
-
 
 .order-form-container {
     padding-top: 0.5rem;
@@ -65,5 +63,10 @@
     background-color: #e9ac5b;
     border: none;
     color: white;
+}
+.content button {
+    font-size: 12px;
+    padding: 0.4rem;
+    border-radius: 5px;
 }
 

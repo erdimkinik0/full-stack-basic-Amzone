@@ -7,6 +7,7 @@ router.post("/list/create",authorizatedToken,AdvertsControllers.advertsCreateCon
 router.get("/list/create",authorizatedToken,AdvertsControllers.advertsCreateControllerGet);
 router.get("/list",authorizatedToken,AdvertsControllers.advertsControllerGet);
 router.get("/",AdvertsControllers.advertsPublicController);
+router.delete("/delete",authorizatedToken,AdvertsControllers.deleteAdvertController);
 
 
 async function  authorizatedToken(req,res,next){

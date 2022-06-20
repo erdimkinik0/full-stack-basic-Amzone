@@ -19,7 +19,7 @@ import MySlider from "./SlickSlider";
 
 
 
-const CategroyComp = () => {
+const CategroyComp = (props) => {
     let navigate = useNavigate()
     const onClickedHandler = (url) => {
         navigate(url);
@@ -181,7 +181,7 @@ const CategroyComp = () => {
             <div className="row">
                 <div className="col-md-12">
                     <div className="card-content-container-sub" >
-                    <MySlider />
+                    <MySlider onQuantityChangeHandler={props.onQuantityChangeHandler} addItemtoCart={props.addItemtoCart}/>
                     </div>
                 </div>
             </div>

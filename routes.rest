@@ -22,9 +22,47 @@ Content-Type: application/json
 
 POST http://localhost:5000/cart/add
 Content-Type:application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1NjQ0MDQxLCJleHAiOjE2NTU2NDU4NDF9.87h2KO-kdeVojM7zPeKqF5bYfaF2ItUvB0Cc-fvfOt0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1NjU3NTA0LCJleHAiOjE2NTU2NTkzMDR9.6k374geRVoE5MSjsVi4kB2JAxzmt-NYXedHETGdCPmo
 
 {
-    "product_id":"62af1e9c00211232b96b0f96",
+    "product_id":"62a3956193382016f18ba934",
     "quantity":10
 }
+
+
+
+###
+
+DELETE http://localhost:5000/adverts/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1NjU5OTcwLCJleHAiOjE2NTU2NjE3NzB9.6WL1cFgt3hgKAZ8Ylm0i5Up3wHbDtay1_Go1ecsuxPs
+
+{
+    "advert_id":"62a32e43cdccf30d928865a0"
+}
+
+###
+
+DELETE http://localhost:5000/cart/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1NjU3NTA0LCJleHAiOjE2NTU2NTkzMDR9.6k374geRVoE5MSjsVi4kB2JAxzmt-NYXedHETGdCPmo
+
+{
+    "product_id":"62af1e9c00211232b96b0f96"
+}
+
+###
+
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "email":"erdalkinikk@gmail.com",
+    "password":"123"
+}
+###
+
+
+
+
+

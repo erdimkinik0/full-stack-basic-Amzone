@@ -1,12 +1,12 @@
 import HomeCarouselComponent from "./Carousel";
 import CategroyComp from "./CategoryComp";
-const Home = () => {
+const Home = (props) => {
 
 
     return (
         <div >
             <HomeCarouselComponent />
-            <CategroyComp />
+            <CategroyComp onQuantityChangeHandler={props.onQuantityChangeHandler} addItemtoCart={props.addItemtoCart}/>
         </div>
     )
 }

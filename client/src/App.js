@@ -37,7 +37,45 @@ const App = () => {
   })
   const [userType, setUserType] = useState(null);
   const [username,setUsername] = useState(null);
-  const [cart,setCart] = useState(null);
+
+  const [quantityProd,setQuantityProd] = useState(0);
+
+  const onQuantityChangeHandler = (e) => {
+    setQuantityProd(e.target.value);
+  }
+  const [cart,setCart] = useState([]);
+
+  const addItemtoCart = async (productId) => {
+      try{
+        let cart_item = {
+          product_id:productId,
+          quantity:quantityProd
+        }
+
+        let res = await fetch("http://localhost:5000/cart/add",{
+            method:"post",
+            body:JSON.stringify(cart_item),
+            headers:{
+              "Content-Type":"application/json",
+              "Authorization":`Bearer ${accessToken.token}`
+            }
+        })
+
+        if(res.status === 200){
+          setCart([
+            ...cart,cart_item
+          ])
+          console.log(cart)
+          setQuantityProd(0);
+        }
+
+
+       
+
+      }catch(err){
+        console.log(err)
+      }
+  }
 
   useEffect(() => {
     let now = parseInt(new Date().getTime())
@@ -59,6 +97,8 @@ const App = () => {
 
   return (
     <div style={{ backgroundColor: theme.backgroundColor, color: theme.color }}>
+      {console.log(cart)}
+      {console.log(quantityProd)}
       <BrowserRouter>
         <Navbar 
           isLogged={isLogged} 
@@ -75,7 +115,7 @@ const App = () => {
         {console.log(cart)}
         <LowerNavbar isLogged={isLogged} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home onQuantityChangeHandler={onQuantityChangeHandler} addItemtoCart={addItemtoCart}/>} />
           <Route path="products/:id/detail" element={<Detail />} />
           <Route path="login" element={
             <Login 
@@ -100,7 +140,7 @@ const App = () => {
           <Route path="orders/list" element={<OrdersList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="orders" element={<Orders setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
           <Route path="orders/list/create" element={<OrderCreate setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
-          <Route path="cart" element={<Cart cart={cart}  accessToken={accessToken} refreshToken={refreshToken} />} />
+          <Route path="cart" element={<Cart cart={cart} setCart={setCart} accessToken={accessToken} refreshToken={refreshToken} />} />
         </Routes>
         <Footer />
       </BrowserRouter>

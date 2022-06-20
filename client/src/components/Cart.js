@@ -23,7 +23,8 @@ const Cart = (props) => {
                 }
             })
             if (res.status === 201){
-                console.log("new Order has been created")
+                console.log("new Order has been created");
+                props.setCart([]);
                 navigate("/")
             }
         }catch(err){
@@ -31,6 +32,13 @@ const Cart = (props) => {
         }
        
 
+    }
+    const onRemoveHandler = async (productId) => {
+        try{
+            
+        }catch(err){
+            console.log(err)
+        }
     }
     
 
@@ -90,7 +98,11 @@ const Cart = (props) => {
                                             {item.product.price * item.quantity}
                                         </div>
                                         <div className="col-md-1 content">
-                                            delete
+                                            <button onClick={(e) => {
+                                                onRemoveHandler(item.product._id)
+                                            }} className="btn btn-danger">  
+                                                Remove
+                                             </button>
                                         </div>
                                     </div>
                                 })
