@@ -1,4 +1,4 @@
-GET http://localhost:5000/products/62a3af011c4bdd875cf97010
+GET http://localhost:5000/products/62b17d81c3ab46675aed5cff
 
 
 ###
@@ -62,6 +62,26 @@ Content-Type: application/json
 }
 ###
 
+GET http://localhost:5000/products/62b1868235c625e7003028b5/edit
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMWJkN2IzZTUxOWM3Nzc3MWUyYSIsInVzZXJuYW1lIjoiZWRlazk1IiwiZW1haWwiOiJlcmRhbGtpbmlra0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQyY1dOSW5YalZydmlxL2JrNDRhalRlbzEuOXJzUkFTcDVTRVFUOWhxZGtqWUh6L1MuSldIVyIsIm9uVHlwZSI6IkNvbXBhbnkiLCJhY2NfdHlwZSI6IjYyYTBjMWJkN2IzZTUxOWM3Nzc3MWUyOCIsIl9fdiI6MH0sImlhdCI6MTY1NTgxNTQ0OSwiZXhwIjoxNjU1ODE3MjQ5fQ.QPyv-JeVxTmS8l7KRDqBRjnpj7MfncbyiobzW2XW69A
+
+###
+
+POST http://localhost:5000/products/62b1868235c625e7003028b5/edit
+Content-Type:application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMWJkN2IzZTUxOWM3Nzc3MWUyYSIsInVzZXJuYW1lIjoiZWRlazk1IiwiZW1haWwiOiJlcmRhbGtpbmlra0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQyY1dOSW5YalZydmlxL2JrNDRhalRlbzEuOXJzUkFTcDVTRVFUOWhxZGtqWUh6L1MuSldIVyIsIm9uVHlwZSI6IkNvbXBhbnkiLCJhY2NfdHlwZSI6IjYyYTBjMWJkN2IzZTUxOWM3Nzc3MWUyOCIsIl9fdiI6MH0sImlhdCI6MTY1NTgxOTM5NiwiZXhwIjoxNjU1ODIxMTk2fQ.5gQxbmw8077ljhMpBPhEzVKtCs4pNF5E5bmqusnvIjM
+
+{
+    "name":"ASUS TUFFU",
+    "description":"ASUUSUSUSUSUUUUUSUSUSUUSUSUSUSUSUSU",
+    "status":"well-worn",
+    "price":3100,
+    "storage":1500
+    
+}
+
+###
+
 GET http://localhost:5000/cart/get-cart
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1NzIxNjc4LCJleHAiOjE2NTU3MjM0Nzh9.Ad0PSQUSQV87Y8Hrpgpetmh63wnaHfrCHN-vuPPd5-0
 
@@ -85,3 +105,29 @@ GET http://localhost:5000/products/filter?category=Toys
 
 ###
 
+
+GET http://localhost:5000/products/categories
+
+
+###
+
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "email":"erdalkinik@hotmail.com",
+    "password":"123"
+}
+
+
+
+### 
+
+
+POST http://localhost:5000/products/62b17d81c3ab46675aed5cff/comment
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMTMxZWNhNGM4NDBhZjY5ZjM3YSIsInVzZXJuYW1lIjoiZWRlazMxIiwiZW1haWwiOiJlcmRhbGtpbmlrQGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkenpEbnZENU8wRmRHSGVhUWZKeDd6LmRFZkVxVFB4eDQ0YVg2YTIwMGdvZWN0bE40aGE0MW0iLCJvblR5cGUiOiJDdXN0b21lciIsImFjY190eXBlIjoiNjJhMGMxMzFlY2E0Yzg0MGFmNjlmMzc4IiwiX192IjowfSwiaWF0IjoxNjU1ODQ4MTk0LCJleHAiOjE2NTU4NDk5OTR9.tNbJvRIUqjaj9qg7BicpXZ_CA2GynMxqPwV7DGKliW4
+
+{
+    "comment":"3131313131"
+}

@@ -34,10 +34,17 @@ router.post("/list/create",authorizatedToken,upload.single("productImage"),Produ
 router.get("/list/create",authorizatedToken,ProductsController.productCreateControllerGet)
 router.get("/list",authorizatedToken,ProductsController.productControllerGet);
 router.get("/",ProductsController.productsPublicController);
+
 router.get("/filter",ProductsController.productCategoryController);
 router.get("/bests",ProductsController.bestProductSellerGet);
+router.get("/best",ProductsController.bestEverProductSellerGet);
 router.delete("/delete",authorizatedToken,ProductsController.deleteProductController);
+router.get("/categories",ProductsController.getCategories);
+
 router.get("/:id",ProductsController.productsIdGetController);
+router.post("/:id/comment",authorizatedToken,ProductsController.commentPostController);
+router.get("/:id/edit",authorizatedToken,ProductsController.productsEditGetController);
+router.post("/:id/edit",authorizatedToken,ProductsController.productsEditPostController);
 
 
 

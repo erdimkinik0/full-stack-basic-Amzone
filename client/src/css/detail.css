@@ -15,9 +15,9 @@
     padding-right: 2rem;
 }
 
-.detail-gen-container .right-side {
+/* .detail-gen-container .right-side {
     
-}
+} */
 .prod-name {
     font-size: 24px;
     font-weight: 500;
@@ -89,3 +89,37 @@
     border: none;
     background-color: transparent;
 }
+
+.comment-section {
+    padding: 2rem;
+}
+
+.add-comment {
+    background-color: transparent;
+}
+.add-comment >form > div textarea{
+    background-color: transparent;
+    border: 2px solid lightgray;
+}
+
+.comments {
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    padding: 1rem;
+}
+.comments .username {
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.comment-content {
+    font-size: 1rem;
+    
+}
+.date {
+
+    font-size: 12px;
+    font-weight: 400;
+}
+

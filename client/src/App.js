@@ -23,7 +23,7 @@ import Orders from "./components/Orders/Orders"
 import Cart from "./components/Cart";
 import Products from "./components/Dashboard/Products/Products";
 import Adverts from "./components/Dashboard/Adverts/Adverts";
-
+import ProductEdit from "./components/Dashboard/Products/ProductEdit";
 
 
 
@@ -118,7 +118,7 @@ const App = () => {
         <LowerNavbar isLogged={isLogged} />
         <Routes>
           <Route path="/" element={<Home onQuantityChangeHandler={onQuantityChangeHandler} addItemtoCart={addItemtoCart}/>} />
-          <Route path="products/:id/detail" element={<Detail />} />
+          <Route path="products/:id/detail" element={<Detail addItemtoCart={addItemtoCart} onQuantityChangeHandler={onQuantityChangeHandler} accessToken={accessToken}/>} />
           <Route path="login" element={
             <Login 
               setIsLogged={setIsLogged} 
@@ -139,6 +139,7 @@ const App = () => {
           <Route path="products/list/create" element={<ProductCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="adverts/list" element={<AdvertsList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="adverts/list/create" element={<AdvertCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
+          <Route path="/products/:id/edit" element={<ProductEdit refreshToken={refreshToken} accessToken={accessToken}/> } />
           <Route path="/adverts" element={<Adverts />}/>
           <Route path="orders/list" element={<OrdersList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="orders" element={<Orders setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />

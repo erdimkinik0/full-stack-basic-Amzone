@@ -1,7 +1,6 @@
 import { useNormalFetchData } from "../../../hooks/UseNormalFetchData";
 import "../../../css/products-ui.css"
 import { Link } from "react-router-dom";
-
 import {useSearchParams} from "react-router-dom"
 import { useEffect, useState } from "react";
 
@@ -11,6 +10,7 @@ const ProductsComp = () => {
     const [searchParams,setSearchParams] = useSearchParams();
     const category = searchParams.get("category");
     const [filteredData,setFilteredData] = useState(null);
+    const [categories] = useNormalFetchData("http://localhost:5000/products/categories");
 
     
     const fetchFilteredData = async () => {
@@ -25,22 +25,78 @@ const ProductsComp = () => {
             console.log(err)
         }
     }
+
+    
+
     useEffect(() => {
         fetchFilteredData()
-    },[])
+    },[category])
+
+
+
+    
+    const [currentPage,setCurrenPage] = useState(1);
+    const [itemsPerPage,setItemsPerPage] = useState(10);
+
+
+    let lastIndexOfPage = currentPage * itemsPerPage;
+    let firstIndexOfPage = lastIndexOfPage - itemsPerPage;
+
+    let pageNumbers = [];
+
+    if(data){
+        for(let i = 1; i <= Math.ceil(data.length / itemsPerPage); i++){
+            pageNumbers.push(i)
+        }
+    }
+
+    let currentItems;
+    if(data) {
+        currentItems = data.slice(firstIndexOfPage,lastIndexOfPage);
+    }
+
+
+    const paginateClickHandle = (numb) => {
+        setCurrenPage(numb)
+    }
+
+
+    let catPageNumbers = [];
+    if(filteredData){
+        for(let i = 1; i <= Math.ceil(filteredData.length / itemsPerPage); i++) {
+            catPageNumbers.push(i);
+        }
+    }
+    let sortedCatItems;
+
+    if(filteredData) {
+        sortedCatItems = filteredData.slice(firstIndexOfPage,lastIndexOfPage);
+    }
+
+    
+
+    
 
 
     return (
         <div className="container-fluid products-comp-container">
-            {console.log(data)}
             <div className="row">
-                <div className="col-md-2 left-side">category section</div>
+                <div className="col-md-2 left-side">
+                    {
+                        categories &&
+                            categories.sort().map((category,index) => {
+                                return <div key={index}>
+                                    <Link to={`/products/filter?category=${category}`}>{category}</Link>
+                                </div>
+                            })
+                    }
+                </div>
                 <div className="col-md-10 right-side">
                     <div className="row">
                         
                         { !category &&
-                                data &&
-                                    data.map((product,index) => {
+                                currentItems &&
+                                    currentItems.map((product,index) => {
                                         return <div className="col-md-3 product-general-container" key={index}>
                                             <div className="card-container">
                                                 <img className="product-image" src={`http://localhost:5000/${product.img}`} alt="product-img" />
@@ -54,9 +110,25 @@ const ProductsComp = () => {
                                         </div>
                                     })
                         }
-                         { category &&
-                                filteredData &&
-                                    filteredData.map((product,index) => {
+                        {
+                            !category &&
+                                currentItems &&
+                                <ul className="pagination">
+                                   { 
+                                        pageNumbers.map((number,index) => {
+                                            return <li key={index} className="page-item">
+                                                <div to="#" className="page-link" onClick={() => {
+                                                    paginateClickHandle(number)
+                                                }}>{number}</div>
+                                            </li>
+                                        })
+                                   }
+
+                                </ul>
+                        }
+                        { category &&
+                                sortedCatItems &&
+                                    sortedCatItems.map((product,index) => {
                                         return <div className="col-md-3 product-general-container" key={index}>
                                             <div className="card-container">
                                                 <img className="product-image" src={`http://localhost:5000/${product.img}`} alt="product-img" />
@@ -69,6 +141,22 @@ const ProductsComp = () => {
                                             </div>
                                         </div>
                                     })
+                        }
+                        {
+                            category &&
+                                sortedCatItems &&
+                                    <ul className="pagination">
+                                        {
+                                            catPageNumbers.map((number,index) => {
+                                                return <li key={index} className="page-item">
+                                                    <div onClick={() => {
+                                                        paginateClickHandle(number)
+                                                    }} className="page-link">{number}</div>
+                                                </li>
+                                            })
+                                        }
+
+                                    </ul>
                         }
 
                         

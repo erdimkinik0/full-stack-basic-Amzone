@@ -7,13 +7,13 @@ const ProductCreate = (props) => {
     const [inputData, onChangeHandler] = useProductFormHandler();
     const [fileData, setFileData] = useState(null);
     let navigate = useNavigate();
-    const [onCgData,setOnCgData] = useState({
-        category1:"",
-        category2:"",
+    const [onCgData, setOnCgData] = useState({
+        category1: "",
+        category2: "",
     })
-    const onChangeCategoryHandler =(e) => {
+    const onChangeCategoryHandler = (e) => {
         setOnCgData({
-            ...onCgData,[e.target.name]:e.target.value
+            ...onCgData, [e.target.name]: e.target.value
         })
     }
 
@@ -57,7 +57,7 @@ const ProductCreate = (props) => {
     })
     const onSubmitHandler = async (e) => {
         try {
-          
+
             e.preventDefault();
             const data = new FormData();
             data.append("name", inputData.name);
@@ -118,15 +118,16 @@ const ProductCreate = (props) => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="status" className="form-label">Category</label>
-                            <input onChange={onChangeCategoryHandler} type="text" className="form-control" id="category1" name="category1" />
+                            <input onChange={onChangeCategoryHandler} type="text" className="form-control" id="category1" name="category1" placeholder="Customer will search with this word(s)"/>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="status" className="form-label">Category</label>
-                            <input onChange={onChangeCategoryHandler} type="text" className="form-control" id="category2" name="category2" />
+                            <input onChange={onChangeCategoryHandler} type="text" className="form-control" id="category2" name="category2" placeholder="Customer will search with this word(s)"/>
                         </div>
                         <div className="mb-3">
+                           
                             <label htmlFor="status" className="form-label">Status</label>
-                            <input onChange={onChangeHandler} type="text" className="form-control" id="status" name="status" />
+                            <input onChange={onChangeHandler} type="text" className="form-control" id="status" name="status" placeholder="New,Slightly Used, well-worn"/>
                         </div>
                         <div className="row">
                             <div className="col-md-6">
@@ -154,7 +155,7 @@ const ProductCreate = (props) => {
 
                     </form>
                 </div>
-                
+
             </div>
 
         </div>

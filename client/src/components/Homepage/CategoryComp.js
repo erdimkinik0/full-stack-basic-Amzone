@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 
-import dummyImage from "../../assets/1.png"
 import headset from "../../assets/headset.png";
 import keyboard from "../../assets/keyboard.png"
 import mouse from "../../assets/mouse.png"
@@ -15,6 +14,7 @@ import personalCare from "../../assets/personal-care.jpg"
 import dresses from "../../assets/dresses.jpg"
 
 import MySlider from "./SlickSlider";
+import { useNormalFetchData } from "../../hooks/UseNormalFetchData";
 
 
 
@@ -25,6 +25,8 @@ const CategroyComp = (props) => {
         navigate(url);
     }
 
+    const [data] = useNormalFetchData("http://localhost:5000/products/best");
+    console.log(data)
     
 
 
@@ -65,11 +67,11 @@ const CategroyComp = (props) => {
                         <h3>Shop by Category</h3>
                         <div className="row">
                             <div className="col-md-6 card-image">
-                                <Link to="/products/filter?category=Laptop" ><img src={laptop} alt="" /></Link>
+                                <Link to="/products/filter?category=laptop" ><img src={laptop} alt="" /></Link>
                                 <p>Laptops</p>
                             </div>
                             <div className="col-md-6 card-image">
-                                <Link to="/products/filter?category=Toys" ><img src={toy} alt="" /></Link>
+                                <Link to="/products/filter?category=toys" ><img src={toy} alt="" /></Link>
                                 <p>Toys</p>
                             </div>
                             <div className="col-md-6 card-image">
@@ -147,21 +149,26 @@ const CategroyComp = (props) => {
                     </div>
 
                 </div>
-                <div className="col-md-3 home-card">
-                    <div className="card-content-container">
-                        <h3>Deal of the Day</h3>
-                        <div className="row">
-                            <div className="col-md-12 card-image electronics second-cont">
-                                <Link to="/" ><img src={dummyImage} alt="dummy" /></Link>
+                {
+                    data && 
+                        <div className="col-md-3 home-card">
+                            <div className="card-content-container">
+                                <h3>Deal of the Day</h3>
+                                <div className="row">
+                                    <div className="col-md-12 card-image electronics second-cont">
+                                        <Link to="/" ><img src={`http://localhost:5000/${data[0].img}`} alt="dummy" /></Link>
+                                    </div>
+
+                                </div>
+                                <div className="c-a">
+                                    <Link to="/">See all deals</Link>
+                                </div>
                             </div>
 
                         </div>
-                        <div className="c-a">
-                            <Link to="/">See all deals</Link>
-                        </div>
-                    </div>
-
-                </div>
+                       
+                }
+                
                 <div className="col-md-3 home-card">
                     <div className="card-content-container">
                         <h3>Dresses</h3>

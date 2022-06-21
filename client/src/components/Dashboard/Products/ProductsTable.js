@@ -68,6 +68,11 @@ const ProductsTable = (props) => {
                                             }}>
                                                 Delete
                                                 </button></td>
+                                            <td>
+                                            <Link className="btn btn-primary" to={`/products/${product._id}/edit`}>
+                                                Edit
+                                            </Link>
+                                           </td>
                                         </tr>
                             })
                 }
