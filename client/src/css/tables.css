@@ -16,3 +16,8 @@
 .create-link-l:hover {
     background-color: #edad59;
 }
+
+.edit-but {
+    font-size: 12px;
+    border-radius: 5px;
+}

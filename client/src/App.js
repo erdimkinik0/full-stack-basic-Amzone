@@ -24,6 +24,7 @@ import Cart from "./components/Cart";
 import Products from "./components/Dashboard/Products/Products";
 import Adverts from "./components/Dashboard/Adverts/Adverts";
 import ProductEdit from "./components/Dashboard/Products/ProductEdit";
+import CustomerService from "./components/CustomerService/CustomerService";
 
 
 
@@ -134,7 +135,6 @@ const App = () => {
             <Route path="register/company" element={<CompanyRegister />} />
           <Route path="dashboard" element={<Dashboard accessToken={accessToken} />} />
           <Route path="products" element={<Products />} />
-            <Route path="products/filter" element={<Products />} />
           <Route path="products/list" element={<ProductsList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="products/list/create" element={<ProductCreate setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
           <Route path="adverts/list" element={<AdvertsList setIsLogged={setIsLogged} refreshToken={refreshToken} accessToken={accessToken} />} />
@@ -145,6 +145,7 @@ const App = () => {
           <Route path="orders" element={<Orders setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
           <Route path="orders/list/create" element={<OrderCreate setIsLogged={setIsLogged} accessToken={accessToken} refreshToken={refreshToken} />} />
           <Route path="cart" element={<Cart cart={cart} setCart={setCart} accessToken={accessToken} refreshToken={refreshToken} />} />   
+          <Route path="service" element={<CustomerService />} />
         </Routes>
         <Footer />
       </BrowserRouter>

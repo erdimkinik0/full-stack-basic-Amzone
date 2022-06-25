@@ -2,24 +2,27 @@ import { useProductFormHandler } from "../../../hooks/UseFormOnChangeHandler";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../../../css/create-form.css"
+import { useNormalFetchData } from "../../../hooks/UseNormalFetchData"
 
 const ProductCreate = (props) => {
     const [inputData, onChangeHandler] = useProductFormHandler();
     const [fileData, setFileData] = useState(null);
     let navigate = useNavigate();
-    const [onCgData, setOnCgData] = useState({
-        category1: "",
-        category2: "",
-    })
-    const onChangeCategoryHandler = (e) => {
-        setOnCgData({
-            ...onCgData, [e.target.name]: e.target.value
-        })
+  
+    const [categSelect,setCategSelect] = useState([])
+   
+
+    const onChangeCategSelectHandler = (e) => {
+        setCategSelect([
+            ...categSelect,e.target.value
+        ])
     }
 
     const onChangeFileHandler = (e) => {
         setFileData(e.target.files);
     }
+
+    const [data] = useNormalFetchData("http://localhost:5000/products/categories");
 
     const checkIfAuthorizatedUser = async () => {
         try {
@@ -65,8 +68,10 @@ const ProductCreate = (props) => {
             data.append("status", inputData.status);
             data.append("price", inputData.price);
             data.append("storage", inputData.storage);
-            data.append("category", onCgData.category1);
-            data.append("category", onCgData.category2);
+            for (let i = 0 ; i < categSelect.length; i++){
+                data.append("category", categSelect[i]);
+            }
+            
 
             data.append("productImage", fileData[0]);
             let res = await fetch("http://localhost:5000/products/list/create", {
@@ -98,10 +103,21 @@ const ProductCreate = (props) => {
             console.log(err);
         }
     }
+    
+    const deleteSelected = (selected) => {
+       
+        let newArr = categSelect.filter((item) => {
+            return item !== selected
+        })
+        setCategSelect(newArr)
+        
+    } 
     return (
         <div className="container create-table-container">
             {console.log(inputData)}
             {console.log(fileData)}
+            {console.log(data)}
+            {console.log(categSelect)}
             <div className="row justify-content-center">
                 <div className="col-md-6 create-table-content-container">
                     <h3 className="form-tit">
@@ -116,13 +132,31 @@ const ProductCreate = (props) => {
                             <label htmlFor="description" className="form-label">Description</label>
                             <textarea onChange={onChangeHandler} className="form-control" id="description" name="description" rows="3"></textarea>
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="status" className="form-label">Category</label>
-                            <input onChange={onChangeCategoryHandler} type="text" className="form-control" id="category1" name="category1" placeholder="Customer will search with this word(s)"/>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="status" className="form-label">Category</label>
-                            <input onChange={onChangeCategoryHandler} type="text" className="form-control" id="category2" name="category2" placeholder="Customer will search with this word(s)"/>
+                      
+                        <div className="row">
+                            <div className="col-md-5">
+                                <select class="form-select" aria-label="Default select example" onChange={onChangeCategSelectHandler}>
+                                    <option selected>Choose Categories</option>
+                                    {/*  */}
+                                    {
+                                        data  &&
+                                            data.map((categ) => {
+                                                return <option value={categ}>{categ}</option>
+                                            })
+                                    }
+                                </select>
+                            </div>
+                            <div className="col-md-7">
+                                {
+                                    categSelect && 
+                                        categSelect.map((selected,index) => {
+                                            return <div key={index} className="d-flex" style={{float:"right"}}>
+                                               <p className="form-cat-p"  onClick={() =>  deleteSelected(selected)}>{selected}</p>
+                                            </div>
+                                        })
+                                }
+
+                            </div>
                         </div>
                         <div className="mb-3">
                            

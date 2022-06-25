@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import "../../css/detail.css";
 import Slider from "react-slick";
 
@@ -7,12 +7,30 @@ const Detail = (props) => {
 
     let navigate = useNavigate();
     const params = useParams();
-    const [data, setData] = useState(null);
+    const [data, setData] = useState();
     let itemId = params.id;
 
     const [commentInput,setCommentInput] = useState({
         comment:""
     });
+    const [currentPage,setCurrentPage] = useState(1);
+    const [commentsPerPage] = useState(5);
+
+    let lastIndexofPage = currentPage * commentsPerPage;
+    let firstndexofPage = lastIndexofPage - commentsPerPage;
+
+    let pageNumbers = [];
+    let currentComments;
+
+    if (data) {
+        for (let i = 1 ; i <= Math.ceil(data.comments.length / 5); i++){
+            pageNumbers.push(i);
+        }   
+    }
+    if(data){
+        currentComments = data.comments.slice(firstndexofPage,lastIndexofPage);
+    }
+
 
     const commentInputHnadler = (e) => {
         setCommentInput({
@@ -66,13 +84,21 @@ const Detail = (props) => {
             })
             if(res.status === 201){
                 console.log("Comment has been added");
+                navigate(`/products`)
             }
+            
 
 
         }catch(err){
             console.log(err);
         }
     }
+
+    const onPaginateHandler = (numb) => {
+        setCurrentPage(numb)
+    }
+
+
 
 
     return (
@@ -100,11 +126,26 @@ const Detail = (props) => {
                             </div>
                             <div className="col-md-4 right-side">
                                 <div className="prod-name">
-                                    {data.name} ashdba shdasg agsdva ihdas gajks dadb adshb ahsdhbas jsgvasd gas gha sdhgasd asghasd hg
+                                    {data.name} 
                                 </div>
-                                <div className="new-price">
-                                    Price: ${data.price}
-                                </div>
+                                {
+                                    data.discount > 0 &&
+                                        <span style={{color:"red",marginRight:"1rem",fontSize:"1rem"}}>{data.discount > 0 && `${data.discount}% discount`}</span>
+
+                                }
+                                 {
+                                    data.discount > 0 &&
+                                        <div>
+                                            <div className="old-price">
+                                                Old Price: ${data.old_price}
+                                            </div>
+                                            <div className="new-price">
+                                                New Price: ${data.price}
+                                            </div>
+                                        </div>
+                                }
+                                
+                                
                                 <div className="status">
                                     Condition: {data.status}
                                 </div>
@@ -140,7 +181,8 @@ const Detail = (props) => {
                         </div>
                         <div className="row comment-section">
                             {
-                                data.comments.map((comment,index) => {
+                                currentComments && 
+                                currentComments.map((comment,index) => {
                                     return <div className="col-md-10 comments" key={index}>
                                     <div className="username">
                                         -{comment.username}
@@ -154,21 +196,35 @@ const Detail = (props) => {
                                 </div>
                                 })
                             }
+
+                            <div className="comment-pagination">
+                                <ul className="pagination">
+                                    {
+                                        pageNumbers.map((number) => {
+                                            return <li key={number} className="page-item">
+                                                <div onClick={() => onPaginateHandler(number)} className="page-link div-page">{number}</div>
+                                            </li>
+                                        })
+                                    }
+
+                                </ul>
+                            </div>
+
                                 
-                                <div className="col-md-10 add-comment mt-2">
-                                    <form onSubmit={(e) => {
-                                        e.preventDefault()
-                                        onCommentSubmitHandler(data._id)
-                                    }}>
-                                        
-                                        <textarea onChange={commentInputHnadler} type="text" className="form-control" id="comment" name="comment"></textarea>
-                                       
-                                        
-                                         <button className="btn btn-primary mt-2">Send</button>
+                            <div className="col-md-7 add-comment mt-2">
+                                <form onSubmit={(e) => {
+                                    e.preventDefault()
+                                    onCommentSubmitHandler(data._id)
+                                }}>
                                     
-                                    </form>
+                                    <textarea placeholder="Enter a comment" onChange={commentInputHnadler} type="text" className="form-control" id="comment" name="comment"></textarea>
                                     
-                                </div>
+                                    
+                                        <button className="btn btn-primary mt-2" style={{backgroundColor:"#405a7a"}}>Send</button>
+                                
+                                </form>
+                                
+                            </div>
                         </div>
                     </div>
             }

@@ -35,11 +35,13 @@ router.get("/list/create",authorizatedToken,ProductsController.productCreateCont
 router.get("/list",authorizatedToken,ProductsController.productControllerGet);
 router.get("/",ProductsController.productsPublicController);
 
-router.get("/filter",ProductsController.productCategoryController);
+router.get("/category",ProductsController.productCategoryController);
+router.get("/discounts",ProductsController.mostDiscountedGetController)
 router.get("/bests",ProductsController.bestProductSellerGet);
 router.get("/best",ProductsController.bestEverProductSellerGet);
 router.delete("/delete",authorizatedToken,ProductsController.deleteProductController);
 router.get("/categories",ProductsController.getCategories);
+
 
 router.get("/:id",ProductsController.productsIdGetController);
 router.post("/:id/comment",authorizatedToken,ProductsController.commentPostController);

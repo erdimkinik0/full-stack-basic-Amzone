@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
+
 const ProductsTable = (props) => {
+    
 
 
     const onRemoveHandler = async (productId) => {
@@ -30,6 +32,9 @@ const ProductsTable = (props) => {
 
     }
 
+    
+
+
 
     return (
         <div className="container table-container">
@@ -53,8 +58,8 @@ const ProductsTable = (props) => {
             </thead>
             <tbody>
                 {
-                    props.data && 
-                        props.data.map((product) => {
+                    props.currentProducts && 
+                        props.currentProducts.map((product) => {
                                 return <tr key={product._id}>
                                             <td>{product._id}</td>
                                             <td>{product.name}</td>
@@ -69,7 +74,7 @@ const ProductsTable = (props) => {
                                                 Delete
                                                 </button></td>
                                             <td>
-                                            <Link className="btn btn-primary" to={`/products/${product._id}/edit`}>
+                                            <Link className="btn btn-primary edit-but" to={`/products/${product._id}/edit`} style={{backgroundColor:"#405a7a"}}>
                                                 Edit
                                             </Link>
                                            </td>

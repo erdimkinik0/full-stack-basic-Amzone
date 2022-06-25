@@ -20,3 +20,28 @@
     padding: 0.4rem;
     border-radius: 5px;
 }
+
+.advert-username a{
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+}
+.advert-title {
+    font-weight: 500;
+    font-size: 14px;
+}
+.advert-category {
+    font-weight: 500;
+    font-size: 14px;
+}
+.advert-content {
+    font-size: 1rem;
+}
+.advert-date {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.div-page {
+    cursor: pointer;
+}

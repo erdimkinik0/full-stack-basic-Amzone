@@ -11,26 +11,41 @@ const ProductsComp = () => {
     const category = searchParams.get("category");
     const [filteredData,setFilteredData] = useState(null);
     const [categories] = useNormalFetchData("http://localhost:5000/products/categories");
+    const discounts = searchParams.get("discounts");
 
     
     const fetchFilteredData = async () => {
         try{
-            let res = await fetch(`http://localhost:5000/products/filter?category=${category}`);
-            if(res.status === 200){
-                let resJson = await res.json();
-                setFilteredData(resJson);
+            if(category){
+                let res = await fetch(`http://localhost:5000/products/category?category=${category}`);
+                if(res.status === 200){
+                    let resJson = await res.json();
+                    setFilteredData(resJson);
+                } 
             }
-
+            if(discounts){
+                let res = await fetch(`http://localhost:5000/products/discounts`)
+                if(res.status === 200){
+                    let resJson = await res.json();
+                    setFilteredData(resJson);
+                }
+            }
+           
         }catch(err){
             console.log(err)
         }
     }
 
+ 
+
+   
     
 
     useEffect(() => {
         fetchFilteredData()
-    },[category])
+    },[category,discounts])
+    
+
 
 
 
@@ -79,14 +94,16 @@ const ProductsComp = () => {
 
 
     return (
-        <div className="container-fluid products-comp-container">
-            <div className="row">
-                <div className="col-md-2 left-side">
+        <div className="container products-comp-container">
+            {console.log(filteredData)}
+            <div className="row mt-5">
+                <div className="col-md-2 left-side mt-4">
+                    <h4>Categories</h4>
                     {
                         categories &&
                             categories.sort().map((category,index) => {
                                 return <div key={index}>
-                                    <Link to={`/products/filter?category=${category}`}>{category}</Link>
+                                    <Link className="category-item" to={`/products/?category=${category}`}>{category}</Link>
                                 </div>
                             })
                     }
@@ -94,24 +111,29 @@ const ProductsComp = () => {
                 <div className="col-md-10 right-side">
                     <div className="row">
                         
-                        { !category &&
+                        { (!category && !discounts) &&
                                 currentItems &&
                                     currentItems.map((product,index) => {
-                                        return <div className="col-md-3 product-general-container" key={index}>
+                                        return <div className="col-md-3 product-general-container mt-4" key={index}>
                                             <div className="card-container">
                                                 <img className="product-image" src={`http://localhost:5000/${product.img}`} alt="product-img" />
                                                 <div className="card-body-container">
                                                     <Link to={`${product._id}/detail`}><p className="product-name">{product.name}asdasdasasddasasd asd asd asdasd ad aass</p></Link>
+                                                    {
+                                                        product.discount > 0 && 
+                                                            <span style={{color:"red",marginRight:"1rem",fontSize:"1rem"}}>{product.discount > 0 && `${product.discount}% cheaper now`}</span>
+                                                    }
+                                                    
                                                     <p className="product-price">${product.price} <span className="product-comment">reviews:{product.comments.length}</span></p>
                                                     <p className="body-text">{product.description.slice(0,100)}...</p>
-                                                    <Link style={{position:"absolute",bottom:"10px"}} to={`${product.id}/detail`}>See more</Link>
+                                                    <Link style={{position:"absolute",bottom:"10px",fontSize:"14px"}} to={`/products/${product._id}/detail`}>See more</Link>
                                                 </div>
                                             </div>
                                         </div>
                                     })
                         }
                         {
-                            !category &&
+                            (!category && !discounts) &&
                                 currentItems &&
                                 <ul className="pagination">
                                    { 
@@ -126,7 +148,7 @@ const ProductsComp = () => {
 
                                 </ul>
                         }
-                        { category &&
+                        { 
                                 sortedCatItems &&
                                     sortedCatItems.map((product,index) => {
                                         return <div className="col-md-3 product-general-container" key={index}>
@@ -134,6 +156,10 @@ const ProductsComp = () => {
                                                 <img className="product-image" src={`http://localhost:5000/${product.img}`} alt="product-img" />
                                                 <div className="card-body-container">
                                                     <Link to={`/products/${product._id}/detail`}><p className="product-name">{product.name}asdasdasasddasasd asd asd asdasd ad aass</p></Link>
+                                                    {
+                                                        product.discount > 0 && 
+                                                            <span style={{color:"red",marginRight:"1rem",fontSize:"1rem"}}>{product.discount > 0 && `${product.discount}% cheaper now`}</span>
+                                                    }
                                                     <p className="product-price">${product.price} <span className="product-comment">reviews:{product.comments.length}</span></p>
                                                     <p className="body-text">{product.description.slice(0,100)}...</p>
                                                     <Link style={{position:"absolute",bottom:"10px"}} to={`/products/${product._id}/detail`}>See more</Link>
@@ -143,7 +169,7 @@ const ProductsComp = () => {
                                     })
                         }
                         {
-                            category &&
+                            
                                 sortedCatItems &&
                                     <ul className="pagination">
                                         {

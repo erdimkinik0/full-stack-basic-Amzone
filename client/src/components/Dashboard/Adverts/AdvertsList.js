@@ -1,10 +1,32 @@
 import { Link } from "react-router-dom";
 import { useFetchData } from "../../../hooks/UseFetchData";
 import "../../../css/tables.css"
+import { useState } from "react";
 
 
 const AdvertsList = (props) => {
     const [data,setData] = useFetchData("http://localhost:5000/adverts/list", props);
+
+    const [currentPage , setcurrentPage] = useState(1);
+    const [advertssPerPage] = useState(10);
+    let currentAdverts;
+    let lastIndexofPage = currentPage * advertssPerPage;
+    let firstndexofPage = lastIndexofPage - advertssPerPage;
+
+    let pages = [];
+
+    if(data) {
+        for(let i = 1 ; i <= Math.ceil(data.length / advertssPerPage); i++ ){
+            pages.push(i);
+        }
+    }
+    if(data){
+        currentAdverts = data.slice(firstndexofPage,lastIndexofPage);
+    }
+    
+    const paginationClicked = (n) => {
+        setcurrentPage(n);
+    } 
 
     
 
@@ -59,25 +81,37 @@ const AdvertsList = (props) => {
                     <tbody>
                         {
                             
-                            data &&
-                                data.map((advert) => {
-                                    return <tr key={advert._id}>
-                                        <td>{advert.created_date}</td>
-                                        <td>{advert._id}</td>
-                                        <td>{advert.title}</td>
-                                        <td>{advert.content.slice(0, 19)}</td>
-                                        <td><button className="btn btn-danger" onClick={(e) => {
-                                            e.preventDefault();
-                                            onRemoveHandler(advert._id);
-                                        }}>
-                                            Delete
-                                            </button></td>
-                                    </tr>
-                            })
+                            currentAdverts &&
+                                currentAdverts.map((advert) => {
+                                        return <tr key={advert._id}>
+                                            <td>{advert.created_date}</td>
+                                            <td>{advert._id}</td>
+                                            <td>{advert.title}</td>
+                                            <td>{advert.content.slice(0, 19)}</td>
+                                            <td><button className="btn btn-danger" onClick={(e) => {
+                                                e.preventDefault();
+                                                onRemoveHandler(advert._id);
+                                            }}>
+                                                Delete
+                                                </button></td>
+                                        </tr>
+                                })
                         }
 
                     </tbody>
                 </table>
+                {/*  */}
+                <ul className="pagination">
+                    {
+                        pages && 
+                            pages.map((number) => {
+                                return <li key={number} className="page-item">
+                                    <div className="page-link" onClick={() => paginationClicked(number)}>{number}</div>
+                                </li>
+                            })
+                            
+                    }
+                </ul>
             </div>
 
         </div>

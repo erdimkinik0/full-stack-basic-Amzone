@@ -27,3 +27,15 @@
     text-align: center;
     margin-bottom: 2rem;
 }
+
+.form-cat-p {
+    margin-right: 0.3rem;
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 0px px black;
+    
+}
+.form-cat-p:hover {
+    text-decoration: line-through;
+    cursor: pointer;
+    color: red;
+}

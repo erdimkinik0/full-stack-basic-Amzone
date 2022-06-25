@@ -5,12 +5,15 @@ const User = require("../models/User");
 
 const productCreateControllerPost = async (req,res) => {
     try{
+        let discount = 100 * ((req.body.price - req.body.price) / req.body.price)
         if (req.user.user.onType === "Company") {
             const newProduct = await Product.create({
                 name:req.body.name,
                 description:req.body.description,
                 status:req.body.status,
                 price:req.body.price,
+                old_price:req.body.price,
+                discount:discount,
                 storage:req.body.storage,
                 img:req.file.path,
                 category:req.body.category
@@ -44,7 +47,7 @@ const productControllerGet = async (req,res) => {
         if(req.user.user.onType === "Company"){
             const user = await User.findById(req.user.user._id).populate("acc_type");
             const companyId = user.acc_type._id;
-            const company = await Company.findById(companyId).populate({path:"products",model:"Product"});
+            const company = await Company.findById(companyId).populate({path:"products",model:"Product"}).sort({sold_count:-1});
             res.json(company.products);
         }
         else {
@@ -58,7 +61,7 @@ const productControllerGet = async (req,res) => {
 const productsPublicController = async (req,res) => {
     try{
     
-        const all_products = await Product.find();
+        const all_products = await Product.find().sort({sold_count:-1});
         res.status(200).json(all_products)
      
     }catch(err){
@@ -88,7 +91,9 @@ const productsIdGetController = async (req,res) => {
                         sold_count:company.products[z].sold_count,
                         price:company.products[z].price,
                         storage:company.products[z].storage,
-                        img:company.products[z].img
+                        img:company.products[z].img,
+                        discount:company.products[z].discount,
+                        old_price:company.products[z].old_price
                     })
                 }
             }
@@ -148,11 +153,9 @@ const deleteProductController = async (req,res) => {
 
 const productCategoryController = async (req,res) => {
     try{
-        let queries = JSON.stringify(req.query);
-        let query = queries.slice(13,queries.length-2);
-        const products = await Product.find({category:query});
+        let category = req.query.category;
+        const products = await Product.find({category:category}).sort({sold_count:-1});
         res.status(200).json(products);
-
     }catch(err){
         res.status(500).json({message:err.message})
     }
@@ -220,6 +223,12 @@ const productsEditPostController = async (req,res) => {
                     product.description = req.body.description;
                     product.status = req.body.status;
                     product.price = req.body.price;
+                    if(req.body.price < product.old_price){
+                        product.discount = 100 * ((product.old_price - req.body.price) / product.old_price)
+                    }
+                    else {
+                        product.discount = 0
+                    }
                     product.storage = req.body.storage;
                     await product.save();
                     res.status(202).json(product);
@@ -246,7 +255,7 @@ const commentPostController = async (req,res) => {
                     let productId = company.products[a]._id;
                     if(productId == id){
                         const product = await Product.findById(productId);
-                        product.comments.push({
+                        product.comments.unshift({
                             username:user.username,
                             comment:req.body.comment,
                             date:new Date()
@@ -256,14 +265,22 @@ const commentPostController = async (req,res) => {
                     } 
                 } 
                 
-            }
-           
+            }   
         }
-
     }catch(err){
         res.status(500).json({message:err.message})
     }
 }
+
+const mostDiscountedGetController = async(req,res) => {
+    try{
+        const products = await Product.find({discount:{$gt:0}}).sort({discount:-1})
+        res.status(200).json(products);
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
  
 
 
@@ -282,5 +299,6 @@ module.exports = {
     getCategories,
     productsEditGetController,
     productsEditPostController,
-    commentPostController
+    commentPostController,
+    mostDiscountedGetController
 }
