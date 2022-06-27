@@ -8,14 +8,13 @@ import laptop from "../../assets/laptop.png"
 import toy from "../../assets/toy.png"
 import tshirt from "../../assets/tshirt.png"
 import mop from "../../assets/mop.png"
-import hardware from "../../assets/hardware.png"
+import hardware from "../../assets/ram-home.png"
 import compsAccs from "../../assets/comps-accs.jpg"
 import personalCare from "../../assets/personal-care.jpg"
 import dresses from "../../assets/dresses.jpg"
 
 import MySlider from "./SlickSlider";
 import PopularSlider from "./PopularSlider";
-import { useNormalFetchData } from "../../hooks/UseNormalFetchData";
 import { useEffect, useState } from "react";
 
 
@@ -27,7 +26,6 @@ const CategroyComp = (props) => {
         navigate(url);
     }
 
-    const [data] = useNormalFetchData("http://localhost:5000/products/best");
     const [deal, setDeal] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
@@ -55,15 +53,15 @@ const CategroyComp = (props) => {
                                 <p>Headset</p>
                             </div>
                             <div className="col-md-6 card-image">
-                                <Link to="/products?category=keyboards" ><img src={keyboard} alt="" /></Link>
+                                <Link to="/products?category=keyboard" ><img src={keyboard} alt="" /></Link>
                                 <p>Keyboards</p>
                             </div>
                             <div className="col-md-6 card-image">
-                                <Link to="/products?category=mices" ><img src={mouse} alt="" /></Link>
+                                <Link to="/products?category=computer mice" ><img src={mouse} alt="" /></Link>
                                 <p>Computer mice</p>
                             </div>
                             <div className="col-md-6 card-image">
-                                <Link to="/products?category=chairs" ><img src={fotel} alt="" /></Link>
+                                <Link to="/products?category=chair" ><img src={fotel} alt="" /></Link>
                                 <p>Chairs</p>
                             </div>
 
@@ -79,11 +77,11 @@ const CategroyComp = (props) => {
                         <h3>Shop by Category</h3>
                         <div className="row">
                             <div className="col-md-6 card-image">
-                                <Link to="/products?category=laptops" ><img src={laptop} alt="" /></Link>
+                                <Link to="/products?category=laptop" ><img src={laptop} alt="" /></Link>
                                 <p>Laptops</p>
                             </div>
                             <div className="col-md-6 card-image">
-                                <Link to="/products?category=toys-games" ><img src={toy} alt="" /></Link>
+                                <Link to="/products?category=toy and game" ><img src={toy} alt="" /></Link>
                                 <p>Toys</p>
                             </div>
                             <div className="col-md-6 card-image">
@@ -91,7 +89,7 @@ const CategroyComp = (props) => {
                                 <p>Clothes</p>
                             </div>
                             <div className="col-md-6 card-image">
-                                <Link to="/products?category=mops" ><img src={mop} alt="" /></Link>
+                                <Link to="/products?category=household goods" ><img src={mop} alt="" /></Link>
                                 <p>Household goods</p>
                             </div>
                         </div>
@@ -103,15 +101,15 @@ const CategroyComp = (props) => {
                 </div>
                 <div className="col-md-3 home-card" >
                     <div className="card-content-container">
-                        <h3>Electronics</h3>
+                        <h3>Hardware</h3>
                         <div className="row">
                             <div className="col-md-12 card-image electronics">
-                                <Link to="/products?category=harware" ><img src={hardware} alt="" /></Link>
+                                <Link to="/products?category=computer hardware" ><img src={hardware} alt="" /></Link>
                             </div>
 
                         </div>
                         <div className="c-a">
-                            <Link to="/products?category=hardware">Shop now</Link>
+                            <Link to="/products?category hardware">Shop now</Link>
                         </div>
                     </div>
                 </div>
@@ -137,12 +135,12 @@ const CategroyComp = (props) => {
                         <h3>Health & Personal Care</h3>
                         <div className="row">
                             <div className="col-md-12 card-image electronics second-cont">
-                                <Link to="/products?category=health-personal-care" ><img src={personalCare} alt="" /></Link>
+                                <Link to="/products?category=beauty and health care" ><img src={personalCare} alt="" /></Link>
                             </div>
 
                         </div>
                         <div className="c-a">
-                            <Link to="/products?category=health-personal-care">Shop now</Link>
+                            <Link to="/products?category=beauty and health care">Shop now</Link>
                         </div>
                     </div>
                 </div>
@@ -151,12 +149,12 @@ const CategroyComp = (props) => {
                         <h3>Computers & Accessories</h3>
                         <div className="row">
                             <div className="col-md-12 card-image electronics second-cont">
-                                <Link to="/products?category=computers-accessories" ><img src={compsAccs} alt="" /></Link>
+                                <Link to="/products?category=computers and accessories" ><img src={compsAccs} alt="" /></Link>
                             </div>
 
                         </div>
                         <div className="c-a">
-                            <Link to="/products?category=computers-accessories">Shop now</Link>
+                            <Link to="/products?category=computers and accessories">Shop now</Link>
                         </div>
                     </div>
 

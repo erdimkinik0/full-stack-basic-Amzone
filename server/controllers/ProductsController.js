@@ -223,7 +223,7 @@ const productsEditPostController = async (req,res) => {
                     product.description = req.body.description;
                     product.status = req.body.status;
                     product.price = req.body.price;
-                    if(req.body.price < product.old_price){
+                    if(req.body.price < product.old_price){ 
                         product.discount = 100 * ((product.old_price - req.body.price) / product.old_price)
                     }
                     else {

@@ -69,7 +69,6 @@ const useProductFormHandler = () => {
     const [inputData,setInputData] = useState({
         name:"",
         description:"",
-        status:"",
         price:null,
         storage:null,
     })

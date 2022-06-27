@@ -21,10 +21,12 @@ const tokenController = async (req,res) => {
             const parsedUser = user.user;
             const accessToken = generateAccessToken(parsedUser);
             res.status(200).json({accessToken:accessToken});
+            
         })
     }catch(err){
         res.status(404).json({mongoose:err.message});
     }
+    
 }
 const loginController = async (req,res) => {
     try {   

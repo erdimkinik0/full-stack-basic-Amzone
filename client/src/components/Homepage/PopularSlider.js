@@ -44,7 +44,7 @@ const PopularSlider = (props) => {
               return <div className="slider-container">
                 <Link to={`products/${product._id}/detail`}><img src={`http://localhost:5000/${product.img}`} alt="productimage" /></Link>
                 <div className="d-flex justify-content-around products-cont">
-                <p style={{fontSize:"1rem",color:"red",fontWeight:"500"}}>{product.discount}%</p>
+                <p style={{fontSize:"1rem",color:"red",fontWeight:"500"}}>-{parseInt(product.discount)}%</p>
                   <p style={{fontSize:"1rem"}}>${product.price}</p>
                   <p style={{fontSize:"1rem"}}>{product.name.slice(0, 10)}...</p>
                   <span>

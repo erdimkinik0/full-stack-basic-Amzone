@@ -6,10 +6,6 @@ const companySchema = new mongoose.Schema({
         required:true,
         maxlength:100,
     },
-    // established_date:{
-    //     type:Date,
-    //     required:true,
-    // },
     products:[mongoose.SchemaTypes.ObjectId],
     address:{
         country:{

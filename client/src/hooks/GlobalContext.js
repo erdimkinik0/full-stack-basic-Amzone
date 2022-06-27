@@ -2,7 +2,7 @@ import { createContext,useEffect,useState } from "react"
 
 const themes = {
     dark:{
-        backgroundColor: "#232f3e",
+        backgroundColor: "#202020",
         color:"white",
         boxShadow:"inset 0px 0px 0px 1px white"
     },

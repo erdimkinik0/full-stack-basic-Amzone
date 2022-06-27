@@ -10,7 +10,7 @@ const ProductCreate = (props) => {
     let navigate = useNavigate();
   
     const [categSelect,setCategSelect] = useState([])
-   
+    const [statusSelect,setStatusSelect] = useState("");
 
     const onChangeCategSelectHandler = (e) => {
         setCategSelect([
@@ -22,6 +22,9 @@ const ProductCreate = (props) => {
         setFileData(e.target.files);
     }
 
+    const onStatusSelectionHandler = (e) => {
+        setStatusSelect(e.target.value);
+    }
     const [data] = useNormalFetchData("http://localhost:5000/products/categories");
 
     const checkIfAuthorizatedUser = async () => {
@@ -65,7 +68,7 @@ const ProductCreate = (props) => {
             const data = new FormData();
             data.append("name", inputData.name);
             data.append("description", inputData.description);
-            data.append("status", inputData.status);
+            data.append("status", statusSelect);
             data.append("price", inputData.price);
             data.append("storage", inputData.storage);
             for (let i = 0 ; i < categSelect.length; i++){
@@ -133,7 +136,7 @@ const ProductCreate = (props) => {
                             <textarea onChange={onChangeHandler} className="form-control" id="description" name="description" rows="3"></textarea>
                         </div>
                       
-                        <div className="row">
+                        <div className="row mb-3">
                             <div className="col-md-5">
                                 <select class="form-select" aria-label="Default select example" onChange={onChangeCategSelectHandler}>
                                     <option selected>Choose Categories</option>
@@ -158,11 +161,14 @@ const ProductCreate = (props) => {
 
                             </div>
                         </div>
-                        <div className="mb-3">
-                           
-                            <label htmlFor="status" className="form-label">Status</label>
-                            <input onChange={onChangeHandler} type="text" className="form-control" id="status" name="status" placeholder="New,Slightly Used, well-worn"/>
-                        </div>
+                        <div className="mb-3 mt-3">
+                        <select class="form-select" aria-label="Default select example" onChange={onStatusSelectionHandler}>
+                                    <option selected>Status</option>
+                                    <option value="New">New</option>
+                                    <option value="Slightly Used">Slightly Used</option>
+                                    <option value="well-worn">Well-Worn</option>
+                                </select>
+                         </div>
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="mb-3">

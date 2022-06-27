@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
 
     description:{
         type:String,
-        maxlength:2048,
+        maxlength:4096,
         required:true
     },
     status:{
@@ -39,7 +39,6 @@ const productSchema = new mongoose.Schema({
     },
     img:{
         type:String,
-        required:true
     },
     category:[{
         type:String,

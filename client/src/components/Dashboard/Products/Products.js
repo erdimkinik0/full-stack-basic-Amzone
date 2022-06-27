@@ -51,7 +51,7 @@ const ProductsComp = () => {
 
     
     const [currentPage,setCurrenPage] = useState(1);
-    const [itemsPerPage,setItemsPerPage] = useState(10);
+    const [itemsPerPage,setItemsPerPage] = useState(12);
 
 
     let lastIndexOfPage = currentPage * itemsPerPage;
@@ -118,10 +118,10 @@ const ProductsComp = () => {
                                             <div className="card-container">
                                                 <img className="product-image" src={`http://localhost:5000/${product.img}`} alt="product-img" />
                                                 <div className="card-body-container">
-                                                    <Link to={`${product._id}/detail`}><p className="product-name">{product.name}asdasdasasddasasd asd asd asdasd ad aass</p></Link>
+                                                    <Link to={`${product._id}/detail`}><p className="product-name">{product.name}</p></Link>
                                                     {
                                                         product.discount > 0 && 
-                                                            <span style={{color:"red",marginRight:"1rem",fontSize:"1rem"}}>{product.discount > 0 && `${product.discount}% cheaper now`}</span>
+                                                            <span style={{color:"red",marginRight:"1rem",fontSize:"1rem"}}>{product.discount > 0 && `-${parseInt(product.discount)}% cheaper now`}</span>
                                                     }
                                                     
                                                     <p className="product-price">${product.price} <span className="product-comment">reviews:{product.comments.length}</span></p>
@@ -155,10 +155,10 @@ const ProductsComp = () => {
                                             <div className="card-container">
                                                 <img className="product-image" src={`http://localhost:5000/${product.img}`} alt="product-img" />
                                                 <div className="card-body-container">
-                                                    <Link to={`/products/${product._id}/detail`}><p className="product-name">{product.name}asdasdasasddasasd asd asd asdasd ad aass</p></Link>
+                                                    <Link to={`/products/${product._id}/detail`}><p className="product-name">{product.name}</p></Link>
                                                     {
                                                         product.discount > 0 && 
-                                                            <span style={{color:"red",marginRight:"1rem",fontSize:"1rem"}}>{product.discount > 0 && `${product.discount}% cheaper now`}</span>
+                                                            <span style={{color:"red",marginRight:"1rem",fontSize:"1rem"}}>{product.discount > 0 && `-${parseInt(product.discount)}% cheaper now`}</span>
                                                     }
                                                     <p className="product-price">${product.price} <span className="product-comment">reviews:{product.comments.length}</span></p>
                                                     <p className="body-text">{product.description.slice(0,100)}...</p>

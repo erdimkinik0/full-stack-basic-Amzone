@@ -130,7 +130,7 @@ const Detail = (props) => {
                                 </div>
                                 {
                                     data.discount > 0 &&
-                                        <span style={{color:"red",marginRight:"1rem",fontSize:"1rem"}}>{data.discount > 0 && `${data.discount}% discount`}</span>
+                                        <span style={{color:"red",marginRight:"1rem",fontSize:"1rem"}}>{data.discount > 0 && `-${parseInt(data.discount)}%`}</span>
 
                                 }
                                  {

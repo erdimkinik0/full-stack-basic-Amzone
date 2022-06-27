@@ -67,14 +67,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6I
 
 ###
 
-POST http://localhost:5000/products/62b1868235c625e7003028b5/edit
+POST http://localhost:5000/products/list/create
 Content-Type:application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMWJkN2IzZTUxOWM3Nzc3MWUyYSIsInVzZXJuYW1lIjoiZWRlazk1IiwiZW1haWwiOiJlcmRhbGtpbmlra0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQyY1dOSW5YalZydmlxL2JrNDRhalRlbzEuOXJzUkFTcDVTRVFUOWhxZGtqWUh6L1MuSldIVyIsIm9uVHlwZSI6IkNvbXBhbnkiLCJhY2NfdHlwZSI6IjYyYTBjMWJkN2IzZTUxOWM3Nzc3MWUyOCIsIl9fdiI6MH0sImlhdCI6MTY1NTgxOTM5NiwiZXhwIjoxNjU1ODIxMTk2fQ.5gQxbmw8077ljhMpBPhEzVKtCs4pNF5E5bmqusnvIjM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYyYTBjMWJkN2IzZTUxOWM3Nzc3MWUyYSIsInVzZXJuYW1lIjoiZWRlazk1IiwiZW1haWwiOiJlcmRhbGtpbmlra0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQyY1dOSW5YalZydmlxL2JrNDRhalRlbzEuOXJzUkFTcDVTRVFUOWhxZGtqWUh6L1MuSldIVyIsIm9uVHlwZSI6IkNvbXBhbnkiLCJhY2NfdHlwZSI6IjYyYTBjMWJkN2IzZTUxOWM3Nzc3MWUyOCIsIl9fdiI6MH0sImlhdCI6MTY1NjMyNTM1MCwiZXhwIjoxNjU2MzI3MTUwfQ.SCIkaOOyXcS54Hsq7BUc43ok7cebVSut7Xn6P8h360c
 
 {
     "name":"ASUS TUFFU",
     "description":"ASUUSUSUSUSUUUUUSUSUSUUSUSUSUSUSUSU",
     "status":"well-worn",
+    "category":"laptops",
     "price":3100,
     "storage":1500
     

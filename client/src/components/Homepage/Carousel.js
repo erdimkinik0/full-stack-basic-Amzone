@@ -18,7 +18,7 @@ const HomeCarouselComponent = () => {
                         <div className="caro-1-content">
                             <h5>Shop Computers <br></br>
                                 & Accessories</h5>
-                            <button onClick={() => regularNavigate("/products?category=computers-accessories")}>See more<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                            <button onClick={() => regularNavigate("/products?category=computers and accessories")}>See more<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-arrow-right-short" viewBox="0 0 16 16">
                                 <path fillRule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
                             </svg></button>
                         </div>
@@ -35,7 +35,7 @@ const HomeCarouselComponent = () => {
                                         <h5>Discover beauty selections</h5>
                                     </div>
 
-                                    <button onClick={() => regularNavigate("/products?category=beauty")}>See now<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                    <button onClick={() => regularNavigate("/products?category=beauty and health care")}>See now<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-arrow-right-short" viewBox="0 0 16 16">
                                         <path fillRule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
                                     </svg></button>
                                 </div>
@@ -47,7 +47,7 @@ const HomeCarouselComponent = () => {
                     <div className="carousel-item caro-3">
                         <div className="caro-3-content">
                             <h5>Shop Toys & Games</h5>
-                            <button onClick={() => regularNavigate("/products?category=toys-games")}>See more<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                            <button onClick={() => regularNavigate("/products?category=toy and game")}>See more<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-arrow-right-short" viewBox="0 0 16 16">
                                 <path fillRule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
                             </svg></button>
                         </div>
